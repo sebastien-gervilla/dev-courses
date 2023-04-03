@@ -2,6 +2,15 @@ import { PageLayout } from '@/components'
 import { SeoModel } from '@/api/models'
 
 const Home = () => {
+
+    const displayTechnologies = () => technologies.map(
+        technology => (
+            <div key={technology} className="card">
+                <p>{technology}</p>
+            </div>
+        )
+    );
+
     return (
         <PageLayout id='home' seo={homePageSeo}>
             <div className="hero wrapper">
@@ -22,8 +31,8 @@ const Home = () => {
             <div className="technologies wrapper">
                 <div className="technologies-content">
                     <h2>Des technologies modernes</h2>
-                    <div className="technology">
-                        React
+                    <div className="cards">
+                        {displayTechnologies()}
                     </div>
                 </div>
             </div>

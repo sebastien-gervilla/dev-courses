@@ -1,0 +1,163 @@
+#home-page {
+    h2 {
+        margin-bottom: 64px;
+
+        font-size: $size-28;
+    }
+
+    .hero {
+        .hero-content {
+            display: flex;
+            justify-content: space-between;
+
+            padding: 64px 0;
+            margin-bottom: 64px;
+
+            .action {
+                display: flex;
+                flex-direction: column;
+                gap: $size-32;
+
+                width: 40%;
+
+                h1 {
+                    font-size: $size-40;
+                }
+
+                p {
+                    line-height: 1.65rem;
+                }
+            }
+
+            img {
+                width: 50%;
+                min-height: 300px;
+            }
+        }
+    }
+
+    .technologies {
+        background-color: $main-color-lighter;
+
+        .technologies-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            padding: 96px 0;
+
+            h2 {
+                text-align: center;
+            }
+
+            .cards {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: repeat(2, 1fr);
+                gap: 64px;
+
+                .card {
+                    width: 200px;
+                    height: 200px;
+                    padding: 32px;
+
+                    border-radius: $main-radius;
+                    box-shadow: $main-shadow;
+
+                    background-color: $grey-50;
+                }
+            }
+        }
+    }
+
+    .selling {
+        .selling-content {
+            padding: 96px 0;
+
+            .arguments {
+                display: flex;
+                justify-content: space-between;
+                gap: 64px;
+
+                width: 100%;
+
+                .argument {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 32px;
+
+                    width: 28%;
+
+                    svg {
+                        width: 48px;
+                        height: 48px;
+
+                        color: $main-color;
+                    }
+                }
+            }
+        }
+    }
+
+    .user-feedback {
+        .user-feedback-content {
+            display: flex;
+            flex-direction: column;
+            
+            padding: 96px 0;
+
+            h2 {
+                text-align: center;
+            }
+
+            .feedbacks {
+                display: flex;
+                justify-content: space-between;
+
+
+                margin-bottom: 32px;
+
+                .feedback {
+                    width: 30%;
+                    height: 250px;
+                    padding: 16px;
+
+                    border-radius: $main-radius;
+                    box-shadow: $main-shadow;
+                    
+                    overflow: hidden;
+
+                    .head {
+                        display: flex;
+                        flex-wrap: wrap;
+                        justify-content: space-between;
+
+                        margin-bottom: $size-16;
+
+                        p {
+                            font-weight: 500;
+                        }
+                    }
+
+                    p {
+                        line-height: $line-height;
+                    }
+                }
+            }
+
+            button {
+                margin-left: auto;
+            }
+        }
+    }
+
+    .last-courses {
+        .last-courses-content {
+            padding: 96px 0;
+
+            h2 {
+                text-align: center;
+            }
+        }
+    }
+}
