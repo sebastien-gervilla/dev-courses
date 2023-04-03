@@ -40,6 +40,41 @@ const Home = () => {
                     </div>
                 </div>
             </div>
+            <div className="selling wrapper">
+                <div className="selling-content">
+                    <h2>Un apprentissage maîtrisé</h2>
+                    <div className="arguments">
+                        <div className="argument">
+                            <BsClockHistory />
+                            <h3>Flexible</h3>
+                            <p>
+                                Ceci est un sous-text marketing qui donne envie d'acheter les cours également. 
+                                Et voici une suite de ce texte marketing.
+                            </p>
+                        </div>
+                        <div className="argument">
+                            <GiProgression />
+                            <h3>Accessible</h3>
+                            <p>
+                                Ceci est un sous-text marketing qui donne envie d'acheter les cours également. 
+                                Et voici une suite de ce texte marketing.
+                            </p>
+                        </div>
+                        <div className="argument">
+                            <SlBriefcase />
+                            <h3>Prêt à l'emploi</h3>
+                            <p>
+                                Ceci est un sous-text marketing qui donne envie d'acheter les cours également. 
+                                Et voici une suite de ce texte marketing.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                    </div>
+                </div>
+            </div>
+            </div>
         </PageLayout>
     )
 }
