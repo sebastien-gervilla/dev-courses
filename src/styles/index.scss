@@ -13,4 +13,11 @@
 // Layouts
 @import './layouts/main';
 
+// Animations
+@import './animations/button';
+@import './animations/link';
+
 // Components
+@import './components/header';
+@import './components/icon-button';
+@import './components/stars';
