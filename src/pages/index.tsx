@@ -1,5 +1,8 @@
-import { PageLayout } from '@/components'
+import { PageLayout, Stars } from '@/components'
 import { SeoModel } from '@/api/models'
+import { BsClockHistory } from 'react-icons/bs'
+import { GiProgression } from 'react-icons/gi'
+import { SlBriefcase } from 'react-icons/sl'
 
 const Home = () => {
 
@@ -71,13 +74,54 @@ const Home = () => {
                     </div>
                 </div>
             </div>
+            <div className="user-feedback wrapper">
+                <div className="user-feedback-content">
+                    <h2>Ils parlent de nous</h2>
+                    <div className="feedbacks">
+                        <div className="feedback">
+                            <div className="head">
+                                <p>Sébastien</p>
+                                <Stars rating={5} />
+                            </div>
+                            <p>
+                                Des formations riches, variées, sur des sujets actuels, maintenues à jour, 
+                                à la fois accessibles et d'un très bon niveau, faciles à mettre en pratique, 
+                                reposant sur des vidéos, des cours écrits, des projets réels d'excellente qualité.
+                            </p>
+                        </div>
+                        <div className="feedback">
+                            <div className="head">
+                                <p>Sébastien</p>
+                                <Stars rating={5} />
+                            </div>
+                            <p>
+                                Des formations riches, variées, sur des sujets actuels, maintenues à jour, 
+                                à la fois accessibles et d'un très bon niveau, faciles à mettre en pratique, 
+                                reposant sur des vidéos, des cours écrits, des projets réels d'excellente qualité.
+                            </p>
+                        </div>
+                        <div className="feedback">
+                            <div className="head">
+                                <p>Sébastien</p>
+                                <Stars rating={5} />
+                            </div>
+                            <p>
+                                Des formations riches, variées, sur des sujets actuels, maintenues à jour, 
+                                à la fois accessibles et d'un très bon niveau, faciles à mettre en pratique, 
+                                reposant sur des vidéos, des cours écrits, des projets réels d'excellente qualité.
+                            </p>
+                        </div>
                     </div>
+                    <button className='animated'>
+                        Se lancer
+                    </button>
                 </div>
-            </div>
             </div>
         </PageLayout>
     )
 }
+
+const technologies = ['react', 'node.js', 'next.js', 'vue.js', '.NET', 'Nuxt.js']
 
 const homePageSeo: SeoModel = {
     metaTitle: 'Seb Dev',
