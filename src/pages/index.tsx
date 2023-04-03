@@ -12,7 +12,7 @@ const Home = () => {
     );
 
     return (
-        <PageLayout id='home' seo={homePageSeo}>
+        <PageLayout id='home-page' seo={homePageSeo}>
             <div className="hero wrapper">
                 <div className="hero-content">
                     <div className="action">
