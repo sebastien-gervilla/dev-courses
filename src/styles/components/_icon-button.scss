@@ -1,0 +1,22 @@
+.icon-button {
+    @include flex-center;
+
+    svg {
+        width: 24px;
+        height: 24px;
+    
+        &.animated {
+            transition: $main-transition;
+
+            &:hover {
+                color: $main-color;
+        
+                transition: $main-transition;
+        
+                &.up {
+                    transform: translateY(-7.5%);
+                }
+            }
+        }
+    }
+}
