@@ -1,0 +1,123 @@
+// Globales
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: $main-font;
+    font-weight: 400;
+    font-size: 1rem;
+
+    -webkit-font-smoothing: antialiased;
+
+    .app-wrapper {
+        color: $grey-900;
+        background-color: $grey-50;
+    }
+
+    ::selection {
+        color: $grey-50;
+        background-color: $main-color;
+    }
+}
+
+h1, h2, h3, h4 {
+    color: $grey-900;
+    font-family: $main-font;
+    font-weight: 600;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+button, input, textarea {
+    color: unset;
+    outline: none;
+    border: unset;
+    font-family: $main-font;
+    font-size: 1rem;
+    background-color: unset;
+}
+
+button {
+    cursor: pointer;
+    border: unset;
+    border-radius: $main-radius;
+    color: $grey-800;
+    background-color: unset;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+    appearance: textfield;
+}
+
+a {
+    display: block;
+    
+    color: unset;
+    text-decoration: none;
+}
+
+img {
+    display: block;
+
+    height: unset;
+    max-width: 1000px;
+    max-height: 1000px;
+
+    border-radius: $main-radius;
+}
+
+p.article-text {
+    line-height: 1.65em;
+}
+
+// Scrollbar
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: $grey-200;
+    border: 1px solid $grey-200;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: $main-radius;
+    background-color: $grey-700;
+}
+
+// Mixins
+
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin main-layout {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+@mixin main-theme {
+    // color: $dark-color;
+    background-color: $grey-50;
+    border-radius: 4px;
+}
