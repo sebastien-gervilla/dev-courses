@@ -1,0 +1,64 @@
+a.animated, button.animated-link {
+    color: $grey-800;
+    transition: $main-transition;
+    
+    &:hover {
+        color: $main-color;
+        transition: $main-transition;
+    }
+
+    &.underline {
+        position: relative;
+        color: $main-color;
+
+        &::after {
+            position: absolute;
+            content: '';
+            bottom: -1px;
+            left: 0;
+    
+            width: 100%;
+            height: .1px;
+    
+            background-color: $main-color;
+    
+            transform: scale(0, 1);
+            transition: $main-transition;
+        }
+
+        &.active-path {
+            &::after {
+                transform: scale(1);
+            }
+        }
+    
+        &:hover {
+            color: $main-color;
+    
+            transition: $main-transition;
+    
+            &::after {
+                transform: scale(1);
+            }
+        }
+
+        &.uncolored {
+            color: $grey-900;
+    
+            &::after {
+                background-color: $grey-900;
+            }
+    
+            &:hover {
+                color: $grey-900;
+            }
+        }
+    }
+}
+
+a.external {
+    display: inline;
+    
+    color: $main-color;
+    border-bottom: 2px solid $main-color;
+}
