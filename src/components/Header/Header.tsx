@@ -31,23 +31,29 @@ const Header = () => { // TODO: Searchbar ?
     return (
         <header className={'app-header ' + (isDark ? 'dark' : 'light')}>
             <div className="header-content">
-                <div className="header-nav">
-                    <div className="brand">
-                        <Link href="/">
-                            Seb Dev
-                        </Link>
+                <div className="brand">
+                    <Link href="/">
+                        Seb Dev
+                    </Link>
+                    <div className="buttons">
+                        {displayDarkModeButton()}
+                        <IconButton aria-label='Rechercher un article'>
+                            <AiOutlineSearch className='animated' />
+                        </IconButton>
                     </div>
-                    <nav className="app-navigation">
-                        <ul>
-                            {displayNavigation()}
-                        </ul>
-                    </nav>
                 </div>
-                <div className="buttons">
-                    {displayDarkModeButton()}
-                    <IconButton aria-label='Rechercher un article'>
-                        <AiOutlineSearch className='animated' />
-                    </IconButton>
+                <nav className="navigation">
+                    <ul>
+                        {displayNavigation()}
+                    </ul>
+                </nav>
+                <div className="auth">
+                    <button className='animated-link'>
+                        Se connecter
+                    </button>
+                    <button className='animated'>
+                        S'inscrire
+                    </button>
                 </div>
             </div>
         </header>

@@ -1,0 +1,63 @@
+.app-header {
+    .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        @include main-layout;
+        padding: 32px;
+
+        .brand {
+            display: flex;
+
+            a {
+                margin-right: 32px;
+
+                color: #4a26ff;
+
+                font-size: $size-28;
+            }
+
+            .buttons {
+                display: flex;
+                gap: 24px;
+
+                svg {
+                    width: 20px;
+                    height: 20px;
+                }
+            }
+        }
+
+        .navigation {
+            @include flex-center;
+        
+            ul {
+                display: flex;
+                gap: 48px;
+        
+                li {
+                    display: flex;
+                    align-items: center;
+        
+                    a {
+                        font-weight: 300;
+                        font-size: $size-18;
+                    }
+                }
+            }
+        }
+
+        .auth {
+            display: flex;
+
+            button.animated-link {
+                font-weight: 500;
+            }
+
+            button:last-child {
+                margin-left: 24px;
+            }
+        }
+    }
+}

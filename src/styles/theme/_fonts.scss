@@ -1,9 +1,7 @@
 // Default fonts
 
 $replace-font: -apple-system, 'Segoe UI', 'Helvetica', sans-serif;
-$main-font: 'Segoe UI', $replace-font;
-// $main-font: 'Inter', $replace-font;
-// $title-font: 'Lato', system-ui, $replace-font;
+$main-font: 'Inter', $replace-font;
 $code-font: 'Cascadia', system-ui, $replace-font;
 
 // Sizes - default is 16px

@@ -1,0 +1,39 @@
+button.animated {
+    padding: 10px 15px;
+
+    color: $grey-50;
+    border: 2px solid;
+    border-color: $main-color;
+    background-color: $main-color;
+
+    font-weight: 500;
+
+    cursor: pointer;
+    transition: $main-transition;
+
+    &:hover {
+        transition: $main-transition;
+    }
+
+    &:not(.filled) {
+        &:hover {
+            color: $main-color;
+            background-color: transparent;
+        }
+    }
+
+    &.filled:hover {
+        border-color: $main-color-dark;
+        background-color: $main-color-dark;
+    }
+
+    &.outlined {
+        color: $main-color;
+        background-color: transparent;
+
+        &:hover {
+            color: $grey-50;
+            background-color: $main-color;
+        }
+    }
+}

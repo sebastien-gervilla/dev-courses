@@ -4,3 +4,4 @@ export { IconButton } from './IconButton';
 export { PageLayout } from './PageLayout';
 export { SeoHead } from './SeoHead';
 export { AppWrapper } from './AppWrapper';
+export { Stars } from './Stars';
