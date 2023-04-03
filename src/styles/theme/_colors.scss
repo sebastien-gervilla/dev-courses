@@ -1,0 +1,107 @@
+// Colors
+
+// Main colors
+:root {
+    --white: '#FFF';
+    --black: '#000';
+
+    --title-color: #4E60FE;
+    
+    --main-color-lighter: #d0dff7;
+    --main-color-light: #6C81EC;
+    --main-color: #4E60FE;
+    --main-color-dark: #2a3cdf;
+
+    --grey-0: hsl(225deg, 0%, 100%);
+    --grey-50: hsl(225deg, 5%, 95%);
+    --grey-100: hsl(225deg, 25%, 95%);
+    --grey-200: hsl(225deg, 16%, 90%);
+    --grey-300: hsl(225deg, 8%, 80%);
+    --grey-400: hsl(225deg, 8%, 70%);
+    --grey-500: hsl(225deg, 7%, 60%);
+    --grey-600: hsl(225deg, 15%, 50%);
+    --grey-700: hsl(225deg, 12%, 40%);
+    --grey-800: hsl(225deg, 17%, 20%);
+    --grey-900: hsl(225deg, 25%, 20%);
+    --grey-1000: hsl(225deg, 15%, 15%);
+}
+
+.app-wrapper.dark {
+    --title-color: #f8dd10;
+
+    --main-color-lighter: #07214a;
+    --main-color-light: #6C81EC;
+    --main-color: #4E60FE;
+
+    --grey-0: hsl(225deg, 15%, 15%);
+    --grey-50: hsl(225deg, 25%, 20%);
+    --grey-100: hsl(225deg, 17%, 20%);
+    --grey-200: hsl(225deg, 12%, 40%);
+    --grey-300: hsl(225deg, 15%, 50%);
+    --grey-400: hsl(225deg, 7%, 60%);
+    --grey-500: hsl(225deg, 8%, 70%);
+    --grey-600: hsl(225deg, 8%, 80%);
+    --grey-700: hsl(225deg, 16%, 90%);
+    --grey-800: hsl(225deg, 25%, 95%);
+    --grey-900: hsl(225deg, 5%, 95%);
+    --grey-1000: hsl(225deg, 0%, 100%);
+}
+
+.app-wrapper {
+    transition: .2s ease;
+}
+
+// Code colors
+:root {
+    --code-keyword: #651fff;
+    --code-function: #201dff;
+    --code-boolean: #fff;
+    
+}
+
+//// ==> SCSS Variables
+
+// Dynamic Colors - Dark Mode
+
+$main-colorv: #3d39ff;
+$main-colortitle: #1214a1;
+// $main-color: #201dff;
+$main-colorz: #c9e0f4;
+$main-colorzz: #c9e0f4;
+// $secondary-color: #f2821a; // f28d1a f3972d
+$titlez-color: #f56715; // ff6929
+
+$main-color-lighter: var(--main-color-lighter);
+$main-color-light: var(--main-color-light);
+$main-color: var(--main-color);
+$main-color-dark: var(--main-color-dark);
+
+$secondary-color-light: #cdc273;
+$secondary-color: #f8dd10;
+
+$red: #df1515;
+$red-dark: #bd0d0d;
+
+$green: #2bc90e;
+$green-dark: #21a409;
+
+$title-color: var(--title-color);
+
+$grey-0: var(--grey-0);
+$grey-50: var(--grey-50);
+$grey-100: var(--grey-100);
+$grey-200: var(--grey-200);
+$grey-300: var(--grey-300);
+$grey-400: var(--grey-400);
+$grey-500: var(--grey-500);
+$grey-600: var(--grey-600);
+$grey-700: var(--grey-700);
+$grey-800: var(--grey-800);
+$grey-900: var(--grey-900);
+$grey-1000: var(--grey-1000);
+
+// Static colors
+
+$static-grey-50: hsl(225deg, 5%, 95%);
+$static-grey-600: hsl(225deg, 15%, 50%);
+$static-grey-800: hsl(225deg, 17%, 20%);
