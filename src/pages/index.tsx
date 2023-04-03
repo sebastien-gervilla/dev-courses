@@ -17,15 +17,19 @@ const Home = () => {
                 <div className="hero-content">
                     <div className="action">
                         <h1>
-                            Ceci est un texte Ceci est un texte.
+                            Ceci est un texte qui donne envie d'acheter les cours.
                         </h1>
                         <p>
-                            Ceci est un texte Ceci est un texte.
-                            Ceci est un texte Ceci est un texte.
-                            Ceci est un texte Ceci est un texte.
+                            Ceci est un sous-text marketing qui donne envie d'acheter les cours également. 
+                            Et voici une suite de ce texte marketing pour la longueur. Quelques mots clés ici.
                         </p>
+                        <div className="buttons">
+                            <button className='animated filled'>
+                                Découvrir les cours
+                            </button>
+                        </div>
                     </div>
-                    <img src="" alt="" style={{ backgroundColor: 'blue' }} />
+                    <img src="/images/web-developper.svg" alt="A web developper" />
                 </div>
             </div>
             <div className="technologies wrapper">
