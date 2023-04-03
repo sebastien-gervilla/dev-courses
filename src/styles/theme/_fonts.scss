@@ -1,0 +1,25 @@
+// Default fonts
+
+$replace-font: -apple-system, 'Segoe UI', 'Helvetica', sans-serif;
+$main-font: 'Segoe UI', $replace-font;
+// $main-font: 'Inter', $replace-font;
+// $title-font: 'Lato', system-ui, $replace-font;
+$code-font: 'Cascadia', system-ui, $replace-font;
+
+// Sizes - default is 16px
+
+$size-14: .875rem;
+$size-default: 1rem;
+$size-16: 1rem;
+$size-18: 1.125rem;
+$size-20: 1.25rem;
+$size-24: 1.5rem;
+$size-28: 1.75rem;
+$size-32: 2rem;
+$size-36: 2.25rem;
+$size-40: 2.5rem;
+$size-44: 2.75rem;
+$size-48: 3rem;
+$size-52: 3.25rem;
+$size-56: 3.5rem;
+$size-64: 4rem;
