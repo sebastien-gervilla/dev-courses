@@ -124,7 +124,7 @@ const Home = () => {
 const technologies = ['react', 'node.js', 'next.js', 'vue.js', '.NET', 'Nuxt.js']
 
 const homePageSeo: SeoModel = {
-    metaTitle: 'Seb Dev',
+    metaTitle: 'devCourses',
     metaDescription: 'This is my website',
     sharedImage: {
         _id: "websiteSharedImage",
