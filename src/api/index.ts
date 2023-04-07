@@ -1,8 +1,10 @@
 export type {
     ImageModel,
-    SeoModel
+    SeoModel,
+    UserModel
 } from './models';
 
 export {
-    Media
+    Media,
+    Request
 } from './helpers';
