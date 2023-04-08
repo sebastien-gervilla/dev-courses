@@ -4,8 +4,14 @@ import '@/styles/index.scss';
 import Head from 'next/head';
 import { AppWrapper } from '@/components';
 import App from 'next/app';
+import UserContext from '@/contexts/AuthContext';
+import { Request, UserModel } from '@/api';
 
-const MyApp = ({ Component, pageProps }: AppProps) => {
+interface MyAppProps extends AppProps {
+    user: UserModel | null
+}
+
+const MyApp = ({ Component, pageProps, user }: MyAppProps) => {
     return (
         <>
             <Head>
@@ -14,11 +20,13 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
                     href={'/favicon.ico'}
                 />
             </Head>
-            <ThemeContextProvider>
-                <AppWrapper>
-                    <Component {...pageProps} />
-                </AppWrapper>
-            </ThemeContextProvider>
+            <UserContext.Provider value={{user, refresh: () => {}}}>
+                <ThemeContextProvider>
+                    <AppWrapper>
+                        <Component {...pageProps} />
+                    </AppWrapper>
+                </ThemeContextProvider>
+            </UserContext.Provider>
         </>
     );
 }
@@ -28,8 +36,11 @@ MyApp.getInitialProps = async (ctx: AppContext) => {
     // Calls page's `getInitialProps` and fills `appProps.pageProps`
     const appProps = await App.getInitialProps(ctx);
 
+    const userRes = await Request.get('/user/auth');
+
     return {
-        ...appProps
+        ...appProps,
+        user: userRes.data
     };
 };
 

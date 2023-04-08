@@ -1,0 +1,72 @@
+.form-select {
+    position: relative;
+
+    min-width: 150px;
+
+    .label {
+        margin-bottom: 8px;
+    }
+
+    .toggle-button {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        width: 100%;
+        padding: 8px 16px;
+
+        color: $grey-800;
+        border: $main-border $grey-800;
+
+        svg {
+            width: 20px;
+            height: 20px;
+            margin-left: 15px;
+        }
+
+        &:hover {
+            border-color: $main-color;
+        }
+    }
+
+    .options {
+        position: absolute;
+        z-index: 999;
+        top: 100%;
+        left: 2px;
+        right: 2px;
+
+        opacity: 0;
+        visibility: hidden;
+
+        border: 1px solid $grey-800;
+        background-color: $grey-50;
+
+        transition: $main-transition;
+
+        &.opened {
+            opacity: 1;
+            visibility: visible;
+
+            transition: $main-transition;
+        }
+
+        .option {
+            width: 100%;
+            padding: 8px 16px;
+
+            border-radius: 0;
+            color: $grey-800;
+
+            text-align: left;
+
+            transition: $main-transition;
+
+            &:hover {
+                background-color: $grey-200;
+
+                transition: none;
+            }
+        }
+    }
+}

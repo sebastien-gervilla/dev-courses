@@ -1,0 +1,63 @@
+#tutorials-page {
+    .head-content {
+        padding: 64px 0;
+    }
+
+    .filter-menu {
+        margin-bottom: 64px;
+
+        .filters {
+            display: flex;
+        }
+    }
+
+    .courses-content {
+        .course {
+            display: flex;
+
+            cursor: pointer;
+
+            img {
+                width: 24%;
+                margin-right: 24px;
+
+                aspect-ratio: 16/9;
+
+                background-color: $grey-200;
+            }
+
+            .infos {
+                padding-top: 8px;
+
+                h3 {
+                    margin-bottom: 16px;
+
+                    font-size: $size-24;
+                }
+    
+                .row {
+                    display: flex;
+                    gap: 8px;
+    
+                    margin-bottom: 16px;
+    
+                    p {
+                        margin-right: 16px;
+                    }
+                }
+    
+                p.desc {
+                    width: 65ch;
+                    
+                    line-height: 1.5rem;
+                }
+            }
+
+            &:hover {
+                h3 {
+                    color: $main-color;
+                }
+            }
+        }
+    }
+}

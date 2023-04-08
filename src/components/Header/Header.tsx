@@ -1,12 +1,15 @@
 import React, { useContext } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { HiOutlineMoon, HiSun } from 'react-icons/hi';
-import { Link, IconButton } from '@/components';
+import { Link, IconButton, Modal } from '@/components';
 import { ThemeContext } from '@/contexts';
+import { useModal } from '@/hooks';
 
 const Header = () => { // TODO: Searchbar ?
 
     const { isDark, toggleDark } = useContext(ThemeContext);
+
+    const authModal = useModal();
 
     const displayNavigation = () =>
         NAVIGATION.map(navLink => (
@@ -56,6 +59,13 @@ const Header = () => { // TODO: Searchbar ?
                     </button>
                 </div>
             </div>
+            <Modal 
+                isOpen={authModal.isOpen}
+                onClose={authModal.close}
+                body={
+                    
+                }
+            />
         </header>
     );
 };
