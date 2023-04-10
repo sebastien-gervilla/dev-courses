@@ -13,13 +13,13 @@ const Header = () => { // TODO: Searchbar ?
 
     const displayNavigation = () =>
         NAVIGATION.map(navLink => (
-            <li key={navLink}>
+            <li key={navLink.title}>
                 <Link 
                     className="animated" 
-                    href={`/${navLink}`}
+                    href={navLink.path}
                     showIfActive
                 >
-                    {navLink}
+                    {navLink.title}
                 </Link>
             </li>
         ));
@@ -70,6 +70,25 @@ const Header = () => { // TODO: Searchbar ?
     );
 };
 
-const NAVIGATION = ['accueil', 'tutoriels', 'blog', 'contact'];
+const NAVIGATION = [
+    {
+        title: 'accueil',
+        path: '/'
+    },
+    {
+        title: 'tutoriels',
+        path: '/tutoriels'
+    },
+    {
+        title: 'blog',
+        path: '/blog'
+    },
+    {
+        title: 'contact',
+        path: '/contact'
+    }
+];
+
+type ModalType = 'login' | 'signup';
 
 export default Header;
