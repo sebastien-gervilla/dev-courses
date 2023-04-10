@@ -1,0 +1,33 @@
+.form-field {
+    p.label {
+        margin-bottom: 8px;
+    }
+
+    .input-wrapper {
+        display: flex;
+
+        border-radius: $main-radius;
+        border: 1px solid $grey-500;
+
+        overflow: hidden;
+        
+        &.dark {
+            border-color: yellow;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+        }
+
+        &:hover, &:focus {
+            border-color: $main-color;
+        }
+
+        .widget {
+            @include flex-center;
+
+            padding-right: 8px;
+        }
+    }
+}
