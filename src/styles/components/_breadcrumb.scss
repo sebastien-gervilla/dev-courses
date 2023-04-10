@@ -1,0 +1,27 @@
+.breadcrumb {
+    display: flex;
+    align-items: center;
+
+    a {
+        position: relative;
+
+        color: $grey-700;
+        font-size: $size-18;
+
+        transition: $main-transition;
+
+        &:hover {
+            color: $main-color;
+
+            transition: $main-transition;
+        }
+    }
+
+    svg {
+        width: 20px;
+        height: 20px;
+        margin: 0 10px;
+
+        color: $grey-600;
+    }
+}
