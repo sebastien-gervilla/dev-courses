@@ -74,6 +74,7 @@ export default class Request {
 }
 
 const defaultOptions: RequestInit = {
+    credentials: 'include',
     headers: {
         "Content-Type": 'application/json'
     }
@@ -82,6 +83,9 @@ const defaultOptions: RequestInit = {
 const API_URL = process.env.API_URL ?? 'http://localhost:8000';
 
 const defaultResponse: ApiResponse = {
+    ok: false,
+    status: 404,
+    statusText: "Error",
     data: null,
     meta: {}
 }
