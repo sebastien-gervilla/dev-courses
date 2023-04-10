@@ -10,9 +10,6 @@ const Tutorials = () => {
 
     const user = useContext(AuthContext);
 
-    console.log(user);
-    
-
     const [filters, setFilters] = useState(defaultFilters);
 
     const handleChangeFilters = (name: string, value: string) => {
@@ -42,7 +39,7 @@ const Tutorials = () => {
             </div>
             <div className="courses wrapper">
                 <div className="courses-content">
-                    <div className="course">
+                    <a href="/tutoriels/react-beginner-course" className="course">
                         <img src="" alt="" />
                         <div className="infos">
                             <h3>Ceci est un titre de cours</h3>
@@ -57,7 +54,7 @@ const Tutorials = () => {
                                 avec des mots clés marketing pour vendre le cours et son titre.
                             </p>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
         </PageLayout>
