@@ -36,7 +36,12 @@ MyApp.getInitialProps = async (ctx: AppContext) => {
     // Calls page's `getInitialProps` and fills `appProps.pageProps`
     const appProps = await App.getInitialProps(ctx);
 
-    const userRes = await Request.get('/user/auth');
+    const userRes = await Request.get('/user/auth', {
+        headers: {
+            'Content-Type': 'application/json',
+            Cookie: ctx.ctx.req?.headers.cookie || ''
+        }
+    });
 
     return {
         ...appProps,
