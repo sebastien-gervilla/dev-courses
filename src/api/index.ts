@@ -1,7 +1,8 @@
 export type {
     ImageModel,
     SeoModel,
-    UserModel
+    UserModel,
+    TutorialModel
 } from './models';
 
 export {

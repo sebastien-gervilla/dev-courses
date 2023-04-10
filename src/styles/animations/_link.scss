@@ -1,6 +1,10 @@
 a.animated, button.animated-link {
+    display: inline;
+
     color: $grey-800;
     transition: $main-transition;
+
+    cursor: pointer;
     
     &:hover {
         color: $main-color;
@@ -56,9 +60,8 @@ a.animated, button.animated-link {
     }
 }
 
-a.external {
+a.colored {
     display: inline;
     
     color: $main-color;
-    border-bottom: 2px solid $main-color;
 }

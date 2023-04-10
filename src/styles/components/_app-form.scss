@@ -1,0 +1,45 @@
+.app-form {
+    padding: $size-24;
+
+    p.title {
+        margin-bottom: $size-28;
+        
+        font-size: $size-24;
+        font-weight: 600;
+    }
+
+    .form-row {
+        display: flex;
+        gap: $size-24;
+        flex-grow: 1;
+
+        margin-bottom: $size-24;
+
+        .form-field {
+            width: 100%;
+        }
+
+        button {
+            width: 100%;
+        }
+
+        .alert {
+            width: 100%;
+            padding: 16px;
+
+            box-shadow: none;
+        }
+    }
+}
+
+.login-form {
+    .form-row {
+        width: 375px;
+    }
+}
+
+.signup-form {
+    .form-row {
+        max-width: 375px;
+    }
+}

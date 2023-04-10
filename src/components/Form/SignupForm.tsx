@@ -1,18 +1,15 @@
 import React, { useState } from 'react';
 import { FormField, FormPassword } from '../FormField';
 import { Request } from '@/api';
-import { Alert } from '..';
 
-interface LoginFormProps {
+interface SignupFormProps {
     switchModal: () => void
-    refresh: () => Promise<void>
     close: () => void
 }
 
-const LoginForm = ({ switchModal, refresh, close }: LoginFormProps) => {
+const SignupForm = ({ switchModal }: SignupFormProps) => {
 
     const [form, setForm] = useState(defaultForm);
-    const [error, setError] = useState<string | null>(null);
 
     const handleFormChanges = (name: string, value: string) => {
         setForm({
@@ -22,18 +19,29 @@ const LoginForm = ({ switchModal, refresh, close }: LoginFormProps) => {
     }
 
     const handleSubmitForm = async () => {
-        const res = await Request.make('/user/login', 'POST', form);
-        
-        if (!res.ok)
-            return setError(res.statusText);
-
-        close();
-        refresh();
+        const res = await Request.make('/user', 'POST', form);
+        console.log(res);
     }
 
     return (
-        <div className='login-form app-form'>
-            <p className='title'>Se connecter</p>
+        <div className='signup-form app-form'>
+            <p className='title'>S'incrire</p>
+            <div className="form-row">
+                <FormField 
+                    label='Prénom'
+                    type='text'
+                    name='fname'
+                    value={form.fname}
+                    onChange={handleFormChanges}
+                />
+                <FormField 
+                    label='Nom'
+                    type='text'
+                    name='lname'
+                    value={form.lname}
+                    onChange={handleFormChanges}
+                />
+            </div>
             <div className="form-row">
                 <FormField 
                     label='Email'
@@ -51,23 +59,17 @@ const LoginForm = ({ switchModal, refresh, close }: LoginFormProps) => {
                     onChange={handleFormChanges}
                 />
             </div>
-            {!!error && 
-                <div className='form-row'>
-                    <Alert type='Error' hideIcon>
-                        {error}
-                    </Alert>
-                </div>}
             <div className="form-row">
                 <button className='animated' onClick={handleSubmitForm}>
-                    Se connecter
+                    S'incrire
                 </button>
             </div>
             <p>
-                Nouveau ici ? <a 
+                Déjà member ? <a 
                     onClick={switchModal} 
                     className='animated underline colored'
                 >
-                    Créer un compte
+                    Se connecter
                 </a>
             </p>
         </div>
@@ -75,8 +77,10 @@ const LoginForm = ({ switchModal, refresh, close }: LoginFormProps) => {
 };
 
 const defaultForm = {
+    fname: '',
+    lname: '',
     email: '',
     password: ''
 }
 
-export default LoginForm;
+export default SignupForm;

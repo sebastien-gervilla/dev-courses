@@ -6,3 +6,5 @@ export { SeoHead } from './SeoHead';
 export { AppWrapper } from './AppWrapper';
 export { Stars } from './Stars';
 export { Modal } from './Modal';
+export { Alert } from './Alert';
+export { Breadcrumb } from './Breadcrumb';

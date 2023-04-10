@@ -1,0 +1,58 @@
+.alert {
+    position: relative;
+
+    padding: 24px 32px;
+
+    border-radius: $main-radius;
+    box-shadow: $main-shadow;
+
+    strong.title {
+        display: block;
+
+        margin-bottom: $size-14;
+    }
+
+    p {
+        margin-bottom: $size-16;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    .alert-icon {
+        position: absolute;
+        left: 0;
+        top: 0;
+
+        @include flex-center;
+
+        width: 64px;
+        height: 64px;
+
+        border-radius: 50%;
+        background-color: $grey-50;
+
+        transform: translate(-50%, -50%);
+
+        svg {
+            width: 75%;
+            height: 75%;
+            padding: 7px;
+
+            border-radius: 50%;
+
+            box-shadow: $main-shadow;
+        }
+    }
+
+    code {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .code-block {
+        .code, .language {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+    }
+}

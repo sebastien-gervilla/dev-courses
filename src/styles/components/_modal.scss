@@ -1,0 +1,28 @@
+.modal-wrapper {
+    position: fixed;
+    z-index: 99999;
+    inset: 0;
+
+    opacity: 0;
+    background-color: rgba(0, 0, 0, .2);
+
+    pointer-events: none;
+    transition: $main-transition;
+
+    .modal {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+
+        border-radius: $main-radius;
+        background-color: $grey-50;
+
+        transform: translate(-50%, -50%);
+    }
+
+    &.opened {
+        opacity: 1;
+        pointer-events: all;
+        transition: $main-transition;
+    }
+}
