@@ -3,7 +3,7 @@ import React, { ReactNode, useRef } from 'react';
 import ReactDOM from 'react-dom';
 
 interface ModalProps {
-    isOpen: false
+    isOpen: boolean
     onClose: () => void
     body: ReactNode
 }
