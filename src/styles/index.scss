@@ -9,6 +9,7 @@
 
 // Pages
 @import './pages/home';
+@import './pages/tutorial';
 @import './pages/tutorials';
 
 // Layouts
@@ -23,3 +24,8 @@
 @import './components/icon-button';
 @import './components/stars';
 @import './components/form-select';
+@import './components/modal';
+@import './components/app-form';
+@import './components/form-field';
+@import './components/alert';
+@import './components/breadcrumb';
