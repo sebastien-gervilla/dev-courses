@@ -4,7 +4,7 @@ import '@/styles/index.scss';
 import Head from 'next/head';
 import { AppWrapper } from '@/components';
 import App from 'next/app';
-import UserContext from '@/contexts/AuthContext';
+import { UserContextProvider } from '@/contexts/AuthContext';
 import { Request, UserModel } from '@/api';
 
 interface MyAppProps extends AppProps {
@@ -20,13 +20,13 @@ const MyApp = ({ Component, pageProps, user }: MyAppProps) => {
                     href={'/favicon.ico'}
                 />
             </Head>
-            <UserContext.Provider value={{user, refresh: () => {}}}>
+            <UserContextProvider initialUser={user}>
                 <ThemeContextProvider>
                     <AppWrapper>
                         <Component {...pageProps} />
                     </AppWrapper>
                 </ThemeContextProvider>
-            </UserContext.Provider>
+            </UserContextProvider>
         </>
     );
 }
