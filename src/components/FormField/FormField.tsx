@@ -42,7 +42,10 @@ const FormField = ({
                     placeholder={placeholder}
                     className='animated'
                 />
-                {widget}
+                {!!widget && 
+                    <div className="widget">
+                        {widget}
+                    </div>}
             </div>
             <p className='validator'>{validator}</p>
         </div>
