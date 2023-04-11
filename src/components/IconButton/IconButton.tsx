@@ -1,12 +1,12 @@
-import React, { DetailedHTMLProps } from 'react';
+import React, { DetailedHTMLProps, forwardRef } from 'react';
 
-const IconButton = (props: ButtonProps) => {
+const IconButton = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
     return (
-        <button {...props} className='icon-button'>
+        <button {...props} ref={ref} className='icon-button'>
             {props.children}
         </button>
     );
-};
+});
 
 type ButtonProps = DetailedHTMLProps<
     React.ButtonHTMLAttributes<HTMLButtonElement>, 

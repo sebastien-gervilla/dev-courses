@@ -1,0 +1,55 @@
+.popover-wrapper {
+    @mixin popupTransition {
+        transition: $main-transition;
+        transition-property: visibility, opacity;
+    }
+
+    .popover-background {
+        position: absolute;
+
+        visibility: hidden;
+        opacity: 0;
+
+        @include popupTransition;
+
+        &.opened {
+            visibility: visible;
+            opacity: 1;
+
+            @include popupTransition;
+        }
+
+        .arrow {
+            content: '';
+    
+            width: 20px;
+            height: 20px;
+    
+            transform: rotate(45deg);
+        }
+
+        .popover, .arrow {
+            position: absolute;
+
+            visibility: hidden;
+            opacity: 0;
+
+            box-shadow: $main-shadow;
+            border-radius: $main-radius;
+
+            @include popupTransition;
+        }
+
+        &.opened {
+            .popover, .arrow {
+                visibility: visible;
+                opacity: 1;
+                
+                @include popupTransition;
+                transition-duration: .15s;
+                transition-delay: .05s;
+            }
+        }
+
+    }
+}

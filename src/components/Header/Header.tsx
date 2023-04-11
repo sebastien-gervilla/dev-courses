@@ -1,12 +1,14 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { HiOutlineMoon, HiSun } from 'react-icons/hi';
-import { Link, IconButton, Modal } from '@/components';
+import { Link, IconButton, Modal, Popover } from '@/components';
 import { ThemeContext } from '@/contexts';
 import { useModal } from '@/hooks';
 import { LoginForm, SignupForm } from '../Form';
 import UserContext from '@/contexts/AuthContext';
 import { Request } from '@/api';
+import { MdAccountCircle } from 'react-icons/md';
+import AccountMenu from './AccountMenu';
 
 const Header = () => {
 
@@ -14,6 +16,9 @@ const Header = () => {
     const { user, refresh } = useContext(UserContext);
 
     const authModal = useModal();
+    const accountPopover = useModal();
+
+    const accountButtonRef = useRef<HTMLButtonElement | null>(null);
 
     const [modalType, setModalType] = useState<ModalType>('login');
 
@@ -61,9 +66,15 @@ const Header = () => {
                 <button className='animated-link' onClick={logout}>
                     Se déconnecter
                 </button>
+                <IconButton ref={accountButtonRef} onClick={accountPopover.open}>
+                    <MdAccountCircle className='animated' />
+                </IconButton>
             </div>
         );
     }
+
+    console.log(accountButtonRef.current);
+    
 
     const displayDarkModeButton = () =>
         <IconButton aria-label='Changer de thème' onClick={toggleDark}>
@@ -102,6 +113,26 @@ const Header = () => {
                         <SignupForm switchModal={switchModal} close={authModal.close} />
                 }
             />
+            {!!user && <Popover 
+                id='account-popover'
+                anchor={accountButtonRef.current}
+                isOpen={accountPopover.isOpen}
+                onClose={accountPopover.close}
+                position={{
+                    origin: {
+                        horizontal: 'left',
+                        vertical: 'bottom'
+                    },
+                    transform: {
+                        horizontal: 'left',
+                    },
+                    gap: {
+                        vertical: 20
+                    }
+                }}
+                body={<AccountMenu />}
+                addArrow
+            />}
         </header>
     );
 };
