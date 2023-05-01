@@ -9,4 +9,5 @@ export { Modal } from './Modal';
 export { Alert } from './Alert';
 export { Breadcrumb } from './Breadcrumb';
 export { Popover } from './Popover';
+export { Accordion } from './Accordion';
 export { CoursesTable } from './CoursesTable';
