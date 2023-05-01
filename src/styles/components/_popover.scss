@@ -19,18 +19,24 @@
             @include popupTransition;
         }
 
-        .arrow {
-            content: '';
-    
-            width: 20px;
-            height: 20px;
-    
-            transform: rotate(45deg);
+
+        .arrow-wrapper {
+            position: absolute;
+            bottom: 100%;
+
+            overflow: hidden;
+
+            .arrow {
+                content: '';
+        
+                width: 20px;
+                height: 20px;
+        
+                transform: translateY(calc(50% + 3px)) rotate(45deg);
+            }
         }
 
         .popover, .arrow {
-            position: absolute;
-
             visibility: hidden;
             opacity: 0;
 
