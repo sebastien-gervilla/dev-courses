@@ -120,11 +120,11 @@ const Header = () => {
                 onClose={accountPopover.close}
                 position={{
                     origin: {
-                        horizontal: 'left',
+                        horizontal: 'right',
                         vertical: 'bottom'
                     },
                     transform: {
-                        horizontal: 'left',
+                        horizontal: 'right',
                     },
                     gap: {
                         vertical: 20
