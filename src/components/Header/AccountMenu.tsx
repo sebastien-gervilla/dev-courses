@@ -6,7 +6,7 @@ const AccountMenu = () => {
         <div className='account-menu'>
             <ul>
                 <li>
-                    <Link href='/dashboard'>
+                    <Link href='/mes-cours'>
                         Mes cours
                     </Link>
                 </li>
