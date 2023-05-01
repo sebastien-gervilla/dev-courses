@@ -9,3 +9,4 @@ export { Modal } from './Modal';
 export { Alert } from './Alert';
 export { Breadcrumb } from './Breadcrumb';
 export { Popover } from './Popover';
+export { CoursesTable } from './CoursesTable';
