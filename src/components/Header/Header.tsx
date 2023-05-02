@@ -88,7 +88,7 @@ const Header = () => {
             <div className="header-content">
                 <div className="brand">
                     <Link href="/">
-                        Seb Dev
+                        Dev Courses
                     </Link>
                     <div className="buttons">
                         {displayDarkModeButton()}
