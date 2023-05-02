@@ -11,8 +11,8 @@ const Contact = () => {
                 <div className="head-content">
                     <Breadcrumb links={[
                         {
-                            title: 'Tutoriels',
-                            href: '/tutoriels'
+                            title: 'Contact',
+                            href: '/contact'
                         }
                     ]} />
                     <h1>Centre d'aide</h1>
