@@ -8,6 +8,10 @@ const ContactForm = () => {
     const handleChangeForm = (name: string, value: string) =>
         setForm({...form, [name]: value});
 
+    const handleSubmitForm = () => {
+
+    }
+
     return (
         <form className="app-form">
             <p className="title">
@@ -43,6 +47,11 @@ const ContactForm = () => {
                     value={form.message}
                     onChange={handleChangeForm}
                 />
+            </div>
+            <div className="form-row">
+                <button className='animated' onClick={handleSubmitForm}>
+                    Envoyer
+                </button>
             </div>
         </form>
     );
