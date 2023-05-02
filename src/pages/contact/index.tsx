@@ -23,13 +23,27 @@ const Contact = () => {
                 <div className="help-content">
                     <div className="faq">
                         <div className="faq-content">
+                            <h2>Questions récurrentes</h2>
                             <Accordion 
                                 title={"Comment j'accède aux tutoriels premium ?"}
                                 text={"Comme ça."}
                             />
+                            <Accordion 
+                                title={"Comment changer mon mot de passe ?"}
+                                text={"Il faut aller sur la page de profile."}
+                            />
+                            <Accordion 
+                                title={"Où sont mes cours suivis ?"}
+                                text={"Là."}
+                            />
+                            <Accordion 
+                                title={"Pourquoi je n'arrive pas à me connecter ?"}
+                                text={"Parce qu'il faut entrer le bon mot de passe."}
+                            />
                         </div>
                     </div>
                     <div className="contact">
+                        <h2>Nous contacter</h2>
                         <ContactForm />
                     </div>
                 </div>
