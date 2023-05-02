@@ -69,11 +69,12 @@
 
 #account-popover {
     .popover-background {
-        .arrow {
-            left: 15px;
-            top: -8px;
+        .arrow-wrapper {
+            right: 10px;
 
-            background-color: $grey-0;
+            .arrow {
+                background-color: $grey-0;
+            }
         }
 
         .popover {

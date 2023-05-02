@@ -1,0 +1,46 @@
+.accordion {
+    box-shadow: $main-shadow;
+    border-radius: $main-radius;
+
+    overflow: hidden;
+
+    .head {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        
+        padding: $size-16;
+
+        cursor: pointer;
+
+        p {
+            font-size: $size-18;
+            font-weight: 500;
+        }
+
+        svg {
+            width: 24px;
+            height: 24px;
+        }
+    }
+
+    .text {
+        max-height: 0;
+
+        overflow: hidden;
+
+        transition: $main-transition;
+
+        p {
+            padding: $size-16;
+        }
+    }
+
+    &.opened {
+        .text {
+            max-height: unset;
+
+            transition: $main-transition;
+        }
+    }
+}

@@ -15,16 +15,13 @@ interface PopoverProps {
     keepFocus?: boolean,
     darkenBackground?: boolean
 }
-
+// TODO: Arrow position depending on position prop
 const Popover = ({ id, isOpen, anchor, position, onClose, body, addArrow = false, keepFocus = false }: PopoverProps) => {
 
     const [hasRendered, setHasRendered] = useState(false);
     const popoverRef = useRef<HTMLDivElement>(null);
 
     const popupPosition = getPopupStyles(anchor, position);
-
-    console.log(anchor);
-    
 
     useClickOutside(popoverRef.current, onClose, keepFocus);
 
@@ -50,7 +47,11 @@ const Popover = ({ id, isOpen, anchor, position, onClose, body, addArrow = false
                 ref={popoverRef}
                 style={popupPosition}
             >
-                {addArrow && <div className='arrow'></div>}
+                {addArrow &&
+                    <div className='arrow-wrapper'>
+                        <div className='arrow'></div>
+                    </div>}
+
                 <div className="popover">
 
                     {body}

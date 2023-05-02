@@ -9,8 +9,10 @@
 
 // Pages
 @import './pages/home';
+@import './pages/contact';
 @import './pages/tutorial';
 @import './pages/tutorials';
+@import './pages/my-courses';
 
 // Layouts
 @import './layouts/main';
@@ -30,3 +32,4 @@
 @import './components/alert';
 @import './components/breadcrumb';
 @import './components/popover';
+@import './components/accordion';

@@ -88,7 +88,7 @@ const Header = () => {
             <div className="header-content">
                 <div className="brand">
                     <Link href="/">
-                        Seb Dev
+                        Dev Courses
                     </Link>
                     <div className="buttons">
                         {displayDarkModeButton()}
@@ -120,11 +120,11 @@ const Header = () => {
                 onClose={accountPopover.close}
                 position={{
                     origin: {
-                        horizontal: 'left',
+                        horizontal: 'right',
                         vertical: 'bottom'
                     },
                     transform: {
-                        horizontal: 'left',
+                        horizontal: 'right',
                     },
                     gap: {
                         vertical: 20

@@ -40,7 +40,7 @@ const SeoHead = (seo: SeoModel) => { // TODO: I could want not to change the tit
 };
 
 const defaultSeo: SeoModel = { // TODO: Change this or export to database
-    metaTitle: 'Seb Dev',
+    metaTitle: 'Dev Courses',
     metaDescription: 'This is my website',
     sharedImage: {
         _id: "websiteSharedImage",

@@ -1,0 +1,30 @@
+#contact-page {
+    .head-content {
+        padding: 64px 0;
+
+        .breadcrumb {
+            margin-bottom: 16px;
+        }
+    }
+
+    .help-content {
+        display: flex;
+        justify-content: space-between;
+
+        h2 {
+            margin-bottom: $size-40;
+        }
+
+        .faq {
+            .accordion {
+                margin-bottom: 24px;
+            }
+        }
+
+        .contact {
+            .app-form {
+                padding: 0;
+            }
+        }
+    }
+}
