@@ -11,6 +11,20 @@
         display: flex;
         justify-content: space-between;
 
-        
+        h2 {
+            margin-bottom: $size-40;
+        }
+
+        .faq {
+            .accordion {
+                margin-bottom: 24px;
+            }
+        }
+
+        .contact {
+            .app-form {
+                padding: 0;
+            }
+        }
     }
 }
