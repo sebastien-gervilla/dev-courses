@@ -25,7 +25,7 @@
     }
 
     .text {
-        height: 0;
+        max-height: 0;
 
         overflow: hidden;
 
@@ -38,7 +38,7 @@
 
     &.opened {
         .text {
-            height: unset;
+            max-height: unset;
 
             transition: $main-transition;
         }
