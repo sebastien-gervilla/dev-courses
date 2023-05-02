@@ -71,10 +71,7 @@ const Header = () => {
                 </IconButton>
             </div>
         );
-    }
-
-    console.log(accountButtonRef.current);
-    
+    }   
 
     const displayDarkModeButton = () =>
         <IconButton aria-label='Changer de thème' onClick={toggleDark}>
@@ -130,7 +127,7 @@ const Header = () => {
                         vertical: 20
                     }
                 }}
-                body={<AccountMenu />}
+                body={<AccountMenu isAdmin={user.isAdmin} />}
                 addArrow
             />}
         </header>
