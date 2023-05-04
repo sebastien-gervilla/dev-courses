@@ -1,27 +1,13 @@
-import { PageLayout, Stars } from '@/components'
+import { PageLayout } from '@/components'
 import { SeoModel } from '@/api/models'
-import { BsClockHistory } from 'react-icons/bs'
-import { GiProgression } from 'react-icons/gi'
-import { SlBriefcase } from 'react-icons/sl'
 
 const Admin = () => {
-
-    const displayTechnologies = () => technologies.map(
-        technology => (
-            <div key={technology} className="card">
-                <p>{technology}</p>
-            </div>
-        )
-    );
-
     return (
         <PageLayout id='admin-page' seo={adminPageSeo}>
             
         </PageLayout>
     )
 }
-
-const technologies = ['react', 'node.js', 'next.js', 'vue.js', '.NET', 'Nuxt.js']
 
 const adminPageSeo: SeoModel = {
     metaTitle: 'devCourses',
