@@ -1,0 +1,33 @@
+.table {
+    .table-header {
+        display: grid;
+
+        padding: 12px 16px;
+
+        background-color: $grey-200;
+        border-radius: $main-radius;
+    }
+
+    .rows {
+        display: grid;
+
+        padding: 0 16px;
+        
+        .column {
+            display: flex;
+            
+            padding: 12px 0;
+
+            border-bottom: 1px solid black;
+
+            p {
+                line-height: 1.65rem;
+            }
+
+            svg {
+                width: 24px;
+                height: 24px;
+            }
+        }
+    }
+}
