@@ -1,5 +1,6 @@
 import { createContext, ReactNode, useState } from "react";
 import { Request, UserModel } from "@/api";
+import Router from 'next/router';
 
 interface AuthContextProps {
     user: UserModel | null,
@@ -24,6 +25,9 @@ export const UserContextProvider = ({ initialUser, children }: ProviderProps) =>
         const authRes = await Request.get('/user/auth');
 
         setUser(authRes.data ? authRes.data : null);
+
+        if (!authRes.data)
+            Router.reload();
     }
 
     return (

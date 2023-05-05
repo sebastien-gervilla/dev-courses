@@ -1,0 +1,11 @@
+.menu {
+    padding: 8px;
+
+    button, a {
+        padding: 8px;
+
+        &:hover {
+            background-color: $grey-200;
+        }
+    }
+}

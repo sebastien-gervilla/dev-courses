@@ -1,0 +1,46 @@
+.confirm-modal {
+    width: 350px;
+    padding: 32px;
+
+    .title {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        margin-bottom: 24px;
+
+        p {
+            margin-bottom: 0;
+
+            font-size: $size-18;
+            font-weight: 500;
+        }
+        
+        svg {
+            width: 24px;
+            height: 24px;
+        }
+    }
+
+    p {
+        margin-bottom: 32px;
+        line-height: 1.55rem;
+    }
+
+    .buttons {
+        display: flex;
+        gap: 16px;
+
+        button {
+            flex-grow: 1;
+
+            font-weight: 500;
+            
+            &:first-child {
+                &:hover {
+                    color: $red-dark;
+                }
+            }
+        }
+    }
+}
