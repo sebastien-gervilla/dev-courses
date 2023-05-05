@@ -9,6 +9,7 @@
 
 // Pages
 @import './pages/home';
+@import './pages/admin';
 @import './pages/contact';
 @import './pages/tutorial';
 @import './pages/tutorials';
@@ -33,3 +34,6 @@
 @import './components/breadcrumb';
 @import './components/popover';
 @import './components/accordion';
+@import './components/table';
+@import './components/menu';
+@import './components/confirm-modal';
