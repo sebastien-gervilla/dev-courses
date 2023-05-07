@@ -1,4 +1,6 @@
 import React from "react";
+import ReactMarkdown from 'react-markdown';
+import rehypeRaw from "rehype-raw";
 import { Request, SeoModel, TutorialModel } from "@/api";
 import { Breadcrumb, PageLayout } from "@/components";
 
@@ -23,7 +25,9 @@ const Tutorial = ({ tutorial }: TutorialProps) => {
             </div>
             <div className="tutorial wrapper">
                 <div className="tutorial-content">
-                    {tutorial.content}
+                    <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+                        {tutorial.content}
+                    </ReactMarkdown>
                 </div>
             </div>
         </PageLayout>
