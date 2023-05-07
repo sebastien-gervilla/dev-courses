@@ -12,3 +12,4 @@ export { Popover } from './Popover';
 export { Accordion } from './Accordion';
 export { CoursesTable } from './CoursesTable';
 export { Table } from './Table';
+export { TutorialPreview } from './TutorialPreview';
