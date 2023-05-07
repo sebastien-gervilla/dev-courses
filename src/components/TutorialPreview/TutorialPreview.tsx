@@ -12,7 +12,7 @@ interface TutorialPreviewProps {
 
 const TutorialPreview = ({ slug, title, description, technology, hoursToLearn }: TutorialPreviewProps) => {
     return (
-        <a href={"/tutoriels/" + slug} className="course">
+        <a href={"/tutoriels/" + slug} className="tutorial-preview">
             <img src="" alt="" />
             <div className="infos">
                 <h3>{title}</h3>
