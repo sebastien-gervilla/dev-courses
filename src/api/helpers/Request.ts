@@ -41,7 +41,7 @@ export default class Request {
         return defaultResponse;
     }
 
-    static async make(url: URL | RequestInfo, method: string, data?: Object, options: RequestInit = defaultOptions): Promise<ApiResponse> {
+    static async make(url: URL | RequestInfo, method: Method, data?: Object, options: RequestInit = defaultOptions): Promise<ApiResponse> {
         const mergedOptions: RequestInit = {
             ...defaultOptions,
             ...options,
@@ -89,3 +89,5 @@ const defaultResponse: ApiResponse = {
     data: null,
     meta: {}
 }
+
+type Method = 'GET' | 'POST' | 'PUT' | 'DELETE';
