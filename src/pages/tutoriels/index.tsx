@@ -1,12 +1,17 @@
-import { SeoModel } from "@/api";
-import { PageLayout } from "@/components";
+import { Request, SeoModel, TutorialModel } from "@/api";
+import { PageLayout, TutorialPreview } from "@/components";
 import { FormSelect } from "@/components/FormSelect";
 import { useContext, useState } from "react";
 import { GrTechnology } from 'react-icons/gr';
 import { AiOutlineClockCircle } from 'react-icons/ai';
 import { AuthContext } from '../../contexts'
+import { GetServerSideProps } from "next";
 
-const Tutorials = () => {
+interface TutorialsProps {
+    tutorials: TutorialModel[]
+}
+
+const Tutorials = ({ tutorials }: TutorialsProps) => {
 
     const user = useContext(AuthContext);
 
@@ -17,6 +22,21 @@ const Tutorials = () => {
             ...filters,
             [name]: value
         });
+    }
+
+    const displayTutorials = () => {
+        if (!tutorials.length) return;
+
+        return tutorials.map(tutorial => (
+            <TutorialPreview 
+                key={tutorial._id}
+                slug={tutorial.slug}
+                title={tutorial.title}
+                description={tutorial.description}
+                technology={tutorial.technology}
+                hoursToLearn={tutorial.hoursToLearn}
+            />
+        ))
     }
 
     return (
@@ -39,26 +59,22 @@ const Tutorials = () => {
             </div>
             <div className="courses wrapper">
                 <div className="courses-content">
-                    <a href="/tutoriels/react-beginner-course" className="course">
-                        <img src="" alt="" />
-                        <div className="infos">
-                            <h3>Ceci est un titre de cours</h3>
-                            <div className="row">
-                                <GrTechnology />
-                                <p>React</p>
-                                <AiOutlineClockCircle />
-                                <p>10 Heures</p>
-                            </div>
-                            <p className="desc">
-                                Ceci est une description de cours React basique fait pour le SEO
-                                avec des mots clés marketing pour vendre le cours et son titre.
-                            </p>
-                        </div>
-                    </a>
+                    {displayTutorials()}
                 </div>
             </div>
         </PageLayout>
     );
+}
+
+export const getServerSideProps: GetServerSideProps = async () => {
+
+    const tutorialsRes = await Request.get('/tutorial');
+
+    return {
+        props: {
+            tutorials: tutorialsRes.data
+        }
+    }
 }
 
 const tutorialsPageSeo: SeoModel = {
