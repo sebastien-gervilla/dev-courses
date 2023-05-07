@@ -1,0 +1,22 @@
+.form-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    .checkbox {
+        @include flex-center;
+
+        width: 24px;
+        height: 24px;
+
+        border: 2px solid $grey-800;
+        border-radius: $main-radius;
+
+        cursor: pointer;
+    }
+
+    p {
+        user-select: none;
+        -webkit-user-select: none;
+    }
+}
