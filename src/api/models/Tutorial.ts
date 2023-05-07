@@ -4,5 +4,7 @@ export default interface TutorialModel {
     title: string,
     description: string,
     content: string,
+    technology: string,
+    hoursToLearn: number,
     isPremium: boolean
 }
