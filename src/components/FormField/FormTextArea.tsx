@@ -6,9 +6,10 @@ export interface FormTextAreaProps {
     value: string,
     onChange: (name: string, value: string) => void,
     placeholder?: string
+    height?: number
 }
 
-const FormTextArea = ({ label, name, value, onChange, placeholder }: FormTextAreaProps) => {
+const FormTextArea = ({ label, name, value, onChange, placeholder, height = 150 }: FormTextAreaProps) => {
 
     const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => onChange(name, event.target.value);
 
@@ -21,6 +22,7 @@ const FormTextArea = ({ label, name, value, onChange, placeholder }: FormTextAre
                 value={value}
                 onChange={handleChange}
                 placeholder={placeholder}
+                style={{ height }}
             />
         </div>
     );
