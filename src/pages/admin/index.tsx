@@ -3,7 +3,7 @@ import { SeoModel } from '@/api/models'
 import { useState } from 'react'
 import { GetServerSideProps } from 'next'
 import { Request } from '@/api'
-import { UserTable } from '@/components/Table'
+import { TutorialsTable } from '@/components/Table'
 
 const Admin = () => {
 
@@ -35,7 +35,7 @@ const Admin = () => {
             </div>
 
             <div className="datagrid wrapper">
-                <UserTable />
+                <TutorialsTable />
             </div>
 
         </PageLayout>

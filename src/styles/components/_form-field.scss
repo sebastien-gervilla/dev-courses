@@ -18,6 +18,11 @@
         input {
             width: 100%;
             padding: 8px;
+
+            &[type="number"] {
+                flex-grow: 1;
+                width: 50px;
+            }
         }
 
         &:hover, &:focus {
