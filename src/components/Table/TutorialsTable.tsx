@@ -34,6 +34,7 @@ const TutorialsTable = () => {
                 Créer un tutoriel
             </Link>
             <Table
+                getRowId={row => row._id}
                 columns={columns}
                 data={tutorialsRes.data}
             />
