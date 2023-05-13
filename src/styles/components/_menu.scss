@@ -2,10 +2,19 @@
     padding: 8px;
 
     button, a {
+        display: block;
+
+        width: 100%;
         padding: 8px;
+
+        text-align: left;
+
+        transition: $main-transition;
 
         &:hover {
             background-color: $grey-200;
+            
+            transition: $main-transition;
         }
     }
 }
