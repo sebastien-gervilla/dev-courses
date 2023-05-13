@@ -12,7 +12,18 @@ const TutorialsTable = () => {
     const columns: Column[] = [
         {
             field: 'title',
-            title: 'Title'
+            title: 'Title',
+            renderCell: row => {
+                return (
+                    <Link 
+                        href={'/tutoriels/' + row.slug} 
+                        className='animated'
+                        target='_blank'
+                    >
+                        {row.title}
+                    </Link>
+                )
+            }
         },
         {
             field: 'action',
