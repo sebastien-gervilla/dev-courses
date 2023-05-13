@@ -31,6 +31,8 @@
         
                 width: 20px;
                 height: 20px;
+
+                box-shadow: $main-shadow;
         
                 transform: translateY(calc(50% + 3px)) rotate(45deg);
             }
@@ -42,6 +44,8 @@
 
             box-shadow: $main-shadow;
             border-radius: $main-radius;
+
+            background-color: $grey-0;
 
             @include popupTransition;
         }
