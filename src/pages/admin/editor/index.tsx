@@ -1,41 +1,56 @@
 import { Breadcrumb, PageLayout } from '@/components'
-import { SeoModel } from '@/api/models'
+import { SeoModel, TutorialModel } from '@/api/models'
 import { GetServerSideProps } from 'next'
 import { Request } from '@/api'
 import { FormCheckbox, FormField, FormNumber, FormTextArea } from '@/components/FormField'
 import { useState } from 'react'
 import { FormSelect } from '@/components/FormSelect'
 
-const NewTutorial = () => {
+interface EditorProps {
+    initialTutorial: TutorialModel
+}
 
-    const [newTutorial, setNewTutorial] = useState(defaultNewTutorial);
+const Editor = ({ initialTutorial }: EditorProps) => {
+
+    const [tutorial, setTutorial] = useState(initialTutorial);
 
     const handleChangeTutorial = (name: string, value: string | boolean | number) => {
-        setNewTutorial({
-            ...newTutorial,
+        setTutorial({
+            ...tutorial,
             [name]: value
         });
     }
 
     const handleSubmitTutorial = async () => {
-        const response = await Request.make('/tutorial', 'POST', newTutorial);
+        if (!initialTutorial._id)
+            return createTutorial();
+
+        const response = await Request.make('/tutorial/' + tutorial._id, 'PUT', tutorial);
         console.log(response);
-        
+    }
+
+    const createTutorial = async () => {
+        const { _id, ...sentData } = tutorial;
+        const response = await Request.make('/tutorial', 'POST', sentData);
         if (response.ok)
-            setNewTutorial(defaultNewTutorial);
+            setTutorial(defaultTutorial);
     }
 
     return (
-        <PageLayout id='new-tutorial-page' seo={newTutorialPageSeo}>
+        <PageLayout id='editor-page' seo={editorPageSeo}>
             <div className="head wrapper">
                 <div className="head-content">
                     <Breadcrumb links={[
                         {
-                            title: 'Création Tutoriel',
-                            href: '/new-tutorial'
+                            title: 'Editeur',
+                            href: '/editor'
                         }
                     ]} />
-                    <h1>Nouveau Tutoriel</h1>
+                    <h1>
+                        {initialTutorial._id ? 
+                            'Modifier un tutoriel' : 
+                            'Créer un tutoriel'}
+                    </h1>
                 </div>
             </div>
 
@@ -46,13 +61,13 @@ const NewTutorial = () => {
                             <FormField 
                                 label='Titre'
                                 name='title'
-                                value={newTutorial.title}
+                                value={tutorial.title}
                                 onChange={handleChangeTutorial}
                             />
                             <FormField 
                                 label='Slug'
                                 name='slug'
-                                value={newTutorial.slug}
+                                value={tutorial.slug}
                                 onChange={handleChangeTutorial}
                             />
                         </div>
@@ -60,14 +75,14 @@ const NewTutorial = () => {
                             <FormSelect 
                                 label='Technologie'
                                 name='technology'
-                                value={newTutorial.technology}
+                                value={tutorial.technology}
                                 options={['React', 'Node.js']}
                                 onChange={handleChangeTutorial}
                             />
                             <FormNumber
                                 label='Temps (heures)'
                                 name='hoursToLearn'
-                                value={newTutorial.hoursToLearn}
+                                value={tutorial.hoursToLearn}
                                 onChange={handleChangeTutorial}
                             />
                         </div>
@@ -76,7 +91,7 @@ const NewTutorial = () => {
                         <FormTextArea 
                             label='Description'
                             name='description'
-                            value={newTutorial.description}
+                            value={tutorial.description}
                             onChange={handleChangeTutorial}
                             height={100}
                         />
@@ -85,25 +100,25 @@ const NewTutorial = () => {
                         <FormTextArea 
                             label='Contenu'
                             name='content'
-                            value={newTutorial.content}
+                            value={tutorial.content}
                             onChange={handleChangeTutorial}
                             height={350}
                         />
                     </div>
-                    <div className="form-row">
+                    <div className="form-row spaced">
                         <FormCheckbox 
                             label='Premium'
                             name='isPremium'
-                            checked={newTutorial.isPremium}
+                            checked={tutorial.isPremium}
                             onChange={handleChangeTutorial}
                         />
+                        <button 
+                            onClick={handleSubmitTutorial} 
+                            className='animated filled'
+                        >
+                            Valider
+                        </button>
                     </div>
-                    <button 
-                        onClick={handleSubmitTutorial} 
-                        className='animated filled'
-                    >
-                        Valider
-                    </button>
                 </div>
             </div>
 
@@ -128,12 +143,21 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
             }
         }
 
+    const { slug } = context.query;
+    const tutorialRes = await Request.get('/tutorial/' + slug);
+
+    const initialTutorial = tutorialRes.ok ? 
+        tutorialRes.data : defaultTutorial
+
     return {
-        props: {}
+        props: {
+            initialTutorial
+        }
     };
 }
 
-const defaultNewTutorial = {
+const defaultTutorial: TutorialModel = {
+    _id: '',
     title: '',
     slug: '',
     description: '',
@@ -143,7 +167,7 @@ const defaultNewTutorial = {
     isPremium: true
 }
 
-const newTutorialPageSeo: SeoModel = {
+const editorPageSeo: SeoModel = {
     metaTitle: 'devCourses',
     metaDescription: 'This is my website',
     sharedImage: {
@@ -156,4 +180,4 @@ const newTutorialPageSeo: SeoModel = {
     pageType: 'website'
 }
 
-export default NewTutorial;
+export default Editor;
