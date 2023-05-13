@@ -26,6 +26,15 @@ const TutorialsTable = () => {
             }
         },
         {
+            field: 'isPremium',
+            title: 'Premium',
+            renderCell: row => {
+                return (
+                    <p>{row.isPremium ? 'Oui' : 'Non'}</p>
+                )
+            }
+        },
+        {
             field: 'action',
             title: '',
             renderCell: (row: Row) => {
