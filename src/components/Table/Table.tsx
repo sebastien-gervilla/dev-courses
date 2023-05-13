@@ -1,11 +1,12 @@
 import React, { ReactNode } from 'react';
 
 interface TableProps {
+    getRowId: (row: Row) => string | number
     columns: Array<Column>
     data: Array<Row>
 }
 
-const Table = ({ columns, data }: TableProps) => {
+const Table = ({ getRowId, columns, data }: TableProps) => {
 
     const getTemplateColumns = () => {
         return columns.reduce((template, column) =>
@@ -21,7 +22,9 @@ const Table = ({ columns, data }: TableProps) => {
                 className="table-header"
                 style={{ gridTemplateColumns: getTemplateColumns() }}    
             >
-                {columns.map(column => <p>{column.title}</p>)}
+                {columns.map(column => 
+                    <p key={column.field}>{column.title}</p>
+                )}
             </div>
         );
     }
@@ -39,6 +42,7 @@ const Table = ({ columns, data }: TableProps) => {
             
             return (
                 <div 
+                    key={column.field + ' ' + getRowId(row)}
                     className="column"
                     style={{ justifyContent: FlexAlignment[column.align || 'left'] }}
                 >
