@@ -43,7 +43,7 @@ const Editor = ({ initialTutorial }: EditorProps) => {
                     <Breadcrumb links={[
                         {
                             title: 'Editeur',
-                            href: '/editor'
+                            href: '/admin/editor'
                         }
                     ]} />
                     <h1>
