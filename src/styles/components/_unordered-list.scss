@@ -1,0 +1,29 @@
+ul.unordered-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    padding-left: 32px;
+
+    li {
+        position: relative;
+        
+        padding-left: 8px;
+        line-height: 1.65rem;
+
+        &::before {
+            position: absolute;
+            content: '';
+            top: .825rem;
+            left: -16px;
+
+            width: 6px;
+            height: 6px;
+
+            border-radius: 50%;
+            background-color: $main-color;
+
+            transform: translateY(-30%);
+        }
+    }
+}
