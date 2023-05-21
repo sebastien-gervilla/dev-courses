@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from 'react';
 
 export interface FormFieldProps {
-    label: string, 
+    label?: string, 
     name: string,
     type?: InputType,
     fieldType?: string,
@@ -32,7 +32,7 @@ const FormField = ({
 
     return (
         <div className="form-field">
-            <p className="label">{label}</p>
+            {label ? <p className="label">{label}</p> : null}
             <div className={"input-wrapper " + fieldType + (hasError ? ' error' : '') + (isDark ? ' dark' : ' light')}>
                 <input 
                     name={name}
