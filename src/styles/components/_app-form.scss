@@ -24,7 +24,7 @@
             }
         }
 
-        .form-field, button {
+        .form-field {
             width: 100%;
         }
 
@@ -44,11 +44,19 @@
 .login-form {
     .form-row {
         width: 375px;
+
+        button {
+            width: 100%;
+        }
     }
 }
 
 .signup-form {
     .form-row {
         max-width: 375px;
+
+        button {
+            width: 100%;
+        }
     }
 }
