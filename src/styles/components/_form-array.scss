@@ -1,0 +1,21 @@
+.form-array {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .array-element {
+        display: flex;
+        gap: 16px;
+
+        input {
+            width: 350px;
+            padding: 4px;
+
+            border-bottom: 1px solid $grey-800;
+
+            &:hover {
+                border-bottom: 1px solid $main-color;
+            }
+        }
+    }
+}

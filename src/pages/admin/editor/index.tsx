@@ -2,7 +2,7 @@ import { Breadcrumb, PageLayout } from '@/components'
 import { SeoModel, TutorialModel } from '@/api/models'
 import { GetServerSideProps } from 'next'
 import { Request } from '@/api'
-import { FormCheckbox, FormField, FormNumber, FormTextArea } from '@/components/FormField'
+import { FormArray, FormCheckbox, FormField, FormNumber, FormTextArea } from '@/components/FormField'
 import { useState } from 'react'
 import { FormSelect } from '@/components/FormSelect'
 
@@ -14,7 +14,7 @@ const Editor = ({ initialTutorial }: EditorProps) => {
 
     const [tutorial, setTutorial] = useState(initialTutorial);
 
-    const handleChangeTutorial = (name: string, value: string | boolean | number) => {
+    const handleChangeTutorial = (name: string, value: string | boolean | number | string[]) => {
         setTutorial({
             ...tutorial,
             [name]: value
@@ -30,8 +30,11 @@ const Editor = ({ initialTutorial }: EditorProps) => {
     }
 
     const createTutorial = async () => {
-        const { _id, ...sentData } = tutorial;
-        const response = await Request.make('/tutorial', 'POST', sentData);
+        const { _id, summary, ...sentData } = tutorial;
+        const response = await Request.make('/tutorial', 'POST', {
+            ...sentData, summary: summary.filter(element => !!element)
+        });
+        
         if (response.ok)
             setTutorial(defaultTutorial);
     }
@@ -94,6 +97,13 @@ const Editor = ({ initialTutorial }: EditorProps) => {
                             value={tutorial.description}
                             onChange={handleChangeTutorial}
                             height={100}
+                        />
+                    </div>
+                    <div className="form-row">
+                        <FormArray
+                            label='Sommaire'
+                            name='summary'
+                            onChange={handleChangeTutorial}
                         />
                     </div>
                     <div className="form-row">
@@ -161,6 +171,7 @@ const defaultTutorial: TutorialModel = {
     title: '',
     slug: '',
     description: '',
+    summary: [],
     content: '',
     technology: 'React',
     hoursToLearn: 1,

@@ -2,16 +2,22 @@ import React from "react";
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from "rehype-raw";
 import { Request, SeoModel, TutorialModel } from "@/api";
-import { Breadcrumb, PageLayout } from "@/components";
+import { Breadcrumb, PageLayout, Summary } from "@/components";
 
-interface TutorialProps {
+interface PreviewProps {
     tutorial: TutorialModel
 }
 
-const Tutorial = ({ tutorial }: TutorialProps) => {
+const Preview = ({ tutorial }: PreviewProps) => {
+
+    const handleFollowCourse = async () => {
+        const response = await Request.make(`/tutorial/${tutorial._id}/follow`, 'POST');
+        if (!response.ok)
+            console.log(response)
+    }
 
     return (
-        <PageLayout id='tutorial-page' seo={tutorialPageSeo}>
+        <PageLayout id='preview-page' seo={previewPageSeo}>
             <div className="head wrapper">
                 <div className="head-content">
                     <Breadcrumb links={[
@@ -23,11 +29,24 @@ const Tutorial = ({ tutorial }: TutorialProps) => {
                     <h1>{tutorial.title}</h1>
                 </div>
             </div>
-            <div className="tutorial wrapper">
-                <div className="tutorial-content">
-                    <ReactMarkdown rehypePlugins={[rehypeRaw]}>
-                        {tutorial.content}
-                    </ReactMarkdown>
+            <div className="preview wrapper">
+                <div className="preview-content">
+                    <div className="main-infos">
+                        <p>{tutorial.description}</p>
+                        {tutorial.summary.length > 0 && 
+                            <Summary elements={tutorial.summary} />}
+                        <button 
+                            className="animated filled"
+                            onClick={handleFollowCourse}
+                        >
+                            Suivre le cours
+                        </button>
+                    </div>
+                    <div className="additional-infos">
+                        <h3>Informations</h3>
+                        <p>{tutorial.technology}</p>
+                        <p>{tutorial.hoursToLearn} Hours</p>
+                    </div>
                 </div>
             </div>
         </PageLayout>
@@ -70,7 +89,7 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
     }
 }
 
-const tutorialPageSeo: SeoModel = {
+const previewPageSeo: SeoModel = {
     metaTitle: 'devCourses',
     metaDescription: 'This is my website',
     sharedImage: {
@@ -83,4 +102,4 @@ const tutorialPageSeo: SeoModel = {
     pageType: 'website'
 }
 
-export default Tutorial;
+export default Preview;

@@ -1,52 +1,38 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { IconButton } from '..';
 import { GoDiffRemoved, GoDiffAdded } from 'react-icons/go';
 
 interface FormArrayProps {
     label: string
     name: string
+    values: string[]
     onChange: (name: string, value: string[]) => void
 }
 
-const FormArray = ({ label, name, onChange }: FormArrayProps) => {
+const FormArray = ({ label, name, values, onChange }: FormArrayProps) => {
 
-    const [fields, setFields] = useState<FieldType[]>([]);
+    const handleChangeField = (position: number, newValue: string) => {
+        const newValues = values.map((value, index) => 
+            position === index ? newValue : value);
 
-    const handleChanges = (nextFields: FieldType[]) => 
-        onChange(name, nextFields.map(field => field.value));
-
-    const handleChangeField = (fieldId: string, value: string) => {
-        const newFields = fields.map(field => 
-            field.id === fieldId ? {...field, value} : field);
-
-        setFields(newFields);
-        handleChanges(newFields);
+        onChange(name, newValues)
     }
 
-    const handleAddField = () => {
-        const nextFields = [...fields, {
-            id: crypto.randomUUID(), 
-            value: ''
-        }];
+    const handleAddField = () => onChange(name, [...values, '']);
 
-        setFields(nextFields);
-        handleChanges(nextFields);
-    }
-
-    const handleRemoveField = (fieldId: string) =>
-        setFields(fields.filter(field => field.id !== fieldId));
+    const handleRemoveField = (position: number) =>
+        onChange(name, values.filter((value, index) => position !== index));
 
     const displayFields = () => {
-        return fields.map(field => (
+        return values.map((value, index) => (
             <div className="array-element">
-                <IconButton onClick={() => handleRemoveField(field.id)}>
+                <IconButton onClick={() => handleRemoveField(index)}>
                     <GoDiffRemoved className='animated' />
                 </IconButton>
                 <input 
-                    key={field.id}
-                    value={field.value}
-                    onChange={event => handleChangeField(field.id, event.target.value)}
-                    onBlur={() => handleChanges(fields)}
+                    key={index}
+                    value={value}
+                    onChange={event => handleChangeField(index, event.target.value)}
                 />
             </div>
         ))
@@ -64,10 +50,5 @@ const FormArray = ({ label, name, onChange }: FormArrayProps) => {
         </div>
     );
 };
-
-type FieldType = {
-    id: string
-    value: string
-}
 
 export default FormArray;

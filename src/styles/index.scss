@@ -15,6 +15,7 @@
 @import './pages/tutorials';
 @import './pages/my-courses';
 @import './pages/editor';
+@import './pages/preview';
 
 // Layouts
 @import './layouts/main';
@@ -32,6 +33,7 @@
 @import './components/app-form';
 @import './components/form-field';
 @import './components/form-checkbox';
+@import './components/form-array';
 @import './components/alert';
 @import './components/breadcrumb';
 @import './components/popover';
@@ -40,3 +42,4 @@
 @import './components/menu';
 @import './components/confirm-modal';
 @import './components/tutorial-preview';
+@import './components/unordered-list';
