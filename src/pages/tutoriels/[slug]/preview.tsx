@@ -33,7 +33,8 @@ const Preview = ({ tutorial }: PreviewProps) => {
                 <div className="preview-content">
                     <div className="main-infos">
                         <p>{tutorial.description}</p>
-                        <Summary elements={tutorial.summary} />
+                        {tutorial.summary.length > 0 && 
+                            <Summary elements={tutorial.summary} />}
                         <button 
                             className="animated filled"
                             onClick={handleFollowCourse}

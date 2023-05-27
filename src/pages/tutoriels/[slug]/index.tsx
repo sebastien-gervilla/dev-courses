@@ -3,6 +3,7 @@ import ReactMarkdown from 'react-markdown';
 import rehypeRaw from "rehype-raw";
 import { Request, SeoModel, TutorialModel } from "@/api";
 import { Breadcrumb, PageLayout } from "@/components";
+import { GetServerSideProps } from "next";
 
 interface TutorialProps {
     tutorial: TutorialModel
@@ -34,30 +35,20 @@ const Tutorial = ({ tutorial }: TutorialProps) => {
     );
 }
 
-export async function getStaticPaths() {
-    const tutorialsRes = await Request.get('/tutorial');
+export const getServerSideProps: GetServerSideProps = async ({ req, params }) => {
 
-    if (!Array.isArray(tutorialsRes.data)) 
-        return { paths: [], fallback: false };
-
-    return {
-        paths: tutorialsRes.data.map((tutorial: TutorialModel) => ({
-            params: {
-                slug: tutorial.slug
-            }
-        })),
-        fallback: false
-    }
-}
-
-export async function getStaticProps({ params }: { params: { slug: string } }) {
-
-    const tutorialRes = await Request.get('/tutorial/' + params.slug);
+    const tutorialRes = await Request.get('/tutorial/' + params?.slug, {
+        headers: {
+            'Content-Type': 'application/json',
+            Cookie: req.headers.cookie || ''
+        }
+    });
 
     if (!tutorialRes.ok)
         return {
+            props: {},
             redirect: {
-                destination: '/tutoriels' // TODO: 404 Page
+                destination: '/tutoriels'
             }
         }
 
