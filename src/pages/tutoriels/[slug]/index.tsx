@@ -4,6 +4,7 @@ import rehypeRaw from "rehype-raw";
 import { Request, SeoModel, TutorialModel } from "@/api";
 import { Breadcrumb, PageLayout } from "@/components";
 import { GetServerSideProps } from "next";
+import { redirect } from "@/utils/next-utils";
 
 interface TutorialProps {
     tutorial: TutorialModel
@@ -41,13 +42,11 @@ export const getServerSideProps: GetServerSideProps = async ({ req, params }) =>
     const { cookie } = req.headers;
     const tutorialRes = await Request.srvGet('/tutorial/' + slug, cookie);
 
+    if (tutorialRes.status === 403)
+        return redirect(`/tutoriels/${slug}/preview`);
+
     if (!tutorialRes.ok)
-        return {
-            props: {},
-            redirect: {
-                destination: '/tutoriels'
-            }
-        }
+        return redirect('/tutoriels');
 
     const tutorial: TutorialModel = tutorialRes.data;
 
