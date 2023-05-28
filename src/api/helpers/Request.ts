@@ -13,9 +13,13 @@ type ApiResponseBody = {
 
 export default class Request {
     static async get(url: URL | RequestInfo, options: RequestInit = defaultOptions): Promise<ApiResponse> {
-        const mergedOptions = {
+        const mergedOptions: RequestInit = {
             ...defaultOptions,
-            ...options
+            ...options,
+            headers: {
+                "Content-Type": 'application/json',
+                ...options.headers
+            }
         }
 
         try {
@@ -46,7 +50,11 @@ export default class Request {
             ...defaultOptions,
             ...options,
             method,
-            body: JSON.stringify(data)
+            body: JSON.stringify(data),
+            headers: {
+                "Content-Type": 'application/json',
+                ...options.headers
+            },
         };
         
         try {
@@ -71,13 +79,20 @@ export default class Request {
 
         return defaultResponse;
     }
+
+    // Methods for cookies
+    static async srvGet(url: URL | RequestInfo, cookies?: string, options: RequestInit = defaultOptions): Promise<ApiResponse> {
+        return Request.get(url, {
+            ...options,
+            headers: {
+                Cookie: cookies || ''
+            }
+        })
+    }
 }
 
 const defaultOptions: RequestInit = {
-    credentials: 'include',
-    headers: {
-        "Content-Type": 'application/json'
-    }
+    credentials: 'include'
 }
 
 const API_URL = process.env.API_URL ?? 'http://localhost:8000';
