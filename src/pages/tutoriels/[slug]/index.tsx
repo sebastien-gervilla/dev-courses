@@ -37,12 +37,9 @@ const Tutorial = ({ tutorial }: TutorialProps) => {
 
 export const getServerSideProps: GetServerSideProps = async ({ req, params }) => {
 
-    const tutorialRes = await Request.get('/tutorial/' + params?.slug, {
-        headers: {
-            'Content-Type': 'application/json',
-            Cookie: req.headers.cookie || ''
-        }
-    });
+    const slug = params?.slug;
+    const { cookie } = req.headers;
+    const tutorialRes = await Request.srvGet('/tutorial/' + slug, cookie);
 
     if (!tutorialRes.ok)
         return {
