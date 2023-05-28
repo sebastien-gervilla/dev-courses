@@ -103,6 +103,7 @@ const Editor = ({ initialTutorial }: EditorProps) => {
                         <FormArray
                             label='Sommaire'
                             name='summary'
+                            values={tutorial.summary}
                             onChange={handleChangeTutorial}
                         />
                     </div>
@@ -138,12 +139,8 @@ const Editor = ({ initialTutorial }: EditorProps) => {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
     
-    const userRes = await Request.get('/user/auth', {
-        headers: {
-            'Content-Type': 'application/json',
-            Cookie: context.req?.headers.cookie || ''
-        }
-    });
+    const { cookie } = context.req?.headers;
+    const userRes = await Request.srvGet('/user/auth', cookie);
 
     if (!userRes.ok)
         return {
@@ -153,9 +150,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
             }
         }
 
-    const { slug } = context.query;
-    const tutorialRes = await Request.get('/tutorial/' + slug);
-
+    const { id } = context.query;
+    const tutorialRes = await Request.srvGet('/tutorial/editor/' + id, cookie);
+    
     const initialTutorial = tutorialRes.ok ? 
         tutorialRes.data : defaultTutorial
 

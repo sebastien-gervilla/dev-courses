@@ -112,7 +112,7 @@ const TutorialsTable = () => {
                 }}
                 body={
                     <div className='menu'>
-                        <Link href={'/admin/editor?slug=' + currentRow.slug}>
+                        <Link href={'/admin/editor?id=' + currentRow.rowId}>
                             Editer
                         </Link>
                         <button 
