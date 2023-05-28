@@ -53,32 +53,14 @@ const Preview = ({ tutorial }: PreviewProps) => {
     );
 }
 
-export async function getStaticPaths() {
-    const tutorialsRes = await Request.get('/tutorial');
+export const getServerSideProps: GetServerSideProps = async ({ req, params }) => {
 
-    if (!Array.isArray(tutorialsRes.data)) 
-        return { paths: [], fallback: false };
-
-    return {
-        paths: tutorialsRes.data.map((tutorial: TutorialModel) => ({
-            params: {
-                slug: tutorial.slug
-            }
-        })),
-        fallback: false
-    }
-}
-
-export async function getStaticProps({ params }: { params: { slug: string } }) {
-
-    const tutorialRes = await Request.get('/tutorial/' + params.slug);
+    const slug = params?.slug;
+    const { cookie } = req.headers;
+    const tutorialRes = await Request.srvGet(`/tutorial/${slug}/preview`, cookie);
 
     if (!tutorialRes.ok)
-        return {
-            redirect: {
-                destination: '/tutoriels' // TODO: 404 Page
-            }
-        }
+        return redirect('/tutoriels');
 
     const tutorial: TutorialModel = tutorialRes.data;
 
