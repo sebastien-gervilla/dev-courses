@@ -1,19 +1,21 @@
-import { Breadcrumb, PageLayout, Table, Tabs } from '@/components'
+import { Breadcrumb, PageLayout, Tabs } from '@/components'
 import { SeoModel } from '@/api/models'
 import { useState } from 'react'
 import { GetServerSideProps } from 'next'
 import { Request } from '@/api'
-import { TutorialsTable } from '@/components/Table'
+import { TutorialsTable, UsersTable } from '@/components/Table'
 
 const Admin = () => {
 
-    const [tab, setTab] = useState('user');
+    const [tab, setTab] = useState('tutorial');
 
     const changeTab = (name: string, value: string) => setTab(value);
 
     const displayTable = () => {
         if (tab === 'user')
-            return;
+            return <UsersTable />;
+        if (tab === 'tutorial')
+            return <TutorialsTable />;
     }
 
     return (
@@ -40,7 +42,7 @@ const Admin = () => {
             </div>
 
             <div className="datagrid wrapper">
-                <TutorialsTable />
+                {displayTable()}
             </div>
 
         </PageLayout>
@@ -69,7 +71,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
 }
 
-const allTabs = ['user', 'tutorial', 'blog'];
+const allTabs = ['tutorial', 'user', 'blog'];
 
 const adminPageSeo: SeoModel = {
     metaTitle: 'devCourses',
