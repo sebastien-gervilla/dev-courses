@@ -6,4 +6,12 @@
             margin-bottom: 16px;
         }
     }
+
+    .categories {
+        margin-bottom: 32px;
+
+        .tabs .tab {
+            font-size: $size-18;
+        }
+    }
 }
