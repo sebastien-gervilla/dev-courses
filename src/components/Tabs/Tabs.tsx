@@ -12,7 +12,8 @@ const Tabs = ({ name, value, options, onChange }: TabsProps) => {
     const handleChangeTab = (newValue: string) => onChange(name, newValue);
 
     const displayTabs = () => options.map(option => (
-        <button 
+        <button
+            key={option}
             className={'tab' + (option === value ? ' active' : '')}
             onClick={() => handleChangeTab(option)}
         >
