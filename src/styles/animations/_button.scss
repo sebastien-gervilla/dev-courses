@@ -1,9 +1,10 @@
-button.animated {
-    padding: 10px 15px;
+button.animated, a.animated-button {
+    padding: 8px 16px;
 
     color: $grey-50;
     border: 2px solid;
     border-color: $main-color;
+    border-radius: $main-radius;
     background-color: $main-color;
 
     font-weight: 500;
