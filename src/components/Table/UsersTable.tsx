@@ -3,16 +3,14 @@ import { Column, Table } from '.';
 import { useFetch, useModal } from '@/hooks';
 import { ConfirmModal, IconButton, Link, Modal, Popover } from '@/components';
 import { BsThreeDotsVertical } from 'react-icons/bs'
-import { Request, TutorialModel } from '@/api';
+import { Request, UserModel } from '@/api';
 import { FormField } from '../FormField';
-import { FormSelect } from '../FormSelect';
-import technologies from '../../docs/technologies.json';
 
-const TutorialsTable = () => {
+const UsersTable = () => {
 
     const [filters, setFilters] = useState(defaultFilters);
 
-    const tutorialsRes = useFetch('/tutorial', []);
+    const usersRes = useFetch('/user', []);
 
     const modal = useModal();
     const moreMenu = useModal();
@@ -26,58 +24,50 @@ const TutorialsTable = () => {
         })
     }
 
-    const deleteTutorial = async () => {
+    const deleteUser = async () => {
         const id = currentRow.rowId;
         if (!id) return;
 
-        const response = await Request.make('/tutorial/' + id, 'DELETE');
+        const response = await Request.make('/user/' + id, 'DELETE');
         if (!response.ok) // FEEDBACK SNACKBAR ?
             return;
 
         modal.close();
-        tutorialsRes.refresh();
+        usersRes.refresh();
     }
 
-    const getFilteredTutorials = () => {
-        if (!tutorialsRes.data?.length) return;
+    const getFilteredUsers = () => {
+        if (!usersRes.data?.length) return;
 
-        return tutorialsRes.data.filter((tutorial: TutorialModel) =>
-            tutorial.title.includes(filters.title) &&
-            tutorial.technology.includes(filters.technology)
+        return usersRes.data.filter((user: UserModel) =>
+            user.fname.includes(filters.fname) &&
+            user.lname.includes(filters.lname) &&
+            user.lname.includes(filters.email)
         );
     }
 
     const columns: Column[] = [
         {
-            field: 'title',
-            title: 'Titre',
-            renderCell: row => {
-                return (
-                    <Link 
-                        href={'/tutoriels/' + row.slug} 
-                        className='animated'
-                        target='_blank'
-                    >
-                        {row.title}
-                    </Link>
-                )
-            }
+            field: 'fname',
+            title: 'Prénom',
+            flex: .6
         },
         {
-            field: 'technology',
-            title: 'Technologie',
-            renderCell: row => {
-                return (
-                    <p>{row.technology}</p>
-                )
-            }
+            field: 'lname',
+            title: 'Prénom',
+            flex: .6
         },
         {
-            field: 'isPremium',
-            title: 'Premium',
+            field: 'email',
+            title: 'Email'
+        },
+        {
+            field: 'isAdmin',
+            title: 'Admin',
+            flex: .4,
             renderCell: row => {
                 return (
-                    <p>{row.isPremium ? 'Oui' : 'Non'}</p>
+                    <p>{row.isAdmin ? 'Oui' : 'Non'}</p>
                 )
             }
         },
@@ -105,20 +95,24 @@ const TutorialsTable = () => {
     ]
 
     return (
-        <div className='tutorials-table'>
+        <div className='users-table'>
             <div className="table-filters">
                 <FormField 
-                    label=''
-                    name='title'
-                    placeholder='Titre'
-                    value={filters.title}
+                    name='fname'
+                    placeholder='Prénom'
+                    value={filters.fname}
                     onChange={handleChangeFilters}
                 />
-                <FormSelect
-                    label=''
-                    name='technology'
-                    value={filters.technology}
-                    options={technologies.all}
+                <FormField 
+                    name='lname'
+                    placeholder='Nom'
+                    value={filters.lname}
+                    onChange={handleChangeFilters}
+                />
+                <FormField 
+                    name='email'
+                    placeholder='Email'
+                    value={filters.email}
                     onChange={handleChangeFilters}
                 />
                 <Link 
@@ -132,7 +126,7 @@ const TutorialsTable = () => {
             <Table
                 getRowId={row => row._id}
                 columns={columns}
-                data={getFilteredTutorials() || []}
+                data={getFilteredUsers() || []}
             />
             <Modal 
                 isOpen={modal.isOpen}
@@ -140,7 +134,7 @@ const TutorialsTable = () => {
                 body={modal.body}
             />
             <Popover 
-                id='tutorial-table-menu'
+                id='user-table-menu'
                 anchor={currentRow.anchor}
                 isOpen={moreMenu.isOpen}
                 onClose={moreMenu.close}
@@ -165,9 +159,9 @@ const TutorialsTable = () => {
                         <button 
                             onClick={() => modal.openWith(
                                 <ConfirmModal 
-                                    message='Voulez-vous vraiment supprimer ce tutoriel ?'
+                                    message='Voulez-vous vraiment supprimer cet utilisateur ?'
                                     onCancel={modal.close}
-                                    onConfirm={deleteTutorial}
+                                    onConfirm={deleteUser}
                                 />
                             )}
                         >
@@ -182,8 +176,9 @@ const TutorialsTable = () => {
 };
 
 const defaultFilters = {
-    title: '',
-    technology: 'React'
+    fname: '',
+    lname: '',
+    email: ''
 }
 
 interface CurrentRow {
@@ -198,4 +193,4 @@ const defaultCurrentRow: CurrentRow = {
     slug: ''
 }
 
-export default TutorialsTable;
+export default UsersTable;
