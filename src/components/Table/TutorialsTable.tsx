@@ -165,7 +165,7 @@ const TutorialsTable = () => {
                         <button 
                             onClick={() => modal.openWith(
                                 <ConfirmModal 
-                                    message='Voulez-vous  vraiment supprimer ce tutoriel ?'
+                                    message='Voulez-vous vraiment supprimer ce tutoriel ?'
                                     onCancel={modal.close}
                                     onConfirm={deleteTutorial}
                                 />
