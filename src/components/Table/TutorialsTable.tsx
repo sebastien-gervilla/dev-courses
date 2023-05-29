@@ -3,9 +3,10 @@ import { Column, Table } from '.';
 import { useFetch, useModal } from '@/hooks';
 import { ConfirmModal, IconButton, Link, Modal, Popover } from '@/components';
 import { BsThreeDotsVertical } from 'react-icons/bs'
-import { Request } from '@/api';
-import { FormCheckbox, FormField } from '../FormField';
+import { Request, TutorialModel } from '@/api';
+import { FormField } from '../FormField';
 import { FormSelect } from '../FormSelect';
+import technologies from '../../docs/technologies.json';
 
 const TutorialsTable = () => {
 
@@ -35,6 +36,15 @@ const TutorialsTable = () => {
 
         modal.close();
         tutorialsRes.refresh();
+    }
+
+    const getFilteredTutorials = () => {
+        if (!tutorialsRes.data?.length) return;
+
+        return tutorialsRes.data.filter((tutorial: TutorialModel) =>
+            tutorial.title.includes(filters.title) &&
+            tutorial.technology.includes(filters.technology)
+        );
     }
 
     const columns: Column[] = [
@@ -108,7 +118,7 @@ const TutorialsTable = () => {
                     label=''
                     name='technology'
                     value={filters.technology}
-                    options={['React', 'NodeJS']}
+                    options={technologies.all}
                     onChange={handleChangeFilters}
                 />
                 <Link 
@@ -122,7 +132,7 @@ const TutorialsTable = () => {
             <Table
                 getRowId={row => row._id}
                 columns={columns}
-                data={tutorialsRes.data}
+                data={getFilteredTutorials() || []}
             />
             <Modal 
                 isOpen={modal.isOpen}
