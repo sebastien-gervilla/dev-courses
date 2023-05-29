@@ -4,8 +4,12 @@ import { useFetch, useModal } from '@/hooks';
 import { ConfirmModal, IconButton, Link, Modal, Popover } from '@/components';
 import { BsThreeDotsVertical } from 'react-icons/bs'
 import { Request } from '@/api';
+import { FormCheckbox, FormField } from '../FormField';
+import { FormSelect } from '../FormSelect';
 
 const TutorialsTable = () => {
+
+    const [filters, setFilters] = useState(defaultFilters);
 
     const tutorialsRes = useFetch('/tutorial', []);
 
@@ -13,6 +17,13 @@ const TutorialsTable = () => {
     const moreMenu = useModal();
 
     const [currentRow, setCurrentRow] = useState<CurrentRow>(defaultCurrentRow)
+
+    const handleChangeFilters = (name: string, value: string | boolean) => {
+        setFilters({
+            ...filters,
+            [name]: value
+        })
+    }
 
     const deleteTutorial = async () => {
         const id = currentRow.rowId;
@@ -29,7 +40,7 @@ const TutorialsTable = () => {
     const columns: Column[] = [
         {
             field: 'title',
-            title: 'Title',
+            title: 'Titre',
             renderCell: row => {
                 return (
                     <Link 
@@ -39,6 +50,15 @@ const TutorialsTable = () => {
                     >
                         {row.title}
                     </Link>
+                )
+            }
+        },
+        {
+            field: 'technology',
+            title: 'Technologie',
+            renderCell: row => {
+                return (
+                    <p>{row.technology}</p>
                 )
             }
         },
@@ -76,12 +96,29 @@ const TutorialsTable = () => {
 
     return (
         <div className='tutorials-table'>
-            <Link 
-                href='/admin/editor'
-                className='animated'
-            >
-                Créer un tutoriel
-            </Link>
+            <div className="table-filters">
+                <FormField 
+                    label=''
+                    name='title'
+                    placeholder='Titre'
+                    value={filters.title}
+                    onChange={handleChangeFilters}
+                />
+                <FormSelect
+                    label=''
+                    name='technology'
+                    value={filters.technology}
+                    options={['React', 'NodeJS']}
+                    onChange={handleChangeFilters}
+                />
+                <Link 
+                    href='/admin/editor'
+                    className='animated-button'
+                    style={{ marginLeft: 'auto' }}
+                >
+                    Ajouter
+                </Link>
+            </div>
             <Table
                 getRowId={row => row._id}
                 columns={columns}
@@ -133,6 +170,11 @@ const TutorialsTable = () => {
         </div>
     );
 };
+
+const defaultFilters = {
+    title: '',
+    technology: 'React'
+}
 
 interface CurrentRow {
     anchor: HTMLButtonElement | null
