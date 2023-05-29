@@ -1,0 +1,27 @@
+.tabs {
+    display: flex;
+
+    .tab {
+        position: relative;
+
+        &::after {
+            position: absolute;
+            content: '';
+            left: 0;
+            bottom: -4px;
+
+            width: 100%;
+            height: 2px;
+
+            transition: $main-transition;
+        }
+
+        &.active {
+            &::after {
+                background-color: $main-color;
+                
+                transition: $main-transition;
+            }
+        }
+    }
+}
