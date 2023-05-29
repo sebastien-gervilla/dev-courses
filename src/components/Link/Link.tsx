@@ -1,4 +1,4 @@
-import React, { ReactNode, HTMLAttributeAnchorTarget } from 'react';
+import React, { ReactNode, HTMLAttributeAnchorTarget, CSSProperties } from 'react';
 import { default as NextLink } from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -9,10 +9,11 @@ interface LinkProps {
     showIfActive?: boolean,
     doScroll?: boolean,
     target?: HTMLAttributeAnchorTarget,
-    ariaLabel?: string
+    ariaLabel?: string,
+    style?: CSSProperties
 }
 
-const Link = ({ href, children, className, showIfActive = false, doScroll = false, target = '_self', ariaLabel }: LinkProps) => {
+const Link = ({ href, children, className, showIfActive = false, doScroll = false, target = '_self', ariaLabel, style }: LinkProps) => {
 
     const router = useRouter();
 
@@ -25,6 +26,7 @@ const Link = ({ href, children, className, showIfActive = false, doScroll = fals
             scroll={doScroll}
             className={'link ' + (className ?? '') + (isActive() ? ' active-path' : '')}
             target={target}
+            style={style}
         >
             {children}
         </NextLink>
