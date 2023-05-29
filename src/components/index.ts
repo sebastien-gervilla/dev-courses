@@ -14,3 +14,4 @@ export { CoursesTable } from './CoursesTable';
 export { Table } from './Table';
 export { TutorialPreview } from './TutorialPreview';
 export { Summary } from './Summary';
+export { Tabs } from './Tabs';

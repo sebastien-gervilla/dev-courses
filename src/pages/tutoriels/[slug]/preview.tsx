@@ -1,8 +1,9 @@
 import React from "react";
-import ReactMarkdown from 'react-markdown';
-import rehypeRaw from "rehype-raw";
 import { Request, SeoModel, TutorialModel } from "@/api";
 import { Breadcrumb, PageLayout, Summary } from "@/components";
+import { GetServerSideProps } from "next";
+import { redirect } from "@/utils/next-utils";
+import { useRouter } from "next/router";
 
 interface PreviewProps {
     tutorial: TutorialModel
@@ -10,10 +11,11 @@ interface PreviewProps {
 
 const Preview = ({ tutorial }: PreviewProps) => {
 
+    const router = useRouter();
+    
     const handleFollowCourse = async () => {
         const response = await Request.make(`/tutorial/${tutorial._id}/follow`, 'POST');
-        if (!response.ok)
-            console.log(response)
+        if (response.ok) return router.push('/tutoriels/' + tutorial.slug);
     }
 
     return (
@@ -53,32 +55,14 @@ const Preview = ({ tutorial }: PreviewProps) => {
     );
 }
 
-export async function getStaticPaths() {
-    const tutorialsRes = await Request.get('/tutorial');
+export const getServerSideProps: GetServerSideProps = async ({ req, params }) => {
 
-    if (!Array.isArray(tutorialsRes.data)) 
-        return { paths: [], fallback: false };
-
-    return {
-        paths: tutorialsRes.data.map((tutorial: TutorialModel) => ({
-            params: {
-                slug: tutorial.slug
-            }
-        })),
-        fallback: false
-    }
-}
-
-export async function getStaticProps({ params }: { params: { slug: string } }) {
-
-    const tutorialRes = await Request.get('/tutorial/' + params.slug);
+    const slug = params?.slug;
+    const { cookie } = req.headers;
+    const tutorialRes = await Request.srvGet(`/tutorial/${slug}/preview`, cookie);
 
     if (!tutorialRes.ok)
-        return {
-            redirect: {
-                destination: '/tutoriels' // TODO: 404 Page
-            }
-        }
+        return redirect('/tutoriels');
 
     const tutorial: TutorialModel = tutorialRes.data;
 

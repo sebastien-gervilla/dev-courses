@@ -13,16 +13,11 @@ import AccountMenu from './AccountMenu';
 const Header = () => {
 
     const { isDark, toggleDark } = useContext(ThemeContext);
-    const { user, refresh } = useContext(UserContext);
+    const { user, refresh, openAuthModal } = useContext(UserContext);
 
-    const authModal = useModal();
     const accountPopover = useModal();
 
     const accountButtonRef = useRef<HTMLButtonElement | null>(null);
-
-    const [modalType, setModalType] = useState<ModalType>('login');
-
-    const switchModal = () => setModalType(type => type === 'login' ? 'signup' : 'login');
 
     const logout = async () => {
         const res = await Request.make('/user/logout', 'POST');
@@ -46,16 +41,15 @@ const Header = () => {
     const displayAccountSection = () => {
         if (!user) return (
             <div className="auth">
-                <button className='animated-link' onClick={() => {
-                    setModalType('login')
-                    authModal.open()
-                }}>
+                <button 
+                    className='animated-link' 
+                    onClick={() => openAuthModal('login')}
+                >
                     Se connecter
                 </button>
-                <button className='animated' onClick={() => {
-                    setModalType('signup')
-                    authModal.open()
-                }}>
+                <button 
+                    className='animated' 
+                    onClick={() => openAuthModal('signup')}>
                     S'inscrire
                 </button>
             </div>
@@ -101,15 +95,6 @@ const Header = () => {
                 </nav>
                 {displayAccountSection()}
             </div>
-            <Modal 
-                isOpen={authModal.isOpen}
-                onClose={authModal.close}
-                body={
-                    modalType === 'login' ? 
-                        <LoginForm switchModal={switchModal} refresh={refresh} close={authModal.close} /> :
-                        <SignupForm switchModal={switchModal} close={authModal.close} />
-                }
-            />
             {!!user && <Popover 
                 id='account-popover'
                 anchor={accountButtonRef.current}
@@ -152,7 +137,5 @@ const NAVIGATION = [
         path: '/contact'
     }
 ];
-
-type ModalType = 'login' | 'signup';
 
 export default Header;

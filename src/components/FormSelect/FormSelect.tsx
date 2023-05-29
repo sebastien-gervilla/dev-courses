@@ -41,9 +41,9 @@ const FormSelect = ({ label, name, value, options, onChange, isDark = false }: F
 
     return (
         <div className={"form-select" + (isDark ? ' dark' : ' light')}>
-            <p className='label'>
+            {label ? <p className='label'>
                 {label}
-            </p>
+            </p> : null}
             <button 
                 className='toggle-button'
                 onClick={handleToggleOptions}

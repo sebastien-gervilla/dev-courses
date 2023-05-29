@@ -1,4 +1,4 @@
-import { Breadcrumb, PageLayout, Table } from '@/components'
+import { Breadcrumb, PageLayout, Table, Tabs } from '@/components'
 import { SeoModel } from '@/api/models'
 import { useState } from 'react'
 import { GetServerSideProps } from 'next'
@@ -7,7 +7,9 @@ import { TutorialsTable } from '@/components/Table'
 
 const Admin = () => {
 
-    const [tab, setTab] = useState<AdminTab>('user');
+    const [tab, setTab] = useState('user');
+
+    const changeTab = (name: string, value: string) => setTab(value);
 
     const displayTable = () => {
         if (tab === 'user')
@@ -28,10 +30,13 @@ const Admin = () => {
                 </div>
             </div>
 
-            <div className="tabs wrapper">
-                <button>Utilisateurs</button>
-                <button>Tutoriels</button>
-                <button>Blog</button>
+            <div className="categories wrapper">
+                <Tabs 
+                    name='tab'
+                    value={tab}
+                    options={allTabs}
+                    onChange={changeTab}
+                />
             </div>
 
             <div className="datagrid wrapper">
@@ -64,7 +69,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
 }
 
-type AdminTab = 'user' | 'tutorial' | 'blog';
+const allTabs = ['user', 'tutorial', 'blog'];
 
 const adminPageSeo: SeoModel = {
     metaTitle: 'devCourses',
