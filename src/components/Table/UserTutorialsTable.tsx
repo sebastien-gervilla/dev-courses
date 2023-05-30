@@ -2,17 +2,17 @@ import React, { useState } from 'react';
 import { Column, Table } from '.';
 import { useFetch, useModal } from '@/hooks';
 import { Link, Modal } from '@/components';
-import { Request, TutorialModel } from '@/api';
+import { TutorialModel } from '@/api';
 import { FormField } from '../FormField';
 import { FormSelect } from '../FormSelect';
 import technologies from '../../docs/technologies.json';
 import FormCheckable from '../FormField/FormCheckable';
 
-const UserCoursesTable = () => {
+const UserTutorialsTable = () => {
 
     const [filters, setFilters] = useState(defaultFilters);
 
-    const coursesRes = useFetch('/tutorial', []);
+    const tutorialsRes = useFetch('/tutorial', []);
 
     const modal = useModal();
 
@@ -23,10 +23,10 @@ const UserCoursesTable = () => {
         })
     }
 
-    const getFilteredCourses = () => {
-        if (!coursesRes.data?.length) return;
+    const getFilteredTutorials = () => {
+        if (!tutorialsRes.data?.length) return;
 
-        return coursesRes.data.filter((tutorial: TutorialModel) =>
+        return tutorialsRes.data.filter((tutorial: TutorialModel) =>
             tutorial.title.includes(filters.title) &&
             tutorial.technology.includes(filters.technology)
         );
@@ -51,6 +51,7 @@ const UserCoursesTable = () => {
         {
             field: 'technology',
             title: 'Technologie',
+            flex: .5,
             renderCell: row => {
                 return (
                     <p>{row.technology}</p>
@@ -60,6 +61,7 @@ const UserCoursesTable = () => {
         {
             field: 'isCompleted',
             title: 'Complété',
+            flex: .4,
             renderCell: row => {
                 return (
                     <p>{row.isPremium ? 'Oui' : 'Non'}</p>
@@ -69,7 +71,7 @@ const UserCoursesTable = () => {
     ]
 
     return (
-        <div className='courses-table'>
+        <div className='tutorials-table'>
             <div className="table-filters">
                 <FormField 
                     label=''
@@ -90,12 +92,13 @@ const UserCoursesTable = () => {
                     name='completed'
                     state={filters.completed}
                     onChange={handleChangeFilters}
+                    style={{ marginLeft: 'auto' }}
                 />
             </div>
             <Table
                 getRowId={row => row._id}
                 columns={columns}
-                data={getFilteredCourses() || []}
+                data={getFilteredTutorials() || []}
             />
             <Modal 
                 isOpen={modal.isOpen}
@@ -118,4 +121,4 @@ interface CurrentRow {
     slug: string
 }
 
-export default UserCoursesTable;
+export default UserTutorialsTable;
