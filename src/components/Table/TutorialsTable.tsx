@@ -4,8 +4,7 @@ import { useFetch, useModal } from '@/hooks';
 import { ConfirmModal, IconButton, Link, Modal, Popover } from '@/components';
 import { BsThreeDotsVertical } from 'react-icons/bs'
 import { Request, TutorialModel } from '@/api';
-import { FormField } from '../FormField';
-import { FormSelect } from '../FormSelect';
+import { FormField, FormSelect } from '../FormField';
 import technologies from '../../docs/technologies.json';
 
 const TutorialsTable = () => {

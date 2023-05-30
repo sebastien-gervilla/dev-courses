@@ -2,9 +2,8 @@ import { Breadcrumb, PageLayout } from '@/components'
 import { SeoModel, TutorialModel } from '@/api/models'
 import { GetServerSideProps } from 'next'
 import { Request } from '@/api'
-import { FormArray, FormCheckbox, FormField, FormNumber, FormTextArea } from '@/components/FormField'
+import { FormArray, FormCheckbox, FormField, FormNumber, FormTextArea, FormSelect } from '@/components/FormField'
 import { useState } from 'react'
-import { FormSelect } from '@/components/FormSelect'
 
 interface EditorProps {
     initialTutorial: TutorialModel

@@ -4,3 +4,4 @@ export { default as FormTextArea } from './FormTextArea';
 export { default as FormCheckbox } from './FormCheckbox';
 export { default as FormNumber } from './FormNumber';
 export { default as FormArray } from './FormArray';
+export { default as FormSelect } from './FormSelect';

@@ -1,9 +1,7 @@
 import { Request, SeoModel, TutorialModel } from "@/api";
 import { PageLayout, TutorialPreview } from "@/components";
-import { FormSelect } from "@/components/FormSelect";
+import { FormSelect } from "@/components/FormField";
 import { useContext, useState } from "react";
-import { GrTechnology } from 'react-icons/gr';
-import { AiOutlineClockCircle } from 'react-icons/ai';
 import { AuthContext } from '../../contexts'
 import { GetServerSideProps } from "next";
 
