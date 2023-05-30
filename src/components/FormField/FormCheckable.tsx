@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import { ImCheckmark, ImCross } from 'react-icons/im';
 
 interface FormCheckableProps {
@@ -6,9 +6,10 @@ interface FormCheckableProps {
     name: string
     state: CheckableState
     onChange: (name: string, value: CheckableState) => void
+    style?: CSSProperties
 }
 
-const FormCheckable = ({ label, name, state, onChange }: FormCheckableProps) => {
+const FormCheckable = ({ label, name, state, onChange, style }: FormCheckableProps) => {
 
     const handleToggleCheckable = () => onChange(name, getNewState());
 
@@ -26,6 +27,7 @@ const FormCheckable = ({ label, name, state, onChange }: FormCheckableProps) => 
         <div 
             className='form-checkbox'
             onClick={handleToggleCheckable}
+            style={style}
         >
             <div className="checkbox">
                 {displayIcon()}
