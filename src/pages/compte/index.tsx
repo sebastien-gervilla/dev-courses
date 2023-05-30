@@ -2,9 +2,14 @@ import { Breadcrumb, PageLayout } from '@/components'
 import { SeoModel } from '@/api/models'
 import { GetServerSideProps } from 'next'
 import { Request } from '@/api'
-import { UserCoursesTable } from '@/components/Table'
+import { UserTutorialsTable } from '@/components/Table'
+import { AccountForm } from '@/components/Form'
+import { useContext } from 'react'
+import { AuthContext } from '@/contexts'
 
 const Account = () => {
+
+    const { user } = useContext(AuthContext);
 
     return (
         <PageLayout id='account-page' seo={accountPageSeo}>
@@ -21,15 +26,17 @@ const Account = () => {
             </div>
 
             <div className="account wrapper">
-                <div className="app-form">
-
+                <div className="account-content">
+                    <div className="infos">
+                        <h2>Informations</h2>
+                        <AccountForm initialUser={user} />
+                    </div>
+                    <div className="courses">
+                        <h2>Tutoriels suivis</h2>
+                        <UserTutorialsTable />
+                    </div>
                 </div>
             </div>
-
-            <div className="courses wrapper">
-                <UserCoursesTable />
-            </div>
-
         </PageLayout>
     )
 }
