@@ -2,17 +2,18 @@ import { Breadcrumb, PageLayout } from '@/components'
 import { SeoModel } from '@/api/models'
 import { GetServerSideProps } from 'next'
 import { Request } from '@/api'
+import { UserCoursesTable } from '@/components/Table'
 
-const Settings = () => {
+const Account = () => {
 
     return (
-        <PageLayout id='settings-page' seo={settingsPageSeo}>
+        <PageLayout id='account-page' seo={accountPageSeo}>
             <div className="head wrapper">
                 <div className="head-content">
                     <Breadcrumb links={[
                         {
-                            title: 'Paramètres',
-                            href: '/parametres'
+                            title: 'Compte',
+                            href: '/compte'
                         }
                     ]} />
                     <h1>Compte</h1>
@@ -23,6 +24,10 @@ const Settings = () => {
                 <div className="app-form">
 
                 </div>
+            </div>
+
+            <div className="courses wrapper">
+                <UserCoursesTable />
             </div>
 
         </PageLayout>
@@ -51,7 +56,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
 }
 
-const settingsPageSeo: SeoModel = {
+const accountPageSeo: SeoModel = {
     metaTitle: 'devCourses',
     metaDescription: 'This is my website',
     sharedImage: {
@@ -64,4 +69,4 @@ const settingsPageSeo: SeoModel = {
     pageType: 'website'
 }
 
-export default Settings;
+export default Account;
