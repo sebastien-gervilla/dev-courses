@@ -80,6 +80,18 @@ export default class Request {
         return defaultResponse;
     }
 
+    static async post(url: URL | RequestInfo, data?: Object, options: RequestInit = defaultOptions) {
+        return await Request.make(url, 'POST', data, options);
+    }
+
+    static async put(url: URL | RequestInfo, data?: Object, options: RequestInit = defaultOptions) {
+        return await Request.make(url, 'PUT', data, options);
+    }
+
+    static async delete(url: URL | RequestInfo, options: RequestInit = defaultOptions) { // TODO: Separate function
+        return await Request.make(url, 'PUT', undefined, options);
+    }
+
     // Methods for cookies
     static async srvGet(url: URL | RequestInfo, cookies?: string, options: RequestInit = defaultOptions): Promise<ApiResponse> {
         return Request.get(url, {
