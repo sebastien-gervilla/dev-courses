@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { Column, Table } from '.';
-import { useFetch, useModal } from '@/hooks';
-import { Link, Modal } from '@/components';
-import { TutorialModel } from '@/api';
-import { FormField } from '../FormField';
-import { FormSelect } from '../FormSelect';
+import { useFetch } from '@/hooks';
+import { UserTutorialModel } from '@/api';
+import { Link } from '@/components';
+import { FormField, FormSelect } from '../FormField';
 import technologies from '../../docs/technologies.json';
 import FormCheckable from '../FormField/FormCheckable';
 
@@ -12,9 +11,8 @@ const UserTutorialsTable = () => {
 
     const [filters, setFilters] = useState(defaultFilters);
 
-    const tutorialsRes = useFetch('/tutorial', []);
-
-    const modal = useModal();
+    const tutorialsRes = useFetch('/user/tutorials', []);
+    console.log(tutorialsRes);
 
     const handleChangeFilters = (name: string, value: string | boolean | null) => {
         setFilters({
@@ -26,9 +24,9 @@ const UserTutorialsTable = () => {
     const getFilteredTutorials = () => {
         if (!tutorialsRes.data?.length) return;
 
-        return tutorialsRes.data.filter((tutorial: TutorialModel) =>
-            tutorial.title.includes(filters.title) &&
-            tutorial.technology.includes(filters.technology)
+        return tutorialsRes.data.filter((tutorial: UserTutorialModel) =>
+            tutorial.infos.title.includes(filters.title) &&
+            tutorial.infos.technology.includes(filters.technology)
         );
     }
 
@@ -39,11 +37,11 @@ const UserTutorialsTable = () => {
             renderCell: row => {
                 return (
                     <Link 
-                        href={'/tutoriels/' + row.slug} 
+                        href={'/tutoriels/' + row.infos.slug} 
                         className='animated'
                         target='_blank'
                     >
-                        {row.title}
+                        {row.infos.title}
                     </Link>
                 )
             }
@@ -54,7 +52,7 @@ const UserTutorialsTable = () => {
             flex: .5,
             renderCell: row => {
                 return (
-                    <p>{row.technology}</p>
+                    <p>{row.infos.technology}</p>
                 )
             }
         },
@@ -64,7 +62,7 @@ const UserTutorialsTable = () => {
             flex: .4,
             renderCell: row => {
                 return (
-                    <p>{row.isPremium ? 'Oui' : 'Non'}</p>
+                    <p>{row.isCompleted ? 'Oui' : 'Non'}</p>
                 )
             }
         }
@@ -74,14 +72,12 @@ const UserTutorialsTable = () => {
         <div className='tutorials-table'>
             <div className="table-filters">
                 <FormField 
-                    label=''
                     name='title'
                     placeholder='Titre'
                     value={filters.title}
                     onChange={handleChangeFilters}
                 />
                 <FormSelect
-                    label=''
                     name='technology'
                     value={filters.technology}
                     options={technologies.all}
@@ -99,11 +95,6 @@ const UserTutorialsTable = () => {
                 getRowId={row => row._id}
                 columns={columns}
                 data={getFilteredTutorials() || []}
-            />
-            <Modal 
-                isOpen={modal.isOpen}
-                onClose={modal.close}
-                body={modal.body}
             />
         </div>
     );
