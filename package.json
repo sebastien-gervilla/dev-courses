@@ -1,6 +1,7 @@
 {
   "name": "dev-courses",
   "version": "0.1.0",
+  "homepage": "/dev-courses",
   "private": true,
   "scripts": {
     "dev": "next dev",
