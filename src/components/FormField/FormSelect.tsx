@@ -4,7 +4,7 @@ import { HiChevronDown } from 'react-icons/hi';
 import { useClickOutside } from '@/hooks';
 
 interface FormSelectProps {
-    label: string,
+    label?: string,
     name: string,
     value: string,
     options: string[],

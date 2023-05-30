@@ -21,8 +21,8 @@ const AccountMenu = ({ isAdmin = false }: AccountMenuProps) => {
                     </Link>
                 </li>
                 <li>
-                    <Link href='/parametres'>
-                        Paramètres
+                    <Link href='/compte'>
+                        Compte
                     </Link>
                 </li>
                 <li>

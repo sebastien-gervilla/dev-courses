@@ -1,0 +1,35 @@
+#account-page {
+    .head-content {
+        padding: 64px 0;
+
+        .breadcrumb {
+            margin-bottom: 16px;
+        }
+    }
+
+    .account-content {
+        display: flex;
+        justify-content: space-between;
+
+        h2 {
+            margin-bottom: $size-40;
+        }
+
+        .infos {
+            width: 35%;
+            padding: $size-32;
+
+            border-radius: $main-radius;
+            background-color: $grey-200;
+
+            .app-form {
+                padding: 0;
+            }
+        }
+
+        .courses {
+            width: 60%;
+            padding: $size-32 0;
+        }
+    }
+}

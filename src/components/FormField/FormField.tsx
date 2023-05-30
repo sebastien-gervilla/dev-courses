@@ -11,7 +11,8 @@ export interface FormFieldProps {
     hasError?: boolean,
     validator?: string, // ValidationFunction
     widget?: JSX.Element,
-    isDark?: boolean
+    isDark?: boolean,
+    disabled?: boolean
 }
 
 const FormField = ({ 
@@ -25,7 +26,8 @@ const FormField = ({
         hasError = false, 
         validator = '',
         widget,
-        isDark
+        isDark,
+        disabled = false
     }: FormFieldProps) => {
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => onChange(name, event.target.value);
@@ -33,7 +35,12 @@ const FormField = ({
     return (
         <div className="form-field">
             {label ? <p className="label">{label}</p> : null}
-            <div className={"input-wrapper " + fieldType + (hasError ? ' error' : '') + (isDark ? ' dark' : ' light')}>
+            <div className={
+                "input-wrapper " + fieldType + 
+                (hasError ? ' error' : '') + 
+                (isDark ? ' dark' : ' light') + 
+                (disabled ? ' disabled' : '')
+            }>
                 <input 
                     name={name}
                     type={type}
@@ -41,6 +48,7 @@ const FormField = ({
                     onChange={handleChange}
                     placeholder={placeholder}
                     className='animated'
+                    disabled={disabled}
                 />
                 {!!widget && 
                     <div className="widget">

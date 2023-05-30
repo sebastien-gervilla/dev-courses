@@ -2,17 +2,23 @@ import { Breadcrumb, PageLayout } from '@/components'
 import { SeoModel } from '@/api/models'
 import { GetServerSideProps } from 'next'
 import { Request } from '@/api'
+import { UserTutorialsTable } from '@/components/Table'
+import { AccountForm } from '@/components/Form'
+import { useContext } from 'react'
+import { AuthContext } from '@/contexts'
 
-const Settings = () => {
+const Account = () => {
+
+    const { user } = useContext(AuthContext);
 
     return (
-        <PageLayout id='settings-page' seo={settingsPageSeo}>
+        <PageLayout id='account-page' seo={accountPageSeo}>
             <div className="head wrapper">
                 <div className="head-content">
                     <Breadcrumb links={[
                         {
-                            title: 'Paramètres',
-                            href: '/parametres'
+                            title: 'Compte',
+                            href: '/compte'
                         }
                     ]} />
                     <h1>Compte</h1>
@@ -20,11 +26,17 @@ const Settings = () => {
             </div>
 
             <div className="account wrapper">
-                <div className="app-form">
-
+                <div className="account-content">
+                    <div className="infos">
+                        <h2>Informations</h2>
+                        <AccountForm initialUser={user} />
+                    </div>
+                    <div className="courses">
+                        <h2>Tutoriels suivis</h2>
+                        <UserTutorialsTable />
+                    </div>
                 </div>
             </div>
-
         </PageLayout>
     )
 }
@@ -51,7 +63,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
 }
 
-const settingsPageSeo: SeoModel = {
+const accountPageSeo: SeoModel = {
     metaTitle: 'devCourses',
     metaDescription: 'This is my website',
     sharedImage: {
@@ -64,4 +76,4 @@ const settingsPageSeo: SeoModel = {
     pageType: 'website'
 }
 
-export default Settings;
+export default Account;
