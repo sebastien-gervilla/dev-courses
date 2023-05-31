@@ -1,0 +1,19 @@
+.pagination {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+
+    button {
+        @include flex-center;
+
+        width: 32px;
+        height: 32px;
+
+        border-radius: $main-radius;
+
+        &.selected {
+            color: $grey-50;
+            background-color: $main-color;
+        }
+    }
+}
