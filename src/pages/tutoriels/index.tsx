@@ -30,6 +30,10 @@ const Tutorials = ({ tutorials }: TutorialsProps) => {
     const pagination = usePagination(pages, { onPageChange: scrollUp });
 
     const handleChangeFilters = (name: string, value: string) => {
+        if (filters[name] === value) return;
+
+        pagination.reset();
+
         setFilters({
             ...filters,
             [name]: value
@@ -115,7 +119,7 @@ const tutorialsPageSeo: SeoModel = {
     pageType: 'website'
 }
 
-const defaultFilters = {
+const defaultFilters: {[key: string]: string} = {
     technology: 'React'
 }
 
