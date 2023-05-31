@@ -16,11 +16,6 @@ const AccountMenu = ({ isAdmin = false }: AccountMenuProps) => {
                         </Link>
                     </li>}
                 <li>
-                    <Link href='/mes-cours'>
-                        Mes cours
-                    </Link>
-                </li>
-                <li>
                     <Link href='/compte'>
                         Compte
                     </Link>
