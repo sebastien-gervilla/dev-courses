@@ -1,17 +1,25 @@
 import { Request, SeoModel, TutorialModel } from "@/api";
-import { PageLayout, TutorialPreview } from "@/components";
+import { PageLayout, TutorialPreview, Pagination } from "@/components";
 import { FormSelect } from "@/components/FormField";
 import { useContext, useState } from "react";
 import { AuthContext } from '../../contexts'
 import { GetServerSideProps } from "next";
+import { usePagination } from "@/hooks";
+import { scrollUp } from "@/utils/window-utils";
 
 interface TutorialsProps {
     tutorials: TutorialModel[]
 }
 
+const PAGE_AMOUNT = 6;
+
 const Tutorials = ({ tutorials }: TutorialsProps) => {
 
+    const pages = Math.ceil(tutorials.length / PAGE_AMOUNT);
+
     const user = useContext(AuthContext);
+
+    const pagination = usePagination(pages, { onPageChange: scrollUp });
 
     const [filters, setFilters] = useState(defaultFilters);
 
@@ -25,7 +33,12 @@ const Tutorials = ({ tutorials }: TutorialsProps) => {
     const displayTutorials = () => {
         if (!tutorials.length) return;
 
-        return tutorials.map(tutorial => (
+        const displayedTutorials = tutorials.slice(
+            ((pagination.page - 1) * PAGE_AMOUNT),
+            Math.min((pagination.page * PAGE_AMOUNT), tutorials.length)
+        )
+
+        return displayedTutorials.map(tutorial => (
             <TutorialPreview 
                 key={tutorial._id}
                 slug={tutorial.slug}
@@ -55,9 +68,16 @@ const Tutorials = ({ tutorials }: TutorialsProps) => {
                     />
                 </div>
             </div>
-            <div className="courses wrapper">
-                <div className="courses-content">
+            <div className="tutorials wrapper">
+                <div className="tutorials-content">
                     {displayTutorials()}
+                </div>
+                <div className="tutorials-pagination">
+                    <Pagination 
+                        page={pagination.page}
+                        pages={pagination.pages}
+                        changePage={pagination.change}
+                    />
                 </div>
             </div>
         </PageLayout>
