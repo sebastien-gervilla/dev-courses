@@ -12,7 +12,6 @@ const UserTutorialsTable = () => {
     const [filters, setFilters] = useState(defaultFilters);
 
     const tutorialsRes = useFetch('/user/tutorials', []);
-    console.log(tutorialsRes);
 
     const handleChangeFilters = (name: string, value: string | boolean | null) => {
         setFilters({
@@ -26,7 +25,9 @@ const UserTutorialsTable = () => {
 
         return tutorialsRes.data.filter((tutorial: UserTutorialModel) =>
             tutorial.infos.title.includes(filters.title) &&
-            tutorial.infos.technology.includes(filters.technology)
+            tutorial.infos.technology.includes(filters.technology) &&
+            (filters.completed === null || (tutorial.isCompleted ? 
+                filters.completed : !filters.completed))
         );
     }
 
