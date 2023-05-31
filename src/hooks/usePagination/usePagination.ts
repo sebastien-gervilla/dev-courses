@@ -11,10 +11,13 @@ export default function usePagination(pages: number, options: PaginationOption =
         options.onPageChange?.();
     };
 
+    const reset = () => change(options.page || 1);
+
     return {
         page,
         pages,
-        change
+        change,
+        reset
     }
 }
 
