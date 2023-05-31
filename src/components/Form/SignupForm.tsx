@@ -7,7 +7,7 @@ interface SignupFormProps {
     close: () => void
 }
 
-const SignupForm = ({ switchModal }: SignupFormProps) => {
+const SignupForm = ({ switchModal, close }: SignupFormProps) => {
 
     const [form, setForm] = useState(defaultForm);
 
@@ -20,7 +20,7 @@ const SignupForm = ({ switchModal }: SignupFormProps) => {
 
     const handleSubmitForm = async () => {
         const res = await Request.make('/user', 'POST', form);
-        console.log(res);
+        if (res.ok) close();
     }
 
     return (
