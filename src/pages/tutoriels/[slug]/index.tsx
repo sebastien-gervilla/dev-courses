@@ -12,6 +12,11 @@ interface TutorialProps {
 
 const Tutorial = ({ tutorial }: TutorialProps) => {
 
+    const handleCompleteTutorial = async () => {
+        const res = await Request.post(`/tutorial/${tutorial._id}/complete`);
+        console.log(res)
+    }
+
     return (
         <PageLayout id='tutorial-page' seo={tutorialPageSeo}>
             <div className="head wrapper">
@@ -30,6 +35,14 @@ const Tutorial = ({ tutorial }: TutorialProps) => {
                     <ReactMarkdown rehypePlugins={[rehypeRaw]}>
                         {tutorial.content}
                     </ReactMarkdown>
+                </div>
+                <div className="tutorial-end">
+                    <button 
+                        className="animated" 
+                        onClick={handleCompleteTutorial}
+                    >
+                        J'ai terminé
+                    </button>
                 </div>
             </div>
         </PageLayout>
