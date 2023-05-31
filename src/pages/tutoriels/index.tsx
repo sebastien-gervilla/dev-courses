@@ -101,7 +101,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
     return {
         props: {
-            tutorials: tutorialsRes.data
+            tutorials: tutorialsRes.data || []
         }
     }
 }
