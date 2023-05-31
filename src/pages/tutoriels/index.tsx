@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { Request, SeoModel, TutorialModel } from "@/api";
 import { PageLayout, TutorialPreview, Pagination } from "@/components";
 import { FormSelect } from "@/components/FormField";
@@ -6,6 +7,7 @@ import { AuthContext } from '../../contexts'
 import { GetServerSideProps } from "next";
 import { usePagination } from "@/hooks";
 import { scrollUp } from "@/utils/window-utils";
+import technologies from '../../docs/technologies.json';
 
 interface TutorialsProps {
     tutorials: TutorialModel[]
@@ -15,13 +17,17 @@ const PAGE_AMOUNT = 6;
 
 const Tutorials = ({ tutorials }: TutorialsProps) => {
 
-    const pages = Math.ceil(tutorials.length / PAGE_AMOUNT);
-
     const user = useContext(AuthContext);
 
-    const pagination = usePagination(pages, { onPageChange: scrollUp });
-
     const [filters, setFilters] = useState(defaultFilters);
+
+    const filteredTutorials = useMemo(() => tutorials.filter(
+        tutorial => filters.technology === 'Toutes' ||
+            filters.technology === tutorial.technology
+    ), [tutorials, filters]);
+
+    const pages = Math.ceil(filteredTutorials.length / PAGE_AMOUNT);
+    const pagination = usePagination(pages, { onPageChange: scrollUp });
 
     const handleChangeFilters = (name: string, value: string) => {
         setFilters({
@@ -31,11 +37,11 @@ const Tutorials = ({ tutorials }: TutorialsProps) => {
     }
 
     const displayTutorials = () => {
-        if (!tutorials.length) return;
+        if (!filteredTutorials.length) return;
 
-        const displayedTutorials = tutorials.slice(
+        const displayedTutorials = filteredTutorials.slice(
             ((pagination.page - 1) * PAGE_AMOUNT),
-            Math.min((pagination.page * PAGE_AMOUNT), tutorials.length)
+            Math.min((pagination.page * PAGE_AMOUNT), filteredTutorials.length)
         )
 
         return displayedTutorials.map(tutorial => (
@@ -47,7 +53,7 @@ const Tutorials = ({ tutorials }: TutorialsProps) => {
                 technology={tutorial.technology}
                 hoursToLearn={tutorial.hoursToLearn}
             />
-        ))
+        ));
     }
 
     return (
@@ -63,8 +69,9 @@ const Tutorials = ({ tutorials }: TutorialsProps) => {
                         label="Technologie"
                         name="technology"
                         value={filters.technology}
-                        options={['React', 'Node.js', 'Next.js']}
+                        options={technologies.all}
                         onChange={handleChangeFilters}
+                        anyOption="Toutes"
                     />
                 </div>
             </div>
