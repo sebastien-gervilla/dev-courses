@@ -9,10 +9,11 @@ interface FormSelectProps {
     value: string,
     options: string[],
     onChange: (name: string, value: string) => void,
-    isDark?: boolean
+    isDark?: boolean,
+    anyOption?: string
 }
 
-const FormSelect = ({ label, name, value, options, onChange, isDark = false }: FormSelectProps) => {
+const FormSelect = ({ label, name, value, options, onChange, anyOption, isDark = false }: FormSelectProps) => {
 
     const optionsRef = useRef<HTMLDivElement | null>(null);
 
@@ -55,6 +56,14 @@ const FormSelect = ({ label, name, value, options, onChange, isDark = false }: F
                 ref={optionsRef} 
                 className='options'
             >
+                {anyOption ? 
+                    <button
+                        key={anyOption}
+                        className='option'
+                        onClick={() => onChange(name, anyOption)}
+                    >
+                        {anyOption}
+                    </button> : null}
                 {displayOptions()}
             </div>
         </div>

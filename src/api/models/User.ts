@@ -13,5 +13,5 @@ export interface UserTutorialModel {
     _id: string,
     infos: TutorialModel
     startingDate: Date
-    isComplete: boolean
+    isCompleted: boolean
 }
