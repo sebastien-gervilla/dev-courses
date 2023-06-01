@@ -12,7 +12,7 @@
         justify-content: space-between;
 
         h2 {
-            margin-bottom: $size-40;
+            margin-bottom: $size-32;
         }
 
         .infos {
@@ -24,6 +24,8 @@
 
             .app-form {
                 padding: 0;
+
+                margin-bottom: 64px;
             }
         }
 

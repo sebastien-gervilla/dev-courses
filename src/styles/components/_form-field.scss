@@ -8,6 +8,7 @@
 
         border-radius: $main-radius;
         border: 1px solid $grey-500;
+        background-color: $grey-0;
 
         overflow: hidden;
         
@@ -54,6 +55,7 @@
 
         border-radius: $main-radius;
         border: 1px solid $grey-500;
+        background-color: $grey-0;
 
         &:hover, &:focus {
             border-color: $main-color;
