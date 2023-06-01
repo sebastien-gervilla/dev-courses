@@ -25,12 +25,11 @@ const FormArray = ({ label, name, values, onChange }: FormArrayProps) => {
 
     const displayFields = () => {
         return values.map((value, index) => (
-            <div className="array-element">
+            <div className="array-element" key={index}>
                 <IconButton onClick={() => handleRemoveField(index)}>
                     <GoDiffRemoved className='animated' />
                 </IconButton>
                 <input 
-                    key={index}
                     value={value}
                     onChange={event => handleChangeField(index, event.target.value)}
                 />
