@@ -2,7 +2,8 @@ import { Breadcrumb, PageLayout } from '@/components'
 import { SeoModel, TutorialModel } from '@/api/models'
 import { GetServerSideProps } from 'next'
 import { Request } from '@/api'
-import { FormArray, FormCheckbox, FormField, FormNumber, FormTextArea, FormSelect } from '@/components/FormField'
+import { FormArray, FormCheckbox, FormField, FormNumber, 
+    FormTextArea, FormSelect, FormEditor } from '@/components/FormField'
 import { useState } from 'react'
 
 interface EditorProps {
@@ -107,12 +108,12 @@ const Editor = ({ initialTutorial }: EditorProps) => {
                         />
                     </div>
                     <div className="form-row">
-                        <FormTextArea 
+                        <FormEditor 
                             label='Contenu'
                             name='content'
                             value={tutorial.content}
                             onChange={handleChangeTutorial}
-                            height={350}
+                            style={{ height: 400 }}
                         />
                     </div>
                     <div className="form-row spaced">
