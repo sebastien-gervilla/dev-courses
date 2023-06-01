@@ -4,9 +4,10 @@ import { Request, UserModel } from '@/api';
 
 interface AccountFormProps {
     initialUser: UserModel | null
+    refresh: () => void
 }
 
-const AccountForm = ({ initialUser }: AccountFormProps) => {
+const AccountForm = ({ initialUser, refresh }: AccountFormProps) => {
 
     const [form, setForm] = useState({
         fname: initialUser?.fname || '',
@@ -24,7 +25,7 @@ const AccountForm = ({ initialUser }: AccountFormProps) => {
         if (!initialUser?._id) return;
 
         const res = await Request.put('/user/' + initialUser._id, form);
-        console.log(res);
+        res.ok && refresh();
     }
 
     return (

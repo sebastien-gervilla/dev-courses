@@ -9,7 +9,7 @@ import { AuthContext } from '@/contexts'
 
 const Account = () => {
 
-    const { user } = useContext(AuthContext);
+    const { user, refresh } = useContext(AuthContext);
 
     return (
         <PageLayout id='account-page' seo={accountPageSeo}>
@@ -29,7 +29,7 @@ const Account = () => {
                 <div className="account-content">
                     <div className="infos">
                         <h2>Informations</h2>
-                        <AccountForm initialUser={user} />
+                        <AccountForm initialUser={user} refresh={refresh} />
                     </div>
                     <div className="courses">
                         <h2>Tutoriels suivis</h2>
