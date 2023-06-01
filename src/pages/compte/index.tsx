@@ -7,6 +7,7 @@ import { AccountForm } from '@/components/Form'
 import { useContext } from 'react'
 import { AuthContext } from '@/contexts'
 import { redirect } from '@/utils/next-utils'
+import PasswordForm from '@/components/Form/PasswordForm'
 
 interface AccountProps {
     userTutorials: UserTutorialModel[]
@@ -35,6 +36,12 @@ const Account = ({ userTutorials }: AccountProps) => {
                     <div className="infos">
                         <h2>Informations</h2>
                         <AccountForm initialUser={user} refresh={refresh} />
+                        <h2>Sécurité</h2>
+                        <PasswordForm userId={user?._id} refresh={refresh} />
+                        <h2>Gestion du compte</h2>
+                        <button className='animated filled red'>
+                            Se désinscrire
+                        </button>
                     </div>
                     {!user?.isAdmin && 
                         <div className="courses">
