@@ -1,15 +1,21 @@
 import { Breadcrumb, PageLayout } from '@/components'
-import { SeoModel } from '@/api/models'
+import { SeoModel, UserModel, UserTutorialModel } from '@/api/models'
 import { GetServerSideProps } from 'next'
 import { Request } from '@/api'
 import { UserTutorialsTable } from '@/components/Table'
 import { AccountForm } from '@/components/Form'
 import { useContext } from 'react'
 import { AuthContext } from '@/contexts'
+import { redirect } from '@/utils/next-utils'
+import PasswordForm from '@/components/Form/PasswordForm'
 
-const Account = () => {
+interface AccountProps {
+    userTutorials: UserTutorialModel[]
+}
 
-    const { user } = useContext(AuthContext);
+const Account = ({ userTutorials }: AccountProps) => {
+
+    const { user, refresh } = useContext(AuthContext);
 
     return (
         <PageLayout id='account-page' seo={accountPageSeo}>
@@ -29,12 +35,19 @@ const Account = () => {
                 <div className="account-content">
                     <div className="infos">
                         <h2>Informations</h2>
-                        <AccountForm initialUser={user} />
+                        <AccountForm initialUser={user} refresh={refresh} />
+                        <h2>Sécurité</h2>
+                        <PasswordForm userId={user?._id} refresh={refresh} />
+                        <h2>Gestion du compte</h2>
+                        <button className='animated filled red'>
+                            Se désinscrire
+                        </button>
                     </div>
-                    <div className="courses">
-                        <h2>Tutoriels suivis</h2>
-                        <UserTutorialsTable />
-                    </div>
+                    {!user?.isAdmin && 
+                        <div className="courses">
+                            <h2>Tutoriels suivis</h2>
+                            <UserTutorialsTable tutorials={userTutorials} />
+                        </div>}
                 </div>
             </div>
         </PageLayout>
@@ -43,23 +56,23 @@ const Account = () => {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
     
-    const userRes = await Request.get('/user/auth', {
-        headers: {
-            'Content-Type': 'application/json',
-            Cookie: context.req?.headers.cookie || ''
-        }
-    });
+    const { cookie } = context.req.headers;
+    const userRes = await Request.srvGet('/user/auth', cookie);
+    
 
-    if (!userRes.ok)
-        return {
-            props: {},
-            redirect: {
-                destination: '/'
-            }
-        }
+    if (!userRes.ok) return redirect('/');
+
+    const user: UserModel = userRes.data;
+    if (user.isAdmin) return {
+        props: { userTutorials: [] }
+    };
+
+    const userTutorials = await Request.srvGet('/user/tutorials', cookie);
 
     return {
-        props: {}
+        props: {
+            userTutorials: userTutorials.data
+        }
     };
 }
 

@@ -42,6 +42,8 @@ const Pagination = ({ page, pages, changePage }: PaginationProps) => {
         return pagination;
     }
 
+    if (pages < 2) return;
+
     return (
         <div className='pagination'>
             <button onClick={() => changePage(page - 1)}>

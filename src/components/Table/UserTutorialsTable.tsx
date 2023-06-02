@@ -7,11 +7,13 @@ import { FormField, FormSelect } from '../FormField';
 import technologies from '../../docs/technologies.json';
 import FormCheckable from '../FormField/FormCheckable';
 
-const UserTutorialsTable = () => {
+interface UserTutorialsTableProps {
+    tutorials: UserTutorialModel[]
+}
+
+const UserTutorialsTable = ({ tutorials }: UserTutorialsTableProps) => {
 
     const [filters, setFilters] = useState(defaultFilters);
-
-    const tutorialsRes = useFetch('/user/tutorials', []);
 
     const handleChangeFilters = (name: string, value: string | boolean | null) => {
         setFilters({
@@ -21,9 +23,9 @@ const UserTutorialsTable = () => {
     }
 
     const getFilteredTutorials = () => {
-        if (!tutorialsRes.data?.length) return;
+        if (!tutorials.length) return [];
 
-        return tutorialsRes.data.filter((tutorial: UserTutorialModel) =>
+        return tutorials.filter((tutorial: UserTutorialModel) =>
             tutorial.infos.title.includes(filters.title) &&
             tutorial.infos.technology.includes(filters.technology) &&
             (filters.completed === null || (tutorial.isCompleted ? 
@@ -95,7 +97,7 @@ const UserTutorialsTable = () => {
             <Table
                 getRowId={row => row._id}
                 columns={columns}
-                data={getFilteredTutorials() || []}
+                data={getFilteredTutorials()}
             />
         </div>
     );

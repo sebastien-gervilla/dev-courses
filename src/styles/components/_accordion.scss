@@ -11,6 +11,8 @@
         
         padding: $size-16;
 
+        background-color: $grey-0;
+
         cursor: pointer;
 
         p {
@@ -26,6 +28,8 @@
 
     .text {
         max-height: 0;
+
+        background-color: $grey-0;
 
         overflow: hidden;
 

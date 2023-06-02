@@ -16,7 +16,8 @@
         padding: 8px 16px;
 
         color: $grey-800;
-        border: $main-border $grey-800;
+        border: 1px solid $grey-800;
+        background-color: $grey-0;
 
         svg {
             width: 20px;
@@ -40,7 +41,7 @@
         visibility: hidden;
 
         border: 1px solid $grey-800;
-        background-color: $grey-50;
+        background-color: $grey-0;
 
         transition: $main-transition;
 
