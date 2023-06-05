@@ -33,9 +33,9 @@ const Home = () => {
                             Et voici une suite de ce texte marketing pour la longueur. Quelques mots clés ici.
                         </p>
                         <div className="buttons">
-                            <button className='animated filled'>
-                                Découvrir les cours
-                            </button>
+                            <Link className='animated-button filled' href='/tutoriels'>
+                                Découvrir notre sélection
+                            </Link>
                         </div>
                     </div>
                     <img src="/images/web-developper.svg" alt="A web developper" />
