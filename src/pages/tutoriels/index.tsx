@@ -56,6 +56,7 @@ const Tutorials = ({ tutorials }: TutorialsProps) => {
                 description={tutorial.description}
                 technology={tutorial.technology}
                 hoursToLearn={tutorial.hoursToLearn}
+                createdAt={tutorial.createdAt}
             />
         ));
     }
