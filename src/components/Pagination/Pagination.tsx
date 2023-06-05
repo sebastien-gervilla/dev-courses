@@ -42,7 +42,7 @@ const Pagination = ({ page, pages, changePage }: PaginationProps) => {
         return pagination;
     }
 
-    if (pages < 2) return;
+    if (pages < 2) return null;
 
     return (
         <div className='pagination'>
