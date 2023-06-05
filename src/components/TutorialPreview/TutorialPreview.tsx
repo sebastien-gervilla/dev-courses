@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { GrTechnology } from 'react-icons/gr';
 import { AiOutlineClockCircle } from 'react-icons/ai';
+import { BsArrowRightShort } from 'react-icons/bs';
 import { AuthContext } from '@/contexts';
 import { useRouter } from 'next/router';
 
@@ -33,6 +34,10 @@ const TutorialPreview = ({ slug, title, description, technology, hoursToLearn }:
                     <p>{hoursToLearn} Heures</p>
                 </div>
                 <p className="desc">{description}</p>
+            </div>
+            <div className="icon">
+                <p>Commencer</p>
+                <BsArrowRightShort />
             </div>
         </div>
     );
