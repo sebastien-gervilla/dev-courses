@@ -26,11 +26,12 @@ const Home = () => {
                 <div className="hero-content">
                     <div className="action">
                         <h1>
-                            Ceci est un texte qui donne envie d'acheter les cours.
+                            Passez au niveau <span>supérieur</span> grâce à des technologies <span>modernes</span>.
                         </h1>
                         <p>
-                            Ceci est un sous-text marketing qui donne envie d'acheter les cours également. 
-                            Et voici une suite de ce texte marketing pour la longueur. Quelques mots clés ici.
+                            Devenez et restez un développeur web compétitif sur le marché, grâce à des tutoriels gratuits
+                            et à jour, le tout sur les technologies de demain !
+
                         </p>
                         <div className="buttons">
                             <Link className='animated-button filled' href='/tutoriels'>
