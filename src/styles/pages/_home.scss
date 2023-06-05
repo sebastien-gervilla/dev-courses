@@ -57,14 +57,64 @@
                 gap: 64px;
 
                 .card {
+                    position: relative;
+
                     width: 200px;
                     height: 200px;
-                    padding: 32px;
 
                     border-radius: $main-radius;
                     box-shadow: $main-shadow;
-
                     background-color: $grey-50;
+
+                    transition: $main-transition;
+
+                    .filler {
+                        width: 100%;
+                        height: 100%;
+
+                        background-color: $grey-50;
+
+                        transition: $main-transition;
+                    }
+
+                    &:hover {
+                        box-shadow: $dark-shadow;
+
+                        .filler {
+                            transform: scale(1.05);
+                            transition: $main-transition;
+                        }
+
+                        svg {
+                            color: $main-color-light;
+                            transition: $main-transition;
+                        }
+                    }
+
+                    a {
+                        position: absolute;
+                        inset: 0;
+
+                        @include flex-center;
+                        flex-direction: column;
+
+                        padding: 32px;
+
+                        svg {
+                            width: 100px;
+                            height: 100px;
+                            margin-bottom: $size-28;
+
+                            transition: $main-transition;
+                        }
+    
+                        p {
+                            color: $grey-800;
+                            
+                            font-size: $size-24;
+                            font-weight: 500;
+                        }
+                    }
                 }
             }
         }

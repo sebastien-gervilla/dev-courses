@@ -1,15 +1,21 @@
-import { PageLayout, Stars } from '@/components'
+import { Link, PageLayout, Stars } from '@/components'
 import { SeoModel } from '@/api/models'
 import { BsClockHistory } from 'react-icons/bs'
 import { GiProgression } from 'react-icons/gi'
 import { SlBriefcase } from 'react-icons/sl'
+import { FaNodeJs, FaReact, FaVuejs } from 'react-icons/fa';
+import { SiNextdotjs, SiNuxtdotjs, SiTypescript } from 'react-icons/si';
 
 const Home = () => {
 
     const displayTechnologies = () => technologies.map(
-        technology => (
-            <div key={technology} className="card">
-                <p>{technology}</p>
+        (technology) => (
+            <div key={technology.name} className="card">
+                <div className='filler'></div>
+                <Link href='/tutoriels'>
+                    {technology.icon}
+                    <p>{technology.name}</p>
+                </Link>
             </div>
         )
     );
@@ -112,16 +118,41 @@ const Home = () => {
                             </p>
                         </div>
                     </div>
-                    <button className='animated'>
+                    <Link href='/tutoriels' className='animated-button'>
                         Se lancer
-                    </button>
+                    </Link>
                 </div>
             </div>
         </PageLayout>
     )
 }
 
-const technologies = ['react', 'node.js', 'next.js', 'vue.js', '.NET', 'Nuxt.js']
+const technologies = [
+    {
+        name: 'React',
+        icon: <FaReact />
+    },
+    {
+        name: 'Next.js',
+        icon: <SiNextdotjs />
+    },
+    {
+        name: 'Node.js',
+        icon: <FaNodeJs />
+    },
+    {
+        name: 'Vue',
+        icon: <FaVuejs />
+    },
+    {
+        name: 'Nuxt.js',
+        icon: <SiNuxtdotjs />
+    },
+    {
+        name: 'Typescript',
+        icon: <SiTypescript />
+    }
+]
 
 const homePageSeo: SeoModel = {
     metaTitle: 'devCourses',
