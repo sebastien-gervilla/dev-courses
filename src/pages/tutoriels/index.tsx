@@ -56,6 +56,7 @@ const Tutorials = ({ tutorials }: TutorialsProps) => {
                 description={tutorial.description}
                 technology={tutorial.technology}
                 hoursToLearn={tutorial.hoursToLearn}
+                createdAt={tutorial.createdAt}
             />
         ));
     }
@@ -64,7 +65,7 @@ const Tutorials = ({ tutorials }: TutorialsProps) => {
         <PageLayout id='tutorials-page' seo={tutorialsPageSeo}>
             <div className="head wrapper">
                 <div className="head-content">
-                    <h1>Les tutoriels</h1>
+                    <h1>Nos tutoriels</h1>
                 </div>
             </div>
             <div className="filter-menu wrapper">

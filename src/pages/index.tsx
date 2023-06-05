@@ -1,15 +1,21 @@
-import { PageLayout, Stars } from '@/components'
+import { Link, PageLayout, Stars } from '@/components'
 import { SeoModel } from '@/api/models'
 import { BsClockHistory } from 'react-icons/bs'
 import { GiProgression } from 'react-icons/gi'
 import { SlBriefcase } from 'react-icons/sl'
+import { FaNodeJs, FaReact, FaVuejs } from 'react-icons/fa';
+import { SiNextdotjs, SiNuxtdotjs, SiTypescript } from 'react-icons/si';
 
 const Home = () => {
 
     const displayTechnologies = () => technologies.map(
-        technology => (
-            <div key={technology} className="card">
-                <p>{technology}</p>
+        (technology) => (
+            <div key={technology.name} className="card">
+                <div className='filler'></div>
+                <Link href='/tutoriels'>
+                    {technology.icon}
+                    <p>{technology.name}</p>
+                </Link>
             </div>
         )
     );
@@ -20,16 +26,17 @@ const Home = () => {
                 <div className="hero-content">
                     <div className="action">
                         <h1>
-                            Ceci est un texte qui donne envie d'acheter les cours.
+                            Passez au niveau <span>supérieur</span> grâce à des technologies <span>modernes</span>.
                         </h1>
                         <p>
-                            Ceci est un sous-text marketing qui donne envie d'acheter les cours également. 
-                            Et voici une suite de ce texte marketing pour la longueur. Quelques mots clés ici.
+                            Devenez et restez un développeur web compétitif sur le marché, grâce à des tutoriels gratuits
+                            et à jour, le tout sur les technologies de demain !
+
                         </p>
                         <div className="buttons">
-                            <button className='animated filled'>
-                                Découvrir les cours
-                            </button>
+                            <Link className='animated-button filled' href='/tutoriels'>
+                                Découvrir notre sélection
+                            </Link>
                         </div>
                     </div>
                     <img src="/images/web-developper.svg" alt="A web developper" />
@@ -112,16 +119,41 @@ const Home = () => {
                             </p>
                         </div>
                     </div>
-                    <button className='animated'>
+                    <Link href='/tutoriels' className='animated-button'>
                         Se lancer
-                    </button>
+                    </Link>
                 </div>
             </div>
         </PageLayout>
     )
 }
 
-const technologies = ['react', 'node.js', 'next.js', 'vue.js', '.NET', 'Nuxt.js']
+const technologies = [
+    {
+        name: 'React',
+        icon: <FaReact />
+    },
+    {
+        name: 'Next.js',
+        icon: <SiNextdotjs />
+    },
+    {
+        name: 'Node.js',
+        icon: <FaNodeJs />
+    },
+    {
+        name: 'Vue',
+        icon: <FaVuejs />
+    },
+    {
+        name: 'Nuxt.js',
+        icon: <SiNuxtdotjs />
+    },
+    {
+        name: 'Typescript',
+        icon: <SiTypescript />
+    }
+]
 
 const homePageSeo: SeoModel = {
     metaTitle: 'devCourses',

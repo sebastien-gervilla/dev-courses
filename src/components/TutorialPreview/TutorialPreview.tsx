@@ -1,8 +1,11 @@
 import React, { useContext } from 'react';
 import { GrTechnology } from 'react-icons/gr';
 import { AiOutlineClockCircle } from 'react-icons/ai';
+import { BsArrowRightShort } from 'react-icons/bs';
+import { MdDateRange } from 'react-icons/md';
 import { AuthContext } from '@/contexts';
 import { useRouter } from 'next/router';
+import { getFullDate } from '@/utils/date-utils';
 
 interface TutorialPreviewProps {
     slug: string
@@ -10,9 +13,12 @@ interface TutorialPreviewProps {
     description: string
     technology: string
     hoursToLearn: number
+    createdAt: string
 }
 
-const TutorialPreview = ({ slug, title, description, technology, hoursToLearn }: TutorialPreviewProps) => {
+const TutorialPreview = ({ slug, title, description, technology, hoursToLearn, createdAt }: TutorialPreviewProps) => {
+
+    const creationDate = getFullDate(createdAt);
 
     const { user, openAuthModal } = useContext(AuthContext);
 
@@ -31,8 +37,14 @@ const TutorialPreview = ({ slug, title, description, technology, hoursToLearn }:
                     <p>{technology}</p>
                     <AiOutlineClockCircle />
                     <p>{hoursToLearn} Heures</p>
+                    <MdDateRange />
+                    <p>{creationDate}</p>
                 </div>
                 <p className="desc">{description}</p>
+            </div>
+            <div className="icon">
+                <p>Commencer</p>
+                <BsArrowRightShort />
             </div>
         </div>
     );
