@@ -5,7 +5,9 @@
 
     border-radius: $main-radius;
     background-color: $grey-0;
-    box-shadow: $main-shadow;
+    box-shadow: $light-shadow;
+
+    transition: $main-transition;
 
     cursor: pointer;
 
@@ -65,6 +67,10 @@
     }
 
     &:hover {
+        box-shadow: $main-shadow;
+
+        transition: $main-transition;
+
         h3 {
             color: $main-color;
         }
