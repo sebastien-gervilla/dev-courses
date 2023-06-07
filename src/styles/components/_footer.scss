@@ -1,0 +1,51 @@
+footer.app-footer {
+    background-color: $main-color-lighter;
+
+    margin-top: auto;
+    
+    .footer-content {
+        display: flex;
+        justify-content: space-between;
+
+        @include main-layout;
+        padding: 32px;
+
+        .brand {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            
+            margin-right: 50px;
+
+            a {
+                margin-bottom: 16px;
+
+                color: #4a26ff;
+                font-size: $size-24;
+                font-weight: 800;
+            }
+        }
+
+        .website-links.links {
+            ul {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .links {
+            p {
+                margin-bottom: 16px;
+
+                font-size: $size-18;
+                font-weight: 500;
+            }
+
+            ul {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+            }
+        }
+    }
+}
