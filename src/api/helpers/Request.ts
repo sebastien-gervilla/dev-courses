@@ -89,7 +89,7 @@ export default class Request {
     }
 
     static async delete(url: URL | RequestInfo, options: RequestInit = defaultOptions) { // TODO: Separate function
-        return await Request.make(url, 'PUT', undefined, options);
+        return await Request.make(url, 'DELETE', undefined, options);
     }
 
     // Methods for cookies
