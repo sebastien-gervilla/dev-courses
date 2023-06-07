@@ -1,4 +1,4 @@
-import { Breadcrumb, PageLayout } from '@/components'
+import { Breadcrumb, ConfirmModal, Modal, PageLayout } from '@/components'
 import { SeoModel, UserModel, UserTutorialModel } from '@/api/models'
 import { GetServerSideProps } from 'next'
 import { Request } from '@/api'
@@ -8,6 +8,7 @@ import { useContext } from 'react'
 import { AuthContext } from '@/contexts'
 import { redirect } from '@/utils/next-utils'
 import PasswordForm from '@/components/Form/PasswordForm'
+import { useModal } from '@/hooks'
 
 interface AccountProps {
     userTutorials: UserTutorialModel[]
@@ -16,6 +17,16 @@ interface AccountProps {
 const Account = ({ userTutorials }: AccountProps) => {
 
     const { user, refresh } = useContext(AuthContext);
+
+    const modal = useModal();
+
+    const handleUnsubscribe = async () => {
+        if (!user?._id) return;
+
+        const res = await Request.delete('/user/' + user._id);
+
+        if(res.ok) refresh();
+    }
 
     return (
         <PageLayout id='account-page' seo={accountPageSeo}>
@@ -30,7 +41,6 @@ const Account = ({ userTutorials }: AccountProps) => {
                     <h1>Compte</h1>
                 </div>
             </div>
-
             <div className="account wrapper">
                 <div className="account-content">
                     <div className="infos">
@@ -39,7 +49,16 @@ const Account = ({ userTutorials }: AccountProps) => {
                         <h2>Sécurité</h2>
                         <PasswordForm userId={user?._id} refresh={refresh} />
                         <h2>Gestion du compte</h2>
-                        <button className='animated filled red'>
+                        <button 
+                            className='animated filled red'
+                            onClick={() => modal.openWith(
+                                <ConfirmModal 
+                                    message='Souhaitez-vous vraiment vous désinscrire ?'
+                                    onConfirm={handleUnsubscribe}
+                                    onCancel={modal.close}
+                                />
+                            )}
+                        >
                             Se désinscrire
                         </button>
                     </div>
@@ -50,6 +69,11 @@ const Account = ({ userTutorials }: AccountProps) => {
                         </div>}
                 </div>
             </div>
+            <Modal 
+                isOpen={modal.isOpen}
+                onClose={modal.close}
+                body={modal.body}
+            />
         </PageLayout>
     )
 }

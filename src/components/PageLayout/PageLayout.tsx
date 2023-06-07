@@ -1,5 +1,5 @@
 import React from 'react';
-import { SeoHead, Header } from '../';
+import { SeoHead, Header, Footer } from '../';
 import { SeoModel } from '@/api';
 
 interface PageLayoutProps {
@@ -21,7 +21,7 @@ const PageLayout = ({ id, seo, children }: PageLayoutProps) => {
                 </div>
             </div>
 
-            {/* <Footer categories={categories} /> */}
+            <Footer />
         </section>
     );
 };

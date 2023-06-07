@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FormField, FormPassword } from '../FormField';
 import { Request } from '@/api';
+import { Link } from '..';
 
 interface SignupFormProps {
     switchModal: () => void
@@ -64,8 +65,17 @@ const SignupForm = ({ switchModal, close }: SignupFormProps) => {
                     S'incrire
                 </button>
             </div>
+            <div className="form-row">
+                <p>
+                    <span style={{ fontWeight: 500}}>NOTE</span> : 
+                    En créant un compte vous acceptez <br/> les {' '}
+                    <Link className='animated' href='/conditions-utilisation'>
+                        conditions générales d'utilisation.
+                    </Link>
+                </p>
+            </div>
             <p>
-                Déjà member ? <a 
+                Déjà membre ? <a 
                     onClick={switchModal} 
                     className='animated underline colored'
                 >
