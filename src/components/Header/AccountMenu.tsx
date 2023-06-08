@@ -3,9 +3,10 @@ import { Link } from '..';
 
 interface AccountMenuProps {
     isAdmin: boolean
+    logout: () => void
 }
 
-const AccountMenu = ({ isAdmin = false }: AccountMenuProps) => {
+const AccountMenu = ({ isAdmin = false, logout }: AccountMenuProps) => {
     return (
         <div className='account-menu'>
             <ul>
@@ -21,7 +22,7 @@ const AccountMenu = ({ isAdmin = false }: AccountMenuProps) => {
                     </Link>
                 </li>
                 <li>
-                    <button>
+                    <button onClick={logout}>
                         Déconnexion
                     </button>
                 </li>

@@ -1,10 +1,8 @@
-import React, { useContext, useRef, useState } from 'react';
-import { AiOutlineSearch } from 'react-icons/ai';
+import React, { useContext, useRef } from 'react';
 import { HiOutlineMoon, HiSun } from 'react-icons/hi';
-import { Link, IconButton, Modal, Popover } from '@/components';
+import { Link, IconButton, Popover } from '@/components';
 import { ThemeContext } from '@/contexts';
 import { useModal } from '@/hooks';
-import { LoginForm, SignupForm } from '../Form';
 import UserContext from '@/contexts/AuthContext';
 import { Request } from '@/api';
 import { MdAccountCircle } from 'react-icons/md';
@@ -22,7 +20,7 @@ const Header = () => {
     const logout = async () => {
         const res = await Request.make('/user/logout', 'POST');
         
-        refresh();
+        res.ok && refresh();
     }
 
     const displayNavigation = () =>
@@ -83,9 +81,6 @@ const Header = () => {
                     </Link>
                     <div className="buttons">
                         {displayDarkModeButton()}
-                        <IconButton aria-label='Rechercher un article'>
-                            <AiOutlineSearch className='animated' />
-                        </IconButton>
                     </div>
                 </div>
                 <nav className="navigation">
@@ -112,7 +107,7 @@ const Header = () => {
                         vertical: 20
                     }
                 }}
-                body={<AccountMenu isAdmin={user.isAdmin} />}
+                body={<AccountMenu isAdmin={user.isAdmin} logout={logout} />}
                 addArrow
             />}
         </header>
