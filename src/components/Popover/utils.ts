@@ -44,8 +44,10 @@ const getPopupRect = (anchor: HTMLElement, position: PopupPosition) => {
     const top = rect.top + rect.height * topOrigin;
     const left = rect.left + rect.width * leftOrigin;
 
+    const scroll = window.scrollY;
+
     return {
-        top: Math.ceil(top + (position?.gap?.vertical || 0)) + 'px',
+        top: (Math.ceil(top + (position?.gap?.vertical || 0)) + scroll) + 'px',
         left: Math.ceil(left + (position?.gap?.horizontal || 0)) + 'px'
     }
 }
