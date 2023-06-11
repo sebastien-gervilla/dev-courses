@@ -1,8 +1,8 @@
-import React, { useState, MouseEvent } from 'react';
+import React, { useState } from 'react';
 import { Column, Table } from '.';
 import { useFetch, useModal } from '@/hooks';
-import { ConfirmModal, IconButton, Link, Modal, Popover } from '@/components';
-import { BsThreeDotsVertical } from 'react-icons/bs'
+import { ConfirmModal, IconButton, Modal } from '@/components';
+import { MdPersonRemoveAlt1 } from 'react-icons/md'
 import { Request, UserModel } from '@/api';
 import { FormField } from '../FormField';
 
@@ -13,9 +13,6 @@ const UsersTable = () => {
     const usersRes = useFetch('/user', []);
 
     const modal = useModal();
-    const moreMenu = useModal();
-
-    const [currentRow, setCurrentRow] = useState<CurrentRow>(defaultCurrentRow)
 
     const handleChangeFilters = (name: string, value: string | boolean) => {
         setFilters({
@@ -24,11 +21,10 @@ const UsersTable = () => {
         })
     }
 
-    const deleteUser = async () => {
-        const id = currentRow.rowId;
-        if (!id) return;
+    const deleteUser = async (userId: number) => {
+        if (!userId) return;
 
-        const response = await Request.make('/user/' + id, 'DELETE');
+        const response = await Request.make('/user/' + userId, 'DELETE');
         if (!response.ok) // FEEDBACK SNACKBAR ?
             return;
 
@@ -76,18 +72,15 @@ const UsersTable = () => {
             title: '',
             flex: .1,
             renderCell: row => {
-                const handleOpenMenu = (event: MouseEvent<HTMLButtonElement>) => {
-                    setCurrentRow({
-                        anchor: event.currentTarget,
-                        rowId: row._id,
-                        slug: row.slug
-                    });
-                    moreMenu.open();
-                }
-
                 return (
-                    <IconButton onClick={handleOpenMenu}>
-                        <BsThreeDotsVertical className='animated' />
+                    <IconButton onClick={() => modal.openWith(
+                        <ConfirmModal 
+                            message='Voulez-vous vraiment supprimer cet utilisateur ?'
+                            onCancel={modal.close}
+                            onConfirm={() => deleteUser(row._id)}
+                        />
+                    )}>
+                        <MdPersonRemoveAlt1 className='animated' />
                     </IconButton>
                 )
             }
@@ -115,13 +108,6 @@ const UsersTable = () => {
                     value={filters.email}
                     onChange={handleChangeFilters}
                 />
-                <Link 
-                    href='/admin/editor'
-                    className='animated-button'
-                    style={{ marginLeft: 'auto' }}
-                >
-                    Ajouter
-                </Link>
             </div>
             <Table
                 getRowId={row => row._id}
@@ -133,44 +119,6 @@ const UsersTable = () => {
                 onClose={modal.close}
                 body={modal.body}
             />
-            <Popover 
-                id='user-table-menu'
-                anchor={currentRow.anchor}
-                isOpen={moreMenu.isOpen}
-                onClose={moreMenu.close}
-                position={{
-                    origin: {
-                        horizontal: 'right',
-                        vertical: 'bottom'
-                    },
-                    transform: {
-                        horizontal: 'right',
-                    },
-                    gap: {
-                        horizontal: 8,
-                        vertical: 24
-                    }
-                }}
-                body={
-                    <div className='menu'>
-                        <Link href={'/admin/editor?id=' + currentRow.rowId}>
-                            Editer
-                        </Link>
-                        <button 
-                            onClick={() => modal.openWith(
-                                <ConfirmModal 
-                                    message='Voulez-vous vraiment supprimer cet utilisateur ?'
-                                    onCancel={modal.close}
-                                    onConfirm={deleteUser}
-                                />
-                            )}
-                        >
-                            Supprimer
-                        </button>
-                    </div>
-                }
-                addArrow
-            />
         </div>
     );
 };
@@ -179,18 +127,6 @@ const defaultFilters = {
     fname: '',
     lname: '',
     email: ''
-}
-
-interface CurrentRow {
-    anchor: HTMLButtonElement | null
-    rowId: string
-    slug: string
-}
-
-const defaultCurrentRow: CurrentRow = {
-    anchor: null,
-    rowId: '',
-    slug: ''
 }
 
 export default UsersTable;

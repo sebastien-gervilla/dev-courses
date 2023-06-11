@@ -1,12 +1,17 @@
+import { usePagination } from '@/hooks';
 import React, { ReactNode } from 'react';
+import { Pagination } from '../Pagination';
 
 interface TableProps {
     getRowId: (row: Row) => string | number
     columns: Array<Column>
     data: Array<Row>
+    pageSize?: number
 }
 
-const Table = ({ getRowId, columns, data }: TableProps) => {
+const Table = ({ getRowId, columns, data, pageSize = 8 }: TableProps) => {
+
+    const pagination = usePagination(Math.ceil(data.length / pageSize));
 
     const getTemplateColumns = () => {
         return columns.reduce((template, column) =>
@@ -33,7 +38,10 @@ const Table = ({ getRowId, columns, data }: TableProps) => {
         if (!columns.length || !data.length)
             return;
 
-        return data.map(row => displayColumns(row));
+        const { from, to } = pagination;
+        const rows = data.slice(from, to);
+
+        return rows.map(row => displayColumns(row));
     }
 
     const displayColumns = (row: Row) => {
@@ -63,6 +71,11 @@ const Table = ({ getRowId, columns, data }: TableProps) => {
             >
                 {displayRows()}
             </div>
+            <Pagination 
+                page={pagination.page}
+                pages={pagination.pages}
+                changePage={pagination.change}
+            />
         </div>
     );
 };
