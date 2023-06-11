@@ -7,14 +7,14 @@ import { TutorialsTable, UsersTable } from '@/components/Table'
 
 const Admin = () => {
 
-    const [tab, setTab] = useState('tutorial');
+    const [tab, setTab] = useState<TabType>('Tutoriels');
 
-    const changeTab = (name: string, value: string) => setTab(value);
+    const changeTab = (name: string, value: string) => setTab(value as TabType);
 
     const displayTable = () => {
-        if (tab === 'user')
+        if (tab === 'Utilisateurs')
             return <UsersTable />;
-        if (tab === 'tutorial')
+        if (tab === 'Tutoriels')
             return <TutorialsTable />;
     }
 
@@ -71,7 +71,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
 }
 
-const allTabs = ['tutorial', 'user', 'blog'];
+const allTabs = ['Tutoriels', 'Utilisateurs', 'Articles'];
+
+type TabType = 'Tutoriels' | 'Utilisateurs' | 'Articles';
 
 const adminPageSeo: SeoModel = {
     metaTitle: 'devCourses',
