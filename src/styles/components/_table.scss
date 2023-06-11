@@ -1,4 +1,13 @@
 .table {
+    display: flex;
+    flex-direction: column;
+
+    height: 508px;
+    padding: 16px;
+
+    background-color: $grey-0;
+    box-shadow: $main-shadow;
+
     .table-header {
         display: grid;
 
@@ -17,6 +26,7 @@
             display: flex;
             align-items: center;
             
+            height: 48px;
             padding: 12px 0;
 
             border-bottom: 1px solid $grey-400;
@@ -30,6 +40,11 @@
                 height: 24px;
             }
         }
+    }
+
+    .pagination {
+        padding-top: 16px;
+        margin-top: auto;
     }
 }
 
