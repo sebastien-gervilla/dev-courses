@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Column, Table } from '.';
 import { useFetch, useModal } from '@/hooks';
-import { ConfirmModal, IconButton, Link, Modal, Popover } from '@/components';
+import { ConfirmModal, IconButton, Modal } from '@/components';
 import { MdPersonRemoveAlt1 } from 'react-icons/md'
 import { Request, UserModel } from '@/api';
 import { FormField } from '../FormField';
@@ -108,13 +108,6 @@ const UsersTable = () => {
                     value={filters.email}
                     onChange={handleChangeFilters}
                 />
-                <Link 
-                    href='/admin/editor'
-                    className='animated-button'
-                    style={{ marginLeft: 'auto' }}
-                >
-                    Ajouter
-                </Link>
             </div>
             <Table
                 getRowId={row => row._id}
