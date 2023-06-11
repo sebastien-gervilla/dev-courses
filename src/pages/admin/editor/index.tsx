@@ -1,16 +1,19 @@
-import { Breadcrumb, PageLayout } from '@/components'
+import { Breadcrumb, PageLayout, Snackbar } from '@/components'
 import { SeoModel, TutorialModel } from '@/api/models'
 import { GetServerSideProps } from 'next'
 import { Request } from '@/api'
 import { FormArray, FormCheckbox, FormField, FormNumber, 
     FormTextArea, FormSelect, FormEditor } from '@/components/FormField'
 import { useState } from 'react'
+import { useModal } from '@/hooks'
 
 interface EditorProps {
     initialTutorial: TutorialModel
 }
 
 const Editor = ({ initialTutorial }: EditorProps) => {
+
+    const snackbar = useModal();
 
     const [tutorial, setTutorial] = useState(initialTutorial);
 
@@ -26,7 +29,8 @@ const Editor = ({ initialTutorial }: EditorProps) => {
             return createTutorial();
 
         const response = await Request.make('/tutorial/' + tutorial._id, 'PUT', tutorial);
-        console.log(response);
+        if (response.ok)
+            snackbar.open()
     }
 
     const createTutorial = async () => {
@@ -133,6 +137,17 @@ const Editor = ({ initialTutorial }: EditorProps) => {
                 </div>
             </div>
 
+            <Snackbar 
+                isOpen={snackbar.isOpen}
+                onClose={snackbar.close}
+                message={
+                    initialTutorial._id ?
+                        'Tutoriel modifié avec succès !' :
+                        'Tutoriel créé avec succès !'
+                }
+                buttonText='Fermer'
+                closeDelay={3500}
+            />
         </PageLayout>
     )
 }
