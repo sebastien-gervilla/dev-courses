@@ -58,24 +58,24 @@ const Home = () => {
                             <BsClockHistory />
                             <h3>Flexible</h3>
                             <p>
-                                Ceci est un sous-text marketing qui donne envie d'acheter les cours également. 
-                                Et voici une suite de ce texte marketing.
+                                Gardez le contrôle durant votre formation, et proggessez à votre rythme,
+                                en totale autonomie.
                             </p>
                         </div>
                         <div className="argument">
                             <GiProgression />
                             <h3>Accessible</h3>
                             <p>
-                                Ceci est un sous-text marketing qui donne envie d'acheter les cours également. 
-                                Et voici une suite de ce texte marketing.
+                                Quelque soit votre niveau, vous trouverez des cours adaptés qui vous
+                                permettront de progresser vers l'étape supérieure.
                             </p>
                         </div>
                         <div className="argument">
                             <SlBriefcase />
                             <h3>Prêt à l'emploi</h3>
                             <p>
-                                Ceci est un sous-text marketing qui donne envie d'acheter les cours également. 
-                                Et voici une suite de ce texte marketing.
+                                Restez compétitif sur le marché du travail grâce à des tutoriels créés par des développeurs actifs, 
+                                avec des technologies d'actualité.
                             </p>
                         </div>
                     </div>
