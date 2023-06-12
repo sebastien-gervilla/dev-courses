@@ -87,13 +87,12 @@ const Home = () => {
                     <div className="feedbacks">
                         <div className="feedback">
                             <div className="head">
-                                <p>Sébastien</p>
+                                <p>Maxime</p>
                                 <Stars rating={5} />
                             </div>
                             <p>
-                                Des formations riches, variées, sur des sujets actuels, maintenues à jour, 
-                                à la fois accessibles et d'un très bon niveau, faciles à mettre en pratique, 
-                                reposant sur des vidéos, des cours écrits, des projets réels d'excellente qualité.
+                                L'apprentissage en ligne est beaucoup plus exigeant et difficile que l'apprentissage sur site. 
+                                DevCourses m'a parfaitement accompagné durant toute la formation. Il ne faut pas hésiter à les solliciter.
                             </p>
                         </div>
                         <div className="feedback">
@@ -109,13 +108,12 @@ const Home = () => {
                         </div>
                         <div className="feedback">
                             <div className="head">
-                                <p>Sébastien</p>
+                                <p>Hugo</p>
                                 <Stars rating={5} />
                             </div>
                             <p>
-                                Des formations riches, variées, sur des sujets actuels, maintenues à jour, 
-                                à la fois accessibles et d'un très bon niveau, faciles à mettre en pratique, 
-                                reposant sur des vidéos, des cours écrits, des projets réels d'excellente qualité.
+                                Je n'aurais jamais cru que, la cinquantaine entamée, je pourrais étudier si facilement. 
+                                Les technologies sont modernes, les cours précis mais digestes, on travaille en autonomie et à son rythme.
                             </p>
                         </div>
                     </div>
