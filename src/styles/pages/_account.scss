@@ -1,6 +1,6 @@
 #account-page {
     .head-content {
-        padding: 64px 0;
+        padding: 40px 0;
 
         .breadcrumb {
             margin-bottom: 16px;
@@ -16,6 +16,10 @@
         }
 
         .infos {
+            display: flex;
+            flex-direction: column;
+            gap: 64px;
+
             width: 35%;
             padding: $size-32;
 
@@ -24,8 +28,18 @@
 
             .app-form {
                 padding: 0;
+            }
 
-                margin-bottom: 64px;
+            &.admin {
+                flex-direction: row;
+                justify-content: space-between;
+
+                width: 100%;
+                gap: $size-24;
+
+                .info {
+                    width: 30%;
+                }
             }
         }
 
