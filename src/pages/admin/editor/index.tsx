@@ -25,23 +25,24 @@ const Editor = ({ initialTutorial }: EditorProps) => {
     }
 
     const handleSubmitTutorial = async () => {
-        if (!initialTutorial._id)
-            return createTutorial();
+        const response = await (initialTutorial._id ?
+            updateTutorial() : createTutorial());
 
-        const response = await Request.make('/tutorial/' + tutorial._id, 'PUT', tutorial);
-        if (response.ok)
-            snackbar.open()
+        if (response.ok) {
+            snackbar.open();
+            setTutorial(defaultTutorial);
+        }
     }
 
     const createTutorial = async () => {
         const { _id, summary, ...sentData } = tutorial;
-        const response = await Request.make('/tutorial', 'POST', {
+        return await Request.make('/tutorial', 'POST', {
             ...sentData, summary: summary.filter(element => !!element)
         });
-        
-        if (response.ok)
-            setTutorial(defaultTutorial);
     }
+
+    const updateTutorial = async () => await Request.make(
+        '/tutorial/' + tutorial._id, 'PUT', tutorial);
 
     return (
         <PageLayout id='editor-page' seo={editorPageSeo}>
@@ -195,7 +196,7 @@ const defaultTutorial: TutorialModel = {
 }
 
 const editorPageSeo: SeoModel = {
-    metaTitle: 'devCourses',
+    metaTitle: 'Dev Courses',
     metaDescription: 'This is my website',
     sharedImage: {
         _id: "websiteSharedImage",

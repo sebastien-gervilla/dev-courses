@@ -7,6 +7,7 @@ import UserContext from '@/contexts/AuthContext';
 import { Request } from '@/api';
 import { MdAccountCircle } from 'react-icons/md';
 import AccountMenu from './AccountMenu';
+import Image from 'next/image';
 
 const Header = () => {
 
@@ -76,7 +77,14 @@ const Header = () => {
         <header className={'app-header ' + (isDark ? 'dark' : 'light')}>
             <div className="header-content">
                 <div className="brand">
-                    <Link href="/">
+                    <Image 
+                        src='/images/logo.svg'
+                        alt='Some stuff'
+                        width={20}
+                        height={20}
+                        className='logo-img'
+                    />
+                    <Link href="/" className='logo'>
                         Dev Courses
                     </Link>
                     <div className="buttons">

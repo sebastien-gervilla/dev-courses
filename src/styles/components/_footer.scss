@@ -17,12 +17,15 @@ footer.app-footer {
             
             margin-right: 50px;
 
-            a {
-                margin-bottom: 16px;
+            .brand-logo {
+                display: flex;
+                align-items: center;
 
-                color: #4a26ff;
-                font-size: $size-24;
-                font-weight: 800;
+                a {
+                    color: $main-color-dark;
+    
+                    font-size: $size-28;
+                }
             }
         }
 

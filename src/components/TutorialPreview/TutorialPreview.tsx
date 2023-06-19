@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-import { GrTechnology } from 'react-icons/gr';
 import { AiOutlineClockCircle } from 'react-icons/ai';
 import { BsArrowRightShort } from 'react-icons/bs';
+import { HiSquare3Stack3D } from 'react-icons/hi2';
 import { MdDateRange } from 'react-icons/md';
 import { AuthContext } from '@/contexts';
 import { useRouter } from 'next/router';
@@ -33,7 +33,7 @@ const TutorialPreview = ({ slug, title, description, technology, hoursToLearn, c
             <div className="infos">
                 <h3>{title}</h3>
                 <div className="row">
-                    <GrTechnology />
+                    <HiSquare3Stack3D />
                     <p>{technology}</p>
                     <AiOutlineClockCircle />
                     <p>{hoursToLearn} Heures</p>
