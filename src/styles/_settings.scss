@@ -97,6 +97,16 @@ p.article-text {
     line-height: 1.65em;
 }
 
+.logo {
+    font-size: $size-32;
+    font-weight: 600;
+}
+
+.logo-img {
+    border-radius: 0;
+    margin-right: 12px;
+}
+
 // Scrollbar
 
 ::-webkit-scrollbar {
