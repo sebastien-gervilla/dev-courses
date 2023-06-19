@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from '..';
+import Image from 'next/image';
 
 const Footer = () => {
 
@@ -17,9 +18,18 @@ const Footer = () => {
         <footer className='app-footer'>
             <div className="footer-content">
                 <div className="brand">
-                    <Link href="/">
-                        Dev Courses
-                    </Link>
+                    <div className="brand-logo">
+                        <Image 
+                            src='/images/logo.svg'
+                            alt='Some stuff'
+                            width={20}
+                            height={20}
+                            className='logo-img'
+                        />
+                        <Link href="/" className='logo'>
+                            Dev Courses
+                        </Link>
+                    </div>
                     <p>© 2023 Dev Courses.</p>
                 </div>
                 <div className="website-links links">
