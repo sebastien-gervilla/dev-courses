@@ -196,7 +196,7 @@ const defaultTutorial: TutorialModel = {
 }
 
 const editorPageSeo: SeoModel = {
-    metaTitle: 'devCourses',
+    metaTitle: 'Dev Courses',
     metaDescription: 'This is my website',
     sharedImage: {
         _id: "websiteSharedImage",

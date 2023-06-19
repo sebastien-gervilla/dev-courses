@@ -18,9 +18,9 @@ const Footer = () => {
             <div className="footer-content">
                 <div className="brand">
                     <Link href="/">
-                        DevCourses
+                        Dev Courses
                     </Link>
-                    <p>© 2023 DevCourses.</p>
+                    <p>© 2023 Dev Courses.</p>
                 </div>
                 <div className="website-links links">
                     <p>Tutoriels</p>

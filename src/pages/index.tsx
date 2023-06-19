@@ -92,7 +92,7 @@ const Home = () => {
                             </div>
                             <p>
                                 L'apprentissage en ligne est beaucoup plus exigeant et difficile que l'apprentissage sur site. 
-                                DevCourses m'a parfaitement accompagné durant toute la formation. Il ne faut pas hésiter à les solliciter.
+                                Dev Courses m'a parfaitement accompagné durant toute la formation. Il ne faut pas hésiter à les solliciter.
                             </p>
                         </div>
                         <div className="feedback">
@@ -154,7 +154,7 @@ const technologies = [
 ]
 
 const homePageSeo: SeoModel = {
-    metaTitle: 'devCourses',
+    metaTitle: 'Dev Courses',
     metaDescription: 'This is my website',
     sharedImage: {
         _id: "websiteSharedImage",

@@ -76,7 +76,7 @@ const allTabs = ['Tutoriels', 'Utilisateurs', 'Articles'];
 type TabType = 'Tutoriels' | 'Utilisateurs' | 'Articles';
 
 const adminPageSeo: SeoModel = {
-    metaTitle: 'devCourses',
+    metaTitle: 'Dev Courses',
     metaDescription: 'This is my website',
     sharedImage: {
         _id: "websiteSharedImage",

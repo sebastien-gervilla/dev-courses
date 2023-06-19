@@ -108,7 +108,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 }
 
 const tutorialsPageSeo: SeoModel = {
-    metaTitle: 'devCourses',
+    metaTitle: 'Dev Courses',
     metaDescription: 'This is my website',
     sharedImage: {
         _id: "websiteSharedImage",
