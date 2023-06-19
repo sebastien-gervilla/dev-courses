@@ -43,24 +43,30 @@ const Account = ({ userTutorials }: AccountProps) => {
             </div>
             <div className="account wrapper">
                 <div className="account-content">
-                    <div className="infos">
-                        <h2>Informations</h2>
-                        <AccountForm initialUser={user} refresh={refresh} />
-                        <h2>Sécurité</h2>
-                        <PasswordForm userId={user?._id} refresh={refresh} />
-                        <h2>Gestion du compte</h2>
-                        <button 
-                            className='animated filled red'
-                            onClick={() => modal.openWith(
-                                <ConfirmModal 
-                                    message='Souhaitez-vous vraiment vous désinscrire ?'
-                                    onConfirm={handleUnsubscribe}
-                                    onCancel={modal.close}
-                                />
-                            )}
-                        >
-                            Se désinscrire
-                        </button>
+                    <div className={"infos" + (user?.isAdmin ? ' admin' : '')}>
+                        <div className="info">
+                            <h2>Informations</h2>
+                            <AccountForm initialUser={user} refresh={refresh} />
+                        </div>
+                        <div className="info">
+                            <h2>Sécurité</h2>
+                            <PasswordForm userId={user?._id} refresh={refresh} />
+                        </div>
+                        <div className="info">
+                            <h2>Gestion du compte</h2>
+                            <button 
+                                className='animated filled red'
+                                onClick={() => modal.openWith(
+                                    <ConfirmModal 
+                                        message='Souhaitez-vous vraiment vous désinscrire ?'
+                                        onConfirm={handleUnsubscribe}
+                                        onCancel={modal.close}
+                                    />
+                                )}
+                            >
+                                Se désinscrire
+                            </button>
+                        </div>
                     </div>
                     {!user?.isAdmin && 
                         <div className="courses">
