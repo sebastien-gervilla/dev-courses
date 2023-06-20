@@ -36,7 +36,7 @@ const TutorialPreview = ({ slug, title, description, technology, hoursToLearn, c
                     <HiSquare3Stack3D />
                     <p>{technology}</p>
                     <AiOutlineClockCircle />
-                    <p>{hoursToLearn} Heures</p>
+                    <p>{hoursToLearn} {hoursToLearn > 1 ? 'Heures' : 'Heure'}</p>
                     <MdDateRange />
                     <p>{creationDate}</p>
                 </div>
