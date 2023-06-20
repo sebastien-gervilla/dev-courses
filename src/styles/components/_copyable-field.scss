@@ -1,0 +1,21 @@
+.copyable-field {
+    height: 35px;
+    padding: 8px;
+
+    border: $main-border $grey-500;
+    border-radius: $main-radius;
+    background-color: $grey-0;
+
+    cursor: pointer;
+    transition: $main-transition;
+
+    &:hover {
+        border-color: $main-color;
+
+        transition: $main-transition;
+    }
+
+    p {
+        font-size: $size-16;
+    }
+}
