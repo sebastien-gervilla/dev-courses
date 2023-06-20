@@ -17,3 +17,4 @@ export { Tabs } from './Tabs';
 export { Pagination } from './Pagination';
 export { Footer } from './Footer';
 export { Snackbar } from './Snackbar';
+export { CopyableField } from './CopyableField';

@@ -30,7 +30,8 @@ const Editor = ({ initialTutorial }: EditorProps) => {
 
         if (response.ok) {
             snackbar.open();
-            setTutorial(defaultTutorial);
+            !initialTutorial._id &&
+                setTutorial(defaultTutorial);
         }
     }
 
@@ -122,7 +123,6 @@ const Editor = ({ initialTutorial }: EditorProps) => {
                             name='content'
                             value={tutorial.content}
                             onChange={handleChangeTutorial}
-                            style={{ height: 400 }}
                         />
                     </div>
                     <div className="form-row spaced">

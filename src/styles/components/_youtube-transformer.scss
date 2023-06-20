@@ -1,0 +1,16 @@
+.youtube-transformer {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    width: 600px;
+    padding: 32px;
+
+    h3 {
+        font-size: $size-28;
+    }
+
+    .copyable-field {
+        height: 150px
+    }
+}
