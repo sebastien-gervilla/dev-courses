@@ -6,4 +6,35 @@
             margin-bottom: 16px;
         }
     }
+
+    .tutorial-content {
+        position: relative;
+        padding: 32px 0;
+
+        & > * {
+           margin-bottom: $size-24; 
+        }
+
+        h2 {
+            margin-top: $size-36;
+
+            font-size: $size-28;
+        }
+
+        iframe {
+            width: 720px;
+            aspect-ratio: 16 / 9;
+        }
+
+        &:after {
+            position: absolute;
+            content: '';
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 1px;
+            background-color: $grey-200;
+        }
+    }
 }
