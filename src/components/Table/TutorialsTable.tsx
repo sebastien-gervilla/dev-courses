@@ -6,6 +6,7 @@ import { BsThreeDotsVertical } from 'react-icons/bs'
 import { Request, TutorialModel } from '@/api';
 import { FormField, FormSelect } from '../FormField';
 import technologies from '../../docs/technologies.json';
+import { getFullDate } from '@/utils/date-utils';
 
 const TutorialsTable = () => {
 
@@ -72,11 +73,11 @@ const TutorialsTable = () => {
             }
         },
         {
-            field: 'isPremium',
-            title: 'Premium',
+            field: 'createdAt',
+            title: 'Date de création',
             renderCell: row => {
                 return (
-                    <p>{row.isPremium ? 'Oui' : 'Non'}</p>
+                    <p>{getFullDate(row.createdAt)}</p>
                 )
             }
         },

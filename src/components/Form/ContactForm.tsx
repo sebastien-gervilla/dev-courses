@@ -1,22 +1,33 @@
-import React, { useState } from 'react';
+import React, { MouseEvent, useState } from 'react';
 import { FormField, FormTextArea } from '../FormField';
+import { Request } from '@/api';
+import { useModal } from '@/hooks';
+import { Snackbar } from '../Snackbar';
 
 const ContactForm = () => {
 
     const [form, setForm] = useState(defaultForm);
+
+    const snackbar = useModal();
     
     const handleChangeForm = (name: string, value: string) =>
         setForm({...form, [name]: value});
 
-    const handleSubmitForm = () => {
+    const handleSubmitForm = async (event: MouseEvent) => {
+        event.preventDefault();
 
+        if (Object.values(form).some(value => !value))
+            return;
+
+        const response = await Request.post('/user/contact', form);
+        if (response.ok) {
+            setForm(defaultForm);
+            snackbar.open();
+        }
     }
 
     return (
         <form className="app-form">
-            <p className="title">
-
-            </p>
             <div className="form-row">
                 <FormField 
                     label="Prénom"
@@ -41,6 +52,14 @@ const ContactForm = () => {
                 />
             </div>
             <div className="form-row">
+                <FormField 
+                    label="Sujet"
+                    name="subject"
+                    value={form.subject}
+                    onChange={handleChangeForm}
+                />
+            </div>
+            <div className="form-row">
                 <FormTextArea 
                     label='Message'
                     name='message'
@@ -53,6 +72,13 @@ const ContactForm = () => {
                     Envoyer
                 </button>
             </div>
+            <Snackbar 
+                isOpen={snackbar.isOpen}
+                onClose={snackbar.close}
+                message='Mail envoyé avec succès.'
+                buttonText='Fermer'
+                closeDelay={2500}
+            />
         </form>
     );
 };
@@ -61,6 +87,7 @@ const defaultForm = {
     fname: '',
     lname: '',
     email: '',
+    subject: '',
     message: ''
 }
 
