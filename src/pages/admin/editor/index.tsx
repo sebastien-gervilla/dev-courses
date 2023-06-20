@@ -126,15 +126,10 @@ const Editor = ({ initialTutorial }: EditorProps) => {
                         />
                     </div>
                     <div className="form-row spaced">
-                        <FormCheckbox 
-                            label='Premium'
-                            name='isPremium'
-                            checked={tutorial.isPremium}
-                            onChange={handleChangeTutorial}
-                        />
                         <button 
                             onClick={handleSubmitTutorial} 
                             className='animated filled'
+                            style={{ marginLeft: 'auto' }}
                         >
                             Valider
                         </button>
@@ -191,8 +186,7 @@ const defaultTutorial: TutorialModel = {
     summary: [],
     content: '',
     technology: 'React',
-    hoursToLearn: 1,
-    isPremium: true
+    hoursToLearn: 1
 }
 
 const editorPageSeo: SeoModel = {

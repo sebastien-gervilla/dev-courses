@@ -7,6 +7,5 @@ export default interface TutorialModel {
     content: string,
     technology: string,
     hoursToLearn: number,
-    isPremium: boolean,
     createdAt: string
 }
