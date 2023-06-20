@@ -2,8 +2,17 @@ import React from "react";
 import { SeoModel } from "@/api";
 import { Accordion, Breadcrumb, PageLayout } from "@/components";
 import ContactForm from "@/components/Form/ContactForm";
+import questions from '@/docs/frequent-questions.json';
 
 const Contact = () => {
+
+    const displayFrequentQuestions = () =>
+        questions.all.map(question => (
+            <Accordion 
+                title={question.title}
+                text={question.text}
+            />
+        ))
 
     return (
         <PageLayout id='contact-page' seo={contactPageSeo}>
@@ -24,22 +33,7 @@ const Contact = () => {
                     <div className="faq">
                         <div className="faq-content">
                             <h2>Questions récurrentes</h2>
-                            <Accordion 
-                                title={"Comment j'accède aux tutoriels premium ?"}
-                                text={"Comme ça."}
-                            />
-                            <Accordion 
-                                title={"Comment changer mon mot de passe ?"}
-                                text={"Il faut aller sur la page de profile."}
-                            />
-                            <Accordion 
-                                title={"Où sont mes cours suivis ?"}
-                                text={"Là."}
-                            />
-                            <Accordion 
-                                title={"Pourquoi je n'arrive pas à me connecter ?"}
-                                text={"Parce qu'il faut entrer le bon mot de passe."}
-                            />
+                            {displayFrequentQuestions()}
                         </div>
                     </div>
                     <div className="contact">

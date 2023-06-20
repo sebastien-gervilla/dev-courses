@@ -1,0 +1,24 @@
+{
+    "all": [
+        {
+            "title": "Les tutoriels sont-ils gratuits ?",
+            "text": "Oui, il suffit simplement d'être connecté."
+        },
+        {
+            "title": "Comment changer de mot de passe ?",
+            "text": "Il faut se rendre sur la page Compte, dans la partie Sécurité."
+        },
+        {
+            "title": "Puis-je suivre plusieurs tutoriels à la fois ?",
+            "text": "Oui, la flexibilité est au coeur Dev Courses."
+        },
+        {
+            "title": "Puis-je recommander une technologie ou un tutoriel ?",
+            "text": "Tout à fait, il suffit d'envoyer un message grâce au formulaire de contact."
+        },
+        {
+            "title": "Comment signaler un problème sur un tutoriel ?",
+            "text": "Signaler un problème peut se faire grâce au formulaire de contact."
+        }
+    ]
+}
