@@ -46,8 +46,14 @@ const Preview = ({ tutorial }: PreviewProps) => {
                     </div>
                     <div className="additional-infos">
                         <h3>Informations</h3>
-                        <p>{tutorial.technology}</p>
-                        <p>{tutorial.hoursToLearn} Hours</p>
+                        <div className="info">
+                            <p>Technologie:</p>
+                            <p>{tutorial.technology}</p>
+                        </div>
+                        <div className="info">
+                            <p>Temps estimé:</p>
+                            <p>{tutorial.hoursToLearn} {tutorial.hoursToLearn > 1 ? 'Hours' : 'Hour'}</p>
+                        </div>
                     </div>
                 </div>
             </div>
