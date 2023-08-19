@@ -71,9 +71,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
 }
 
-const allTabs = ['Tutoriels', 'Utilisateurs', 'Articles'];
+const allTabs = ['Tutoriels', 'Utilisateurs'];
 
-type TabType = 'Tutoriels' | 'Utilisateurs' | 'Articles';
+type TabType = 'Tutoriels' | 'Utilisateurs';
 
 const adminPageSeo: SeoModel = {
     metaTitle: 'Dev Courses',

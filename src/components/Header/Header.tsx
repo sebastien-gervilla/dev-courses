@@ -132,10 +132,6 @@ const NAVIGATION = [
         path: '/tutoriels'
     },
     {
-        title: 'blog',
-        path: '/blog'
-    },
-    {
         title: 'contact',
         path: '/contact'
     }
