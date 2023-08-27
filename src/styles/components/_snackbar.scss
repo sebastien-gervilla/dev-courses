@@ -1,0 +1,25 @@
+.snackbar {
+    position: fixed;
+    left: 2.5vh;
+    bottom: 2.5vh;
+
+    display: flex;
+    align-items: center;
+    gap: $size-32;
+
+    padding: $size-16;
+
+    background-color: $grey-0;
+    box-shadow: $main-shadow;
+
+    p {
+        font-size: $size-16;
+    }
+
+    button {
+        svg {
+            width: 24px;
+            height: 24px;
+        }
+    }
+}

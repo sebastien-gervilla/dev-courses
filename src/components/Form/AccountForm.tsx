@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { FormField, FormPassword } from '../FormField';
+import React, { useState, useContext } from 'react';
+import { FormField } from '../FormField';
 import { Request, UserModel } from '@/api';
+import { SnackbarContext } from '@/contexts';
 
 interface AccountFormProps {
     initialUser: UserModel | null
@@ -8,6 +9,8 @@ interface AccountFormProps {
 }
 
 const AccountForm = ({ initialUser, refresh }: AccountFormProps) => {
+
+    const snackbar = useContext(SnackbarContext);
 
     const [form, setForm] = useState({
         fname: initialUser?.fname || '',
@@ -25,8 +28,14 @@ const AccountForm = ({ initialUser, refresh }: AccountFormProps) => {
         if (!initialUser?._id) return;
 
         const res = await Request.put('/user/' + initialUser._id, form);
+        snackbar.open({
+            message: res.ok ?
+                'Informations modifiées avec succès.' :
+                'Une erreur est survenue.'
+        });
+
         res.ok && refresh();
-    }
+    } 
 
     return (
         <div className='account-form app-form'>

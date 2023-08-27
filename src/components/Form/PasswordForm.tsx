@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import { FormPassword } from '../FormField';
 import { Request } from '@/api';
+import { SnackbarContext } from '@/contexts';
 
 interface PasswordFormProps {
     userId?: string
@@ -8,6 +9,8 @@ interface PasswordFormProps {
 }
 
 const PasswordForm = ({ userId, refresh }: PasswordFormProps) => {
+
+    const snackbar = useContext(SnackbarContext)
 
     const [form, setForm] = useState(defaultForm);
 
@@ -22,9 +25,17 @@ const PasswordForm = ({ userId, refresh }: PasswordFormProps) => {
         if (!userId) return;
 
         const res = await Request.put(`/user/${userId}/change-password`, form);
-        console.log(res);
-        
-        res.ok && refresh();
+
+        snackbar.open({
+            message: res.ok 
+                ? 'Mot de passe modifié avec succès.'
+                : 'Indentifiants incorrects.'
+        });
+
+        if (res.ok) {
+            refresh();
+            setForm(defaultForm);
+        }
     }
 
     return (

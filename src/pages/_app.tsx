@@ -6,6 +6,7 @@ import { AppWrapper } from '@/components';
 import App from 'next/app';
 import { UserContextProvider } from '@/contexts/AuthContext';
 import { Request, UserModel } from '@/api';
+import { SnackbarContextProvider } from '@/contexts/SnackbarContext';
 
 interface MyAppProps extends AppProps {
     user: UserModel | null
@@ -23,7 +24,9 @@ const MyApp = ({ Component, pageProps, user }: MyAppProps) => {
             <UserContextProvider initialUser={user}>
                 <ThemeContextProvider>
                     <AppWrapper>
-                        <Component {...pageProps} />
+                        <SnackbarContextProvider>
+                            <Component {...pageProps} />
+                        </SnackbarContextProvider>
                     </AppWrapper>
                 </ThemeContextProvider>
             </UserContextProvider>

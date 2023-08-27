@@ -33,7 +33,7 @@
         .additional-infos {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 16px;
 
             width: 30%;
             padding: 16px;
@@ -41,7 +41,17 @@
             box-shadow: $main-shadow;
 
             h3 {
-                margin-bottom: 16px;
+                margin-bottom: 8px;
+            }
+
+            .info {
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+
+                p:first-child {
+                    font-weight: 500;
+                }
             }
         }
     }
