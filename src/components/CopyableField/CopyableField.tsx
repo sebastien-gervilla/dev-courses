@@ -27,7 +27,6 @@ const CopyableField = ({ text }: CopyableFieldProps) => {
                 isOpen={snackbar.isOpen}
                 onClose={snackbar.close}
                 message='Texte copié !'
-                buttonText='Fermer'
                 closeDelay={2500}
             />
         </div>

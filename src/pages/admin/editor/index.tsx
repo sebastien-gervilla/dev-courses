@@ -145,7 +145,6 @@ const Editor = ({ initialTutorial }: EditorProps) => {
                         'Tutoriel modifié avec succès !' :
                         'Tutoriel créé avec succès !'
                 }
-                buttonText='Fermer'
                 closeDelay={3500}
             />
         </PageLayout>
@@ -178,6 +177,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
 }
 
+// @ts-ignore
 const defaultTutorial: TutorialModel = {
     _id: '',
     title: '',
