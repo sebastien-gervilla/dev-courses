@@ -76,7 +76,6 @@ const ContactForm = () => {
                 isOpen={snackbar.isOpen}
                 onClose={snackbar.close}
                 message='Mail envoyé avec succès.'
-                buttonText='Fermer'
                 closeDelay={2500}
             />
         </form>
