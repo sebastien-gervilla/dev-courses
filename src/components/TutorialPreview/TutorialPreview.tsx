@@ -29,7 +29,7 @@ const TutorialPreview = ({ slug, title, description, technology, hoursToLearn, c
 
     return (
         <div onClick={handlePreviewClick} className="tutorial-preview">
-            <img src="" alt="" />
+            <img src={`/images/${slug}.jpg`} alt="Tutorial image" />
             <div className="infos">
                 <h3>{title}</h3>
                 <div className="row">
