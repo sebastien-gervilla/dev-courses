@@ -6,6 +6,7 @@ import { FormArray, FormCheckbox, FormField, FormNumber,
     FormTextArea, FormSelect, FormEditor } from '@/components/FormField'
 import { useState } from 'react'
 import { useModal } from '@/hooks'
+import technologies from '../../../docs/technologies.json';
 
 interface EditorProps {
     initialTutorial: TutorialModel
@@ -89,7 +90,7 @@ const Editor = ({ initialTutorial }: EditorProps) => {
                                 label='Technologie'
                                 name='technology'
                                 value={tutorial.technology}
-                                options={['React', 'Node.js']}
+                                options={technologies.all}
                                 onChange={handleChangeTutorial}
                             />
                             <FormNumber
